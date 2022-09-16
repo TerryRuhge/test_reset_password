@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  request_id: 
+  rider_id: 
+  date: 2022-09-16 21:11:26
+  pick_up_loc: MyString
+  drop_off_loc: MyString
+  num_passengers: 
+  attire: MyString
+  additional_info: MyString
+
+two:
+  request_id: 
+  rider_id: 
+  date: 2022-09-16 21:11:26
+  pick_up_loc: MyString
+  drop_off_loc: MyString
+  num_passengers: 
+  attire: MyString
+  additional_info: MyString
