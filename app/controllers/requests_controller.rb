@@ -65,6 +65,6 @@ class RequestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def request_params
-      params.require(:request).permit(:request_id, :rider_id, :date, :pick_up_loc, :drop_off_loc, :num_passengers, :attire, :additional_info)
+      params.require(:request).permit(:rider_id, :date, :pick_up_loc, :drop_off_loc, :num_passengers, :attire, :additional_info)
     end
 end
