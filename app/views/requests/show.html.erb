@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rider:</strong>
+  <%= @request.rider_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @request.date %>
+</p>
+
+<p>
+  <strong>Pick up loc:</strong>
+  <%= @request.pick_up_loc %>
+</p>
+
+<p>
+  <strong>Drop off loc:</strong>
+  <%= @request.drop_off_loc %>
+</p>
+
+<p>
+  <strong>Num passengers:</strong>
+  <%= @request.num_passengers %>
+</p>
+
+<p>
+  <strong>Attire:</strong>
+  <%= @request.attire %>
+</p>
+
+<p>
+  <strong>Additional info:</strong>
+  <%= @request.additional_info %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>
