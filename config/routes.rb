@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
-  root to: 'home#index'
+
+  root 'requests#index'
+  devise_for :members, controllers: {
+     registrations:'members/registrations',
+     sessions: 'members/sessions',
+     omniauth_callbacks: 'members/omniauth_callbacks'
+    }
+  
+
 
   resources :requests
 
