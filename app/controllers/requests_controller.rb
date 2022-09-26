@@ -22,7 +22,8 @@ class RequestsController < ApplicationController
   # POST /requests or /requests.json
   def create
     @request = Request.new(request_params)
-
+	@request.update_attribute(:request_status, "In Progress")
+	
     respond_to do |format|
       if @request.save
         format.html { redirect_to request_url(@request), notice: 'Request was successfully created.' }
