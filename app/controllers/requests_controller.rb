@@ -47,6 +47,16 @@ class RequestsController < ApplicationController
       end
     end
   end
+  
+  def cancel
+    @request = Request.find(params[:request_id])
+	@request.update_attribute(:request_status, 'Cancelled')
+	
+	respond_to do |format|
+      format.html { redirect_to requests_url, notice: 'Request was successfully cancelled.' }
+      format.json { head :no_content }
+    end
+  end
 
   # DELETE /requests/1 or /requests/1.json
   def destroy
