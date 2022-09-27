@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'requests#index'
+  root 'home#index'
+  get "member", to: "member#index"
   devise_for :members, controllers: {
      registrations:'members/registrations',
      sessions: 'members/sessions',
