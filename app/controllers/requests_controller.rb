@@ -22,7 +22,7 @@ class RequestsController < ApplicationController
   # POST /requests or /requests.json
   def create
     @request = Request.new(request_params)
-	@request.update_attribute(:request_status, "In Progress")
+	@request.update_attribute(:request_status, 'In Progress')
 	
     respond_to do |format|
       if @request.save
@@ -62,7 +62,7 @@ class RequestsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_request
-    @request = Request.find(params[:id])
+    @request = Request.find(params[:request_id])
   end
 
   # Only allow a list of trusted parameters through.
