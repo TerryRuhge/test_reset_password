@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   root 'home#index'
-  get "member", to: "member#index"
+  get "/member/rider_info", to: "member#rider_info"
   devise_for :members, controllers: {
      registrations:'members/registrations',
      sessions: 'members/sessions',

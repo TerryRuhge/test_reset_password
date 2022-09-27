@@ -3,7 +3,15 @@
     <h1>CARPOOL HOME</h1>
 </head>
 
-
+<!--Temporary Login and Logout -->
+<% if current_member %>
+<h2><%= current_member.email %></h2>
+<%= link_to "Assigned Rider", member_rider_info_path %>
+<%= link_to "Edit Account", edit_member_registration_path %>
+<%= button_to "Logout", destroy_member_session_path, data: {turbo: "false"}, method: :delete %>
+<% else %>
+<%= link_to "Login", new_member_session_path %>
+<%= link_to "Create Account", new_member_registration_path %>
 <body>
     <p>
     Click the link below to submit a new ride request
@@ -11,3 +19,5 @@
 
     <%= link_to 'New Request', new_request_path %>
 </body>
+<% end %>
+
