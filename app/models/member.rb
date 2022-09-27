@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Member < ApplicationRecord
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -20,5 +19,4 @@ class Member < ApplicationRecord
       member.avatar_url = auth.info.image
     end
   end
-
 end
