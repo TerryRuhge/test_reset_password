@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2022_09_23_071326) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+
   create_table "members", primary_key: "member_id", force: :cascade do |t|
     t.boolean "is_admin"
     t.boolean "is_supervisor"
