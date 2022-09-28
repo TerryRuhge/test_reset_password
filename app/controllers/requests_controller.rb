@@ -22,7 +22,7 @@ class RequestsController < ApplicationController
   # POST /requests or /requests.json
   def create
     @request = Request.new(request_params)
-	@request.update_attribute(:request_status, 'In Progress')
+	@request.update_attribute(:request_status, 'Unassigned')
 	
     respond_to do |format|
       if @request.save

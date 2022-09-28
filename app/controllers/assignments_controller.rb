@@ -1,3 +1,5 @@
+require 'date'
+
 class AssignmentsController < ApplicationController
   before_action :set_assignment, only: %i[ show edit update destroy ]
 
@@ -50,6 +52,26 @@ class AssignmentsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  def picked_up
+    @assignment = Assignment.find(params[:assignment_id])
+	@assignment.update_attribute(:pick_up_time, DateTime.now.strftime("%d/%m/%Y %H:%M"))
+	
+	respond_to do |format|
+      format.html { redirect_to assignment_url(@assignment), notice: "Assignment was successfully updated." }
+      format.json { head :no_content }
+    end
+  end
+  
+  def dropped_off
+    @assignment = Assignment.find(params[:assignment_id])
+	@assignment.update_attribute(:drop_off_time, DateTime.now.strftime("%d/%m/%Y %H:%M"))
+	
+	respond_to do |format|
+      format.html { redirect_to assignment_url(@assignment), notice: "Assignment was successfully updated." }
+      format.json { head :no_content }
     end
   end
 

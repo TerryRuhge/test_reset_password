@@ -14,7 +14,12 @@ Rails.application.routes.draw do
     get 'cancel'
   end
   
-  resources :assignments
+  resources :assignments do
+    get 'change_status'
+	get 'picked_up'
+	get 'dropped_off'
+	get 'notes'
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
