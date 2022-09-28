@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Request Status:</strong>
+  <%= Request.where(request_id: @assignment.request_id).last.request_status %>
+</p>
+
+<p>
   <strong>Request:</strong>
   <%= @assignment.request_id %>
 </p>

@@ -41,6 +41,12 @@ class RequestsController < ApplicationController
       if @request.update(request_params)
         format.html { redirect_to request_url(@request), notice: 'Request was successfully updated.' }
         format.json { render :show, status: :ok, location: @request }
+	    
+		# update the queue in assignment accordingly, if request status is changed
+		if (@request.request_status != 'In Progress') || (@request.request_status != 'Unassigned')
+	      @assignment = Assignment.where(request_id: @request.request_id).last
+	      @assignment.update_attribute(:queue_pos, 0)
+		end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @request.errors, status: :unprocessable_entity }
@@ -48,9 +54,19 @@ class RequestsController < ApplicationController
     end
   end
   
+  def status
+    @request = Request.find(params[:request_id])
+	render :edit_status
+  end
+  
   def cancel
     @request = Request.find(params[:request_id])
 	@request.update_attribute(:request_status, 'Cancelled')
+	
+	# update the queue in assignment accordingly
+	if @assignment = Assignment.where(request_id: @request.request_id).last
+	  @assignment.update_attribute(:queue_pos, 0)
+	end
 	
 	respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Request was successfully cancelled.' }
@@ -77,6 +93,6 @@ class RequestsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def request_params
-    params.require(:request).permit(:rider_id, :date_time, :pick_up_loc, :drop_off_loc, :num_passengers, :additional_info)
+    params.require(:request).permit(:rider_id, :request_status, :date_time, :pick_up_loc, :drop_off_loc, :num_passengers, :additional_info)
   end
 end

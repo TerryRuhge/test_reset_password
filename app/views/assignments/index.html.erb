@@ -10,6 +10,7 @@
   <thead>
     <tr>
       <th>Queue Position</th>
+	  <th> Request Status</th>
       <th>Request Id</th>
       <th>Driver Id</th>
       <th colspan="3"></th>
@@ -17,17 +18,29 @@
   </thead>
 
   <tbody>
-    <% @assignments.order('queue_pos ASC').each do |assignment| %>
+    <% @assignments.where.not(queue_pos: 0).order('queue_pos ASC').each do |assignment| %>
       <tr>
-        <td><%= assignment.queue_pos %></td>
+	    <td><%= assignment.queue_pos %></td>
+        <td><%= Request.where(request_id: assignment.request_id).last.request_status %></td>
         <td><%= assignment.request_id %></td>
         <td><%= assignment.driver_id %></td>
         <td><%= link_to 'Show', assignment %></td>
         <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
-		<td><%= link_to 'Change Status', edit_assignment_path(assignment) %></td>
+		<td><%= link_to 'Change Status', request_status_path(Request.where(request_id: assignment.request_id).last) %></td>
 		<td><%= link_to 'Picked Up', assignment_picked_up_path(assignment) %></td>
 		<td><%= link_to 'Dropped Off', assignment_dropped_off_path(assignment) %></td>
 		<td><%= link_to 'Driver Notes', assignment_notes_path(assignment) %></td>
+        <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+	
+	<% @assignments.where(queue_pos: 0).order('queue_pos ASC').each do |assignment| %>
+      <tr>
+	    <td><%= assignment.queue_pos %></td>
+        <td><%= Request.where(request_id: assignment.request_id).last.request_status %></td>
+        <td><%= assignment.request_id %></td>
+        <td><%= assignment.driver_id %></td>
+        <td><%= link_to 'Show', assignment %></td>
         <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

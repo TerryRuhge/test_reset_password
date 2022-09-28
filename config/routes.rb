@@ -11,11 +11,11 @@ Rails.application.routes.draw do
     }
 
   resources :requests do
+    get 'edit_status', to: 'requests#status', as: 'status'
     get 'cancel'
   end
   
   resources :assignments do
-    get 'change_status'
 	get 'picked_up'
 	get 'dropped_off'
 	get 'edit_notes', to: 'assignments#notes', as: 'notes'

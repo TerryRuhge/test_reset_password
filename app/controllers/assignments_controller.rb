@@ -30,6 +30,10 @@ class AssignmentsController < ApplicationController
     else
       @assignment.update_attribute(:queue_pos, 1)
     end
+	
+    # update the status in request accordingly
+    @request = Request.where(request_id: @assignment.request_id).last
+    @request.update_attribute(:request_status, 'In Progress')
 
     respond_to do |format|
       if @assignment.save
