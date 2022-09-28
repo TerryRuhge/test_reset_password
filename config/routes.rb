@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get 'change_status'
 	get 'picked_up'
 	get 'dropped_off'
-	get 'notes'
+	get 'edit_notes', to: 'assignments#notes', as: 'notes'
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

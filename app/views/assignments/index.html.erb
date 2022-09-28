@@ -27,7 +27,7 @@
 		<td><%= link_to 'Change Status', edit_assignment_path(assignment) %></td>
 		<td><%= link_to 'Picked Up', assignment_picked_up_path(assignment) %></td>
 		<td><%= link_to 'Dropped Off', assignment_dropped_off_path(assignment) %></td>
-		<td><%= link_to 'Driver Notes', edit_assignment_path(assignment) %></td>
+		<td><%= link_to 'Driver Notes', assignment_notes_path(assignment) %></td>
         <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

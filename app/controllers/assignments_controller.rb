@@ -74,6 +74,11 @@ class AssignmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def notes
+    @assignment = Assignment.find(params[:assignment_id])
+	render :edit_notes
+  end
 
   # DELETE /assignments/1 or /assignments/1.json
   def destroy
@@ -98,6 +103,6 @@ class AssignmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def assignment_params
-      params.require(:assignment).permit(:request_id, :driver_id)
+      params.require(:assignment).permit(:request_id, :driver_id, :driver_notes)
     end
 end
