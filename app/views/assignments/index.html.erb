@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Assignments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Assignment</th>
+      <th>Request</th>
+      <th>Driver</th>
+      <th>Driver notes</th>
+      <th>Pick up time</th>
+      <th>Drop off time</th>
+      <th>Queue pos</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assignments.each do |assignment| %>
+      <tr>
+        <td><%= assignment.assignment_id %></td>
+        <td><%= assignment.request_id %></td>
+        <td><%= assignment.driver_id %></td>
+        <td><%= assignment.driver_notes %></td>
+        <td><%= assignment.pick_up_time %></td>
+        <td><%= assignment.drop_off_time %></td>
+        <td><%= assignment.queue_pos %></td>
+        <td><%= link_to 'Show', assignment %></td>
+        <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
+        <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Assignment', new_assignment_path %>

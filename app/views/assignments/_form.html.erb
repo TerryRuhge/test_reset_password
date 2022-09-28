@@ -1,0 +1,52 @@
+<%= form_with(model: assignment) do |form| %>
+  <% if assignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
+
+      <ul>
+        <% assignment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :assignment_id %>
+    <%= form.text_field :assignment_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :request_id %>
+    <%= form.number_field :request_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :driver_id %>
+    <%= form.number_field :driver_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :driver_notes %>
+    <%= form.text_field :driver_notes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pick_up_time %>
+    <%= form.datetime_select :pick_up_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :drop_off_time %>
+    <%= form.datetime_select :drop_off_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :queue_pos %>
+    <%= form.number_field :queue_pos %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
