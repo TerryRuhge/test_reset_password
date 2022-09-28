@@ -22,6 +22,12 @@ class AssignmentsController < ApplicationController
   # POST /assignments or /assignments.json
   def create
     @assignment = Assignment.new(assignment_params)
+    if Assignment.count > 0
+      next_queue_pos = Assignment.where.not(queue_pos: 0).count + 1
+      @assignment.update_attribute(:queue_pos, next_queue_pos)
+    else
+      @assignment.update_attribute(:queue_pos, 1)
+    end
 
     respond_to do |format|
       if @assignment.save
@@ -50,6 +56,11 @@ class AssignmentsController < ApplicationController
   # DELETE /assignments/1 or /assignments/1.json
   def destroy
     @assignment.destroy
+    if @assignment.queue_pos > 0
+      Assignment.where('queue_pos > :pos', pos: @assignment.queue_pos).each do |assignment|
+	    assignment.update_attribute(:queue_pos, assignment.queue_pos - 1)
+      end
+    end
 
     respond_to do |format|
       format.html { redirect_to assignments_url, notice: "Assignment was successfully destroyed." }
@@ -65,6 +76,6 @@ class AssignmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def assignment_params
-      params.require(:assignment).permit(:assignment_id, :request_id, :driver_id, :driver_notes, :pick_up_time, :drop_off_time, :queue_pos)
+      params.require(:assignment).permit(:request_id, :driver_id)
     end
 end

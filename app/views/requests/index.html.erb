@@ -1,12 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <%= link_to "Home Page", root_path %>
+<br>
+<%= link_to "Queue Page", assignments_path %>
 
 <h1>Requests</h1>
 
 <table>
   <thead>
     <tr>
+	  <th>Id</th>
       <th>Rider</th>
 	  <th>Status</th>
       <th>Time</th>
@@ -21,6 +24,7 @@
   <tbody>
     <% @requests.each do |request| %>
       <tr>
+	    <td><%= request.request_id %></td>
         <td><%= request.rider_id %></td>
 		<td><%= request.request_status %></td>
         <td><%= request.date_time %></td>
