@@ -3,6 +3,9 @@
   <head>
     <title>Carpool Request Service</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,9 +14,10 @@
 
     <div class="header-bar" id="header-bar">
       <div class="logo" id="logo"></div>
-      <h1 class="carpool-text" id="carpool-text">CARPOOL</h1>
+      <h1 class="carpool-logo-text" id="carpool-logo-text">CARPOOL</h1>
     </div>
   </head>
+  
 
   <body>
     <%= yield %>
