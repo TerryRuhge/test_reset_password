@@ -3,6 +3,30 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+
+  <div class="Address Field">
+    <div class="field">
+      <%= f.label :line1 %> <br />
+      <%= f.text_field :line1 %>
+    </div>
+    <div class="field">
+      <%= f.label :line2 %> <br />
+      <%= f.text_field :lin2 %>
+    </div>
+    <div class="field">
+      <%= f.label :city %> <br />
+      <%= f.text_field :city %>
+    </div>
+    <div class="field">
+      <%= f.label :state %> <br />
+      <%= f.select_tag :state, options_for_select(us_states) %>
+    </div>
+    <div class="field">
+      <%= f.label :zip %> <br />
+      <%= f.text_field :zip %>
+    </div>
+  </div>
+
   <div class="field">
     <%= f.label :first_name %> <br />
     <%= f.text_field :first_name, autofocus: true %>
