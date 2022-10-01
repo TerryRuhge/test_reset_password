@@ -43,7 +43,7 @@
 
 .logo {
     display: flex;
-    background-image: url('Logo.svg');
+    background-image: url('CARPOOL-Logo.svg');
     width: 6vh;
     height: 6vh;
     margin-right: 20px;
@@ -124,6 +124,15 @@
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.445);
 }
 
+.g-oath-button {
+    background-image: url('google/google.svg');
+    width: 382px;
+    height: 92px;
+    border-style: none;
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
+
 .green-button:hover {
     background-color: rgb(76, 104, 33);
 }
@@ -133,17 +142,9 @@
     color: white;
 }
 
-.g-oath-button {
-    background-image: url('btn_google_signin_light_normal_web@2x.png');
-    width: 382px;
-    height: 92px;
-    border-style: none;
-    cursor: pointer;
-    background-repeat: no-repeat;
-}:hover {
-    background-image: url('btn_google_signin_light_focus_web@2x.png');
-    background-repeat: no-repeat;
-}
+// .g-oath-button:hover {
+
+// }
 
 
 /* -------------------------------------------------------------------------- */
