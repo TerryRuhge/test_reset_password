@@ -6,18 +6,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <div class="header-bar" id="header-bar">
-      <div>
-        <div class="logo" id="logo"></div>
-        <h1 class="carpool-logo-text" id="carpool-logo-text">CARPOOL</h1>
+    
+      <div class="header-bar" id="header-bar">
+        <%= link_to root_path do %>
+          <div class="logo" id="logo"></div>
+          <h1 class="carpool-logo-text" id="carpool-logo-text">CARPOOL</h1>
+        <% end %>
       </div>
-    </div>
+    
   </head>
   
 

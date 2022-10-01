@@ -22,15 +22,31 @@
     flex-direction: column;
  }
 
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .header-bar {
     position: relative;
     top: 0px;
-    width: 100%;
+    width: 100vw;
     height: 10vh;
     background-color: #323232;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+    
 }
 
 .carpool-logo-text {
@@ -61,6 +77,13 @@
 
 .medium-margins {
     margin: 80pt;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 
@@ -94,18 +117,26 @@
 
 .green-button {
     background-color: rgb(121, 194, 0);
-    width: 245px;
-    height: 75px;
+    color: white;
+    border-style: none;
+    width: 12vw;
+    height: 3vh;
     border-radius: 8px;
     display: flex;
     font-family: 'Roboto', sans-serif;
     font-size: 25px;
-    color: white;
+    
     text-decoration: none;
     align-items: center;
     justify-content: center;
     transition: background-color .15s ease-in-out;
     box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
+}
+
+// used for the request a ride button
+.large {
+    width: 245px;
+    height: 75px;
 }
 
 .grey-button {
@@ -125,12 +156,46 @@
 }
 
 .g-oath-button {
-    background-image: url('google/google.svg');
-    width: 382px;
-    height: 92px;
-    border-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     cursor: pointer;
-    background-repeat: no-repeat;
+
+    width: fit-content;
+    height: fit-content;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+
+    border-radius: .2vh;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.445);
+
+    transition: background-color .15s ease-in-out;
+
+
+    div {
+        background-image: url('google/google.svg');
+        width: 2vmax;
+        height: 2vmax;
+        border-style: none;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        margin-left: 1vw;
+        margin-right: .4vw;
+    }
+
+    input {
+        background-color: white;
+        border-style: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 12pt;
+        color: rgb(106, 106, 106);
+        cursor: pointer;
+        transition: background-color .15s ease-in-out;
+    }
 }
 
 .green-button:hover {
@@ -140,6 +205,14 @@
 .grey-button:hover {
     background-color: rgb(133, 133, 133);
     color: white;
+}
+
+.g-oath-button:hover {
+    background-color: rgb(232, 232, 232);
+
+    input {
+        background-color: rgb(232, 232, 232);
+    }
 }
 
 // .g-oath-button:hover {
@@ -175,11 +248,12 @@
 }
 
 // tablets
-@media only screen and (max-device-width: 1024px) {
+@media only screen and (max-device-width: 1281px) {
     .card {
         width: 40vw;
-        height: 40vh;
+        height: fit-content;
         margin-top: 7vh;
+        padding: 5vh;
     }
 
     .medium-margins {
@@ -194,5 +268,9 @@
         background-color: rgb(227, 227, 227);
         width: 50vw;
         height: 5vh;
+    }
+
+    .g-oath-button {
+        justify-content: space-between;
     }
 }
