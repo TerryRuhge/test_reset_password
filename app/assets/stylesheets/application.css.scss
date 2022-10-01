@@ -151,9 +151,33 @@
 /*                               MOBILE SETTINGS                              */
 /* -------------------------------------------------------------------------- */
 
+// smartphones
 @media only screen and (max-device-width: 480px) {
     .card {
         width: 90vw;
+        height: 40vh;
+        margin-top: 7vh;
+    }
+
+    .medium-margins {
+        margin: 20pt;
+    }
+
+    .horiz-container {
+        flex-direction: column;
+    }
+
+    .grey-button {
+        background-color: rgb(227, 227, 227);
+        width: 50vw;
+        height: 5vh;
+    }
+}
+
+// tablets
+@media only screen and (max-device-width: 1024px) {
+    .card {
+        width: 40vw;
         height: 40vh;
         margin-top: 7vh;
     }
