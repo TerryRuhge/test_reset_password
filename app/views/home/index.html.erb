@@ -9,15 +9,18 @@
     <%= link_to 'Request a Ride', new_request_path, :class => "green-button" %>
 </div>
 
-<div class="horiz-container medium-margins">
+
     <!--Temporary Login and Logout -->
     <% if current_member %>
         <h2><%= current_member.email %></h2>
         <%= link_to "Assigned Rider", member_rider_info_path %>
-        %= link_to "Edit Account", edit_member_registration_path %>
+        <br>
+        <%= link_to "Edit Account", edit_member_registration_path %>
+        <br>
         <%= button_to "Logout", destroy_member_session_path, data: {turbo: "false"}, method: :delete %>
     <% else %>
-        <%= link_to "Login", new_member_session_path, :class => "grey-button small-margins" %>
-        <%= link_to "Create Account", new_member_registration_path, :class => "grey-button small-margins" %>
+        <div class="horiz-container medium-margins">
+            <%= link_to "Login", new_member_session_path, :class => "grey-button small-margins" %>
+            <%= link_to "Create Account", new_member_registration_path, :class => "grey-button small-margins" %>
+        </div>
     <% end %>
-</div>
