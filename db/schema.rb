@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_23_071326) do
+ActiveRecord::Schema.define(version: 2022_09_28_181111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assignments", primary_key: "assignment_id", force: :cascade do |t|
+    t.integer "request_id"
+    t.integer "driver_id"
+    t.string "driver_notes"
+    t.datetime "pick_up_time"
+    t.datetime "drop_off_time"
+    t.integer "queue_pos"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "members", primary_key: "member_id", force: :cascade do |t|
     t.boolean "is_admin"
