@@ -3,30 +3,6 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-
-  <div class="Address Field">
-    <div class="field">
-      <%= f.label :line1 %> <br />
-      <%= f.text_field :line1 %>
-    </div>
-    <div class="field">
-      <%= f.label :line2 %> <br />
-      <%= f.text_field :lin2 %>
-    </div>
-    <div class="field">
-      <%= f.label :city %> <br />
-      <%= f.text_field :city %>
-    </div>
-    <div class="field">
-      <%= f.label :state %> <br />
-      <%= f.select_tag :state, options_for_select(us_states) %>
-    </div>
-    <div class="field">
-      <%= f.label :zip %> <br />
-      <%= f.text_field :zip %>
-    </div>
-  </div>
-
   <div class="field">
     <%= f.label :first_name %> <br />
     <%= f.text_field :first_name, autofocus: true %>
@@ -38,13 +14,36 @@
   </div>
 
   <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %> <br />
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="Address Field">
+    <div class="field">
+      <%= f.label :address %> <br />
+      <%= f.text_field :address %>
+    </div>
+  </div>
+
+  <div class="field">
     <%= f.label :gender %> <br />
     <%= f.select :is_male, [['Male', true], ['Female', false]]%>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="Emergency Contact Field">
+    <div class="field">
+      <%= f.label :emergency_full_name %> <br />
+      <%= f.text_field :emergency_full_name %>
+    </div>
+    <div class="field">
+      <%= f.label :emergency_phone_number %> <br />
+      <%= f.text_field :emergency_phone_number %>
+    </div>
   </div>
 
   <div class="field">
