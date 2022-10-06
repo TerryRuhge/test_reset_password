@@ -14,11 +14,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :request_id %>
-    <%= form.select :request_id, Request.where(request_status: 'Unassigned').or(Request.where(request_id: @assignment.request_id)).map { |request| [request.request_id] }, include_blank: true, id:"id_of_the_request_id_select_box" %>
-  </div>
-
-  <div class="field">
     <%= form.label :driver_id %>
     <%= form.text_field :driver_id %>
   </div>
