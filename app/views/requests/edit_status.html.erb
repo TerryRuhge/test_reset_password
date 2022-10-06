@@ -1,0 +1,28 @@
+<h1>Editing Assignment Request Status</h1>
+
+<%= form_with(model: @request) do |form| %>
+  <% if @request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+        <% @request.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :request_status %>
+    <%= form.select :request_status, ['Finished', 'Late'], include_blank: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Show', @assignment %> |
+<%= link_to 'Back', assignments_path %>
