@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2022_10_07_000438) do
     t.string "address"
     t.string "emergency_full_name"
     t.string "emergency_phone_number"
-    t.boolean "created_password"
+    t.boolean "created_password", default: true
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
