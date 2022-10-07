@@ -39,6 +39,7 @@
         <td><%= assignment.request_id %></td>
         <td><%= assignment.driver_id %></td>
         <td><%= link_to 'Show', assignment %></td>
+		<td><%= link_to 'Driver Notes', assignment_notes_path(assignment) %></td>
         <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

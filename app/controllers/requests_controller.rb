@@ -43,6 +43,7 @@ class RequestsController < ApplicationController
       if @request.update(request_params)
 	    # update the queue in assignment accordingly, if request status is changed
 		if (@request.request_status != 'In Progress') && (@request.request_status != 'Unassigned')
+		  @assignment = Assignment.where(request_id: @request.request_id).last
 	      @assignment.update_attribute(:queue_pos, 0)
 		end
 	  
