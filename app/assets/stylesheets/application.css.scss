@@ -87,6 +87,7 @@ form {
   .mobile-menu {
     color: white;
     display: none;
+
   }
 
   .current-member {
@@ -337,6 +338,7 @@ form {
     flex-direction: column;
     height: fit-content;
 
+
     .middle {
       width: 100vw;
     }
@@ -345,23 +347,45 @@ form {
       display: none;
     }
     .right-side {
+      display: block;
       width: 100vw;
+      height: 0vh;
+
+      * {pointer-events: none;}
       h2 {text-align: center;}
-      display: none;
+
+      transform: translate(0, 0vh);
+      opacity: 0;
+      transition: all .2s;
 
       &.active {
-        display: block;
+        opacity: 1;
+        height: 10vh;
+        transform: translate(0,1vh);
+
+        * {pointer-events: all;}
       }
     }
 
     .mobile-menu {
-      display: block;
+      display: flex;
       padding-top: .5vh;
       padding-bottom: .5vh;
       width: 100vw;
       background-color: #565656;
+
+      justify-content: center;
       text-align: center;
       user-select: none;
+
+      .arrow {
+        font-size: 2vh;
+        margin-right: 1vw;
+        transition: transform .2s;
+        &.active {
+          transform: rotateZ(180deg);
+        }
+      }
     }
 
     .current-member {
@@ -376,12 +400,8 @@ form {
       }
 
       .member-options {
-        a {
-          margin-right: 2vw;
-        }
-        * {
-          font-size: 3.5vmin;
-        }
+        a {margin-right: 2vw;}
+        * {font-size: 3.5vmin;}
       }
     }
   }

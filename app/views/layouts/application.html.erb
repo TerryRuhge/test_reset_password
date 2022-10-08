@@ -25,19 +25,23 @@
         
         <!--Login and Logout -->
         <% if current_member %>
-            <div class="current-member right-side">
-                <div>
-                    <h2><%= current_member.email %></h2>
-                    <div class="member-options">
-                      <%= link_to "Assigned Rider", member_rider_info_path %>
-                      <%= link_to "Edit Account", edit_member_registration_path %>
-                      <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
-                    </div>
-                    
-                </div>
+          <div class="current-member right-side">
+            <div>
+              <h2><%= current_member.email %></h2>
+                <div class="member-options">
+                  <%= link_to "Assigned Rider", member_rider_info_path %>
+                  <%= link_to "Edit Account", edit_member_registration_path %>
+                  <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
+                </div>  
             </div>
+          </div>
+
+          <%# Mobile Menu %>
+          <div class="mobile-menu">
+            <div class="arrow">▼</div>
+            <div>Menu</div>
+          </div>
         <% end %>
-        <div class="mobile-menu">▼ Menu</div>
       </div>
   </head>
   
@@ -45,5 +49,4 @@
   <body>
     <%= yield %>
   </body>
-
 </html>
