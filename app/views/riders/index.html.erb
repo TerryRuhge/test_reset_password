@@ -20,9 +20,9 @@
   <thead>
     <tr>
       <th>Rider</th>
-      <th>Phone number</th>
       <th>First name</th>
       <th>Last name</th>
+	  <th>Phone number</th>
       <th>Local address</th>
       <th colspan="3"></th>
     </tr>
@@ -32,9 +32,9 @@
     <% @riders.each do |rider| %>
       <tr>
         <td><%= rider.rider_id %></td>
-        <td><%= rider.phone_number %></td>
         <td><%= rider.first_name %></td>
         <td><%= rider.last_name %></td>
+        <td><%= rider.phone_number %></td>
         <td><%= rider.local_address %></td>
         <td><%= link_to 'Show', rider %></td>
         <td><%= link_to 'Edit', edit_rider_path(rider) %></td>
