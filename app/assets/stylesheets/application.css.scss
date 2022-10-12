@@ -1,0 +1,276 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+ }
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-bar {
+    position: relative;
+    top: 0px;
+    width: 100vw;
+    height: 10vh;
+    background-color: #323232;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+    
+}
+
+.carpool-logo-text {
+    display: flex;
+    color: rgb(150, 255, 83);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 5vh;
+    vertical-align: middle;
+}
+
+.logo {
+    display: flex;
+    background-image: url('CARPOOL-Logo.svg');
+    width: 6vh;
+    height: 6vh;
+    margin-right: 20px;
+    background-repeat: no-repeat;
+    align-self: center;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   LAYOUT                                   */
+/* -------------------------------------------------------------------------- */
+
+.small-margins {
+    margin: 20pt;
+}
+
+.medium-margins {
+    margin: 80pt;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                               CONTAINERS                                   */
+/* -------------------------------------------------------------------------- */
+
+.horiz-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 33vw;
+    height: 40vh;
+    margin-top: 20vh;
+    box-shadow: 0px 0px 29px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                                   BUTTONS                                  */
+/* -------------------------------------------------------------------------- */
+
+.green-button {
+    background-color: rgb(121, 194, 0);
+    color: white;
+    border-style: none;
+    width: 12vw;
+    height: 3vh;
+    border-radius: 8px;
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .15s ease-in-out;
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.25);
+}
+
+// used for the request a ride button
+.large {
+    width: 245px;
+    height: 75px;
+}
+
+.grey-button {
+    background-color: rgb(227, 227, 227);
+    width: 15vw;
+    height: 5vh;
+    border-radius: 8px;
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    color: rgb(105, 105, 105);
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .15s ease-in-out, color .15s ease-in-out;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.445);
+}
+
+.g-oath-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    width: fit-content;
+    height: fit-content;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+
+    border-radius: .2vh;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.445);
+
+    transition: background-color .15s ease-in-out;
+
+
+    div {
+        background-image: url('google/google.svg');
+        width: 2vmax;
+        height: 2vmax;
+        border-style: none;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        margin-left: 1vw;
+        margin-right: .4vw;
+    }
+
+    input {
+        background-color: white;
+        border-style: none;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 12pt;
+        color: rgb(106, 106, 106);
+        cursor: pointer;
+        transition: background-color .15s ease-in-out;
+    }
+}
+
+.green-button:hover {
+    background-color: rgb(76, 104, 33);
+}
+
+.grey-button:hover {
+    background-color: rgb(133, 133, 133);
+    color: white;
+}
+
+.g-oath-button:hover {
+    background-color: rgb(232, 232, 232);
+
+    input {
+        background-color: rgb(232, 232, 232);
+    }
+}
+
+// .g-oath-button:hover {
+
+// }
+
+
+/* -------------------------------------------------------------------------- */
+/*                               MOBILE SETTINGS                              */
+/* -------------------------------------------------------------------------- */
+
+// smartphones
+@media only screen and (max-device-width: 480px) {
+    .card {
+        width: 90vw;
+        height: 40vh;
+        margin-top: 7vh;
+    }
+
+    .medium-margins {
+        margin: 20pt;
+    }
+
+    .horiz-container {
+        flex-direction: column;
+    }
+
+    .grey-button {
+        background-color: rgb(227, 227, 227);
+        width: 50vw;
+        height: 5vh;
+    }
+}
+
+// tablets
+@media only screen and (max-device-width: 1281px) {
+    .card {
+        width: 40vw;
+        height: fit-content;
+        margin-top: 7vh;
+        padding: 5vh;
+    }
+
+    .medium-margins {
+        margin: 20pt;
+    }
+
+    .horiz-container {
+        flex-direction: column;
+    }
+
+    .grey-button {
+        background-color: rgb(227, 227, 227);
+        width: 50vw;
+        height: 5vh;
+    }
+
+    .g-oath-button {
+        justify-content: space-between;
+    }
+}

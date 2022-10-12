@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Request Status:</strong>
+  <%= Request.where(request_id: @assignment.request_id).last.request_status %>
+</p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @assignment.request_id %>
+</p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @assignment.driver_id %>
+</p>
+
+<p>
+  <strong>Driver notes:</strong>
+  <%= @assignment.driver_notes %>
+</p>
+
+<p>
+  <strong>Pick Up Time:</strong>
+  <%= @assignment.pick_up_time %>
+</p>
+
+<p>
+  <strong>Drop Off Time:</strong>
+  <%= @assignment.drop_off_time %>
+</p>
+
+<p>
+  <strong>Queue Position:</strong>
+  <%= @assignment.queue_pos %>
+</p>
+
+<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
+<%= link_to 'Back', assignments_path %>
