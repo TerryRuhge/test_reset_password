@@ -9,6 +9,8 @@ Rails.application.routes.draw do
      sessions: 'members/sessions',
      omniauth_callbacks: 'members/omniauth_callbacks'
     }
+	
+  resources :riders
 
   resources :requests do
     get 'edit_status', to: 'requests#status', as: 'status'
