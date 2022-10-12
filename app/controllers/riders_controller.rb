@@ -3,7 +3,7 @@ class RidersController < ApplicationController
 
   # GET /riders or /riders.json
   def index
-    @riders = Rider.search(params[:search_first_name], params[:search_last_name], params[:search_phone_number])
+    @riders = Rider.search(params[:search_first_name], params[:search_last_name])
   end
 
   # GET /riders/1 or /riders/1.json
@@ -65,6 +65,6 @@ class RidersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rider_params
-      params.require(:rider).permit(:phone_number, :first_name, :last_name, :local_address, :search_first_name, :search_last_name, :search_phone_number)
+      params.require(:rider).permit(:phone_number, :first_name, :last_name, :local_address, :search_first_name, :search_last_name)
     end
 end

@@ -3,14 +3,12 @@
 <h1>Riders</h1>
 
 <%= form_tag(riders_path, method: :get) do %>
-	<%= label_tag "Search for first name:" %>
+	<%= label_tag "Enter first name:" %>
 	<%= text_field_tag(:search_first_name, params[:search]) %>
 	
-	<%= label_tag "Search for last name:" %>
+	<%= label_tag "Enter last name:" %>
 	<%= text_field_tag(:search_last_name, params[:search]) %>
 	
-	<%= label_tag "Search for phone number:" %>
-	<%= text_field_tag(:search_phone_number, params[:search]) %>
 	<%= submit_tag ("Search") %>
 <% end %>
 
