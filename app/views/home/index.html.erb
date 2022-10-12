@@ -29,10 +29,10 @@
 </div>
 <%= form_tag(search_path, method: :get) do %>
 	<%= label_tag "Enter first name:" %>
-	<%= text_field_tag(:search_first_name, params[:search]) %>
+	<%= text_field_tag(:search_first_name, params[:search_first_name]) %>
 	
 	<%= label_tag "Enter last name:" %>
-	<%= text_field_tag(:search_last_name, params[:search]) %>
+	<%= text_field_tag(:search_last_name, params[:search_last_name]) %>
 	
 	<%= submit_tag ("Search") %>
 <% end %>
