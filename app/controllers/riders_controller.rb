@@ -3,7 +3,7 @@ class RidersController < ApplicationController
 
   # GET /riders or /riders.json
   def index
-    @riders = Rider.search(params[:search_first_name], params[:search_last_name])
+    @riders = Rider.all
   end
 
   # GET /riders/1 or /riders/1.json
@@ -45,6 +45,10 @@ class RidersController < ApplicationController
         format.json { render json: @rider.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def search
+    @rider = Rider.search(params[:search_first_name], params[:search_last_name])
   end
 
   # DELETE /riders/1 or /riders/1.json

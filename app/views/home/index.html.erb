@@ -18,8 +18,21 @@
         <br>
         <%= button_to "Logout", destroy_member_session_path, data: {turbo: "false"}, method: :delete %>
     <% else %>
-        <div class="horiz-container medium-margins">
+        <div class="horiz-container small-margins">
             <%= link_to "Login", new_member_session_path, :class => "grey-button small-margins" %>
             <%= link_to "Create Account", new_member_registration_path, :class => "grey-button small-margins" %>
         </div>
     <% end %>
+
+<div class="horiz-container">
+    <%= link_to "Create Rider Autofill", new_rider_path, :class => "grey-button small-margins" %>
+</div>
+<%= form_tag(search_path, method: :get) do %>
+	<%= label_tag "Enter first name:" %>
+	<%= text_field_tag(:search_first_name, params[:search]) %>
+	
+	<%= label_tag "Enter last name:" %>
+	<%= text_field_tag(:search_last_name, params[:search]) %>
+	
+	<%= submit_tag ("Search") %>
+<% end %>

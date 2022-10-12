@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     }
 	
   resources :riders
+  get '/search', to: 'riders#search'
 
   resources :requests do
     get 'edit_status', to: 'requests#status', as: 'status'
