@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Member < ApplicationRecord
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,6 +10,7 @@ class Member < ApplicationRecord
 		 
   #validates :username, presence: true
   #validates :password, presence: true
+  #validates_confirmation_of :password
   #validates :emergency_contact_id, presence: true
 
   def self.from_omniauth(auth)
@@ -17,6 +19,7 @@ class Member < ApplicationRecord
       member.password = Devise.friendly_token[0, 20]
       member.full_name = auth.info.name 
       member.avatar_url = auth.info.image
+      member.created_password = false
     end
   end
 end
