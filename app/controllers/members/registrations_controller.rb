@@ -63,9 +63,12 @@ class Members::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :is_male, :address, :phone, :emergency_full_name, :emergency_phone_number])
   end
   
-  # The path used after sign up.
+  #The path used after sign up.
   # def after_sign_up_path_for(resource)
-  #   super(resource)
+  #   if current_member.present?
+  #     edit_member_registration_path
+  #   end
+  #     super(resource)
   # end
 
   # The path used after sign up for inactive accounts.

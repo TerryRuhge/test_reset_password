@@ -57,8 +57,12 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <h3> Update Password </h3>
-
+  <% if @current_member.created_password %>
+    <h3> Update Password </h3>
+  <% else %>
+    <h3> Create Password </h3>
+  <% end %>
+  
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
