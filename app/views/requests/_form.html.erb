@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :rider_id %>
-    <%= form.select :rider_id, Rider.all.map { |rider| [(rider.first_name + ' ' + rider.last_name), rider.rider_id] }, include_blank: true, id:"rider_select_box" %>
+    <%= form.select :rider_id, @riders.map { |rider| [(rider.last_name + ', ' + rider.first_name), rider.rider_id] }, include_blank: true, id:"rider_select_box" %>
   </div>
 
   <div class="field">

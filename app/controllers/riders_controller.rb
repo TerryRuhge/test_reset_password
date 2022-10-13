@@ -3,7 +3,7 @@ class RidersController < ApplicationController
 
   # GET /riders or /riders.json
   def index
-    @riders = Rider.all
+    @riders = Rider.order('last_name ASC').order('first_name ASC')
   end
 
   # GET /riders/1 or /riders/1.json
