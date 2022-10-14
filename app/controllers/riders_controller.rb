@@ -48,7 +48,7 @@ class RidersController < ApplicationController
   end
   
   def search
-    @rider = Rider.search(params[:search_first_name], params[:search_last_name])
+    @rider = Rider.search(params[:search_first_name], params[:search_last_name], params[:search_phone_number])
   end
 
   # DELETE /riders/1 or /riders/1.json
@@ -69,6 +69,6 @@ class RidersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rider_params
-      params.require(:rider).permit(:phone_number, :first_name, :last_name, :local_address, :search_first_name, :search_last_name)
+      params.require(:rider).permit(:phone_number, :first_name, :last_name, :local_address, :search_first_name, :search_last_name, :search_phone_number)
     end
 end

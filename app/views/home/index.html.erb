@@ -32,6 +32,11 @@
             <%= text_field_tag(:search_last_name, params[:search_last_name]) %>
         </div>
 		
+		<div class="row">
+			<%= label_tag "Enter phone number:" %>
+			<%= text_field_tag(:search_phone_number, params[:search_phone_number]) %>
+		</div>
+		
         <%= submit_tag ("Search for Rider Autofill") %>
     <% end %>
 </div>

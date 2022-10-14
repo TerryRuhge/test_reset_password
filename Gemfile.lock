@@ -278,6 +278,7 @@ GEM
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
+    validates_phone_number (2.0.1)
     version_gem (1.1.1)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -332,6 +333,7 @@ DEPENDENCIES
   spring
   turbolinks (~> 5)
   tzinfo-data
+  validates_phone_number (~> 2.0, >= 2.0.1)
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
