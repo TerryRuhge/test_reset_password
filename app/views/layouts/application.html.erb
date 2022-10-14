@@ -24,19 +24,22 @@
         </div>
         
         <!--Login and Logout -->
-        <% if current_member %>
+        
           <div class="current-member right-side">
-            <div>
-              <h2><%= current_member.email %></h2>
-                <div class="member-options">
-                  <%= link_to "Assigned Rider", member_rider_info_path %>
-                  <%= link_to "Edit Account", edit_member_registration_path %>
-                  <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
-                </div>  
-            </div>
+            <% if current_member %>
+              <div>
+                <h2><%= current_member.email %></h2>
+                  <div class="member-options">
+                    <%= link_to "Assigned Rider", member_rider_info_path %>
+                    <%= link_to "Edit Account", edit_member_registration_path %>
+                    <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
+                  </div>  
+              </div>
+            <% end %>
           </div>
 
           <%# Mobile Menu %>
+        <% if current_member %>
           <div class="mobile-menu">
             <div class="arrow">▼</div>
             <div>Menu</div>
