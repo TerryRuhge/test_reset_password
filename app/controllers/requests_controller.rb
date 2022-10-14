@@ -67,7 +67,6 @@ class RequestsController < ApplicationController
   
   def status
     @request = Request.find(params[:request_id])
-	render :edit_status
   end
   
   def cancel

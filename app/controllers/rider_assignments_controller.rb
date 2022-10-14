@@ -1,6 +1,6 @@
 require 'date'
 
-class AssignmentsController < ApplicationController
+class RiderAssignmentsController < ApplicationController
   before_action :set_assignment, only: %i[ show edit update destroy ]
 
   # GET /assignments or /assignments.json
@@ -88,6 +88,7 @@ class AssignmentsController < ApplicationController
   
   def notes
     @assignment = Assignment.find(params[:assignment_id])
+	render :edit_notes
   end
 
   # DELETE /assignments/1 or /assignments/1.json
