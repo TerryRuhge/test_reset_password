@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 	
   resources :riders do
     get 'requests', to: 'rider_requests#index'
+    get 'requests/:request_id/cancel', to: 'rider_requests#cancel', as: 'request_cancel'
+	
     get 'assignments', to: 'rider_assignments#index'
   end
   get 'search', to: 'riders#search'
