@@ -12,6 +12,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/1 or /assignments/1.json
   def show
     @request = Request.find_by(request_id: @assignment.request_id)
+	@rider = Rider.find_by(rider_id: @request.rider_id)
   end
 
   # GET /assignments/new

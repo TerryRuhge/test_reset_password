@@ -37,7 +37,7 @@
         <td><%= rider.local_address %></td>
         <td><%= link_to 'Edit', edit_rider_path(rider) %></td>
 		<td><%= link_to 'View Requests', rider_requests_path(rider) %></td>
-        <td><%= link_to 'Destroy', rider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%= link_to 'View Assignments', rider_assignments_path(rider) %></td>
       </tr>
     <% end %>
   </tbody>

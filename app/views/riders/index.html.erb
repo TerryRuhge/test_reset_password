@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<div class="horiz-container">
+  <%= link_to "Riders", riders_path, :class => "small-margins" %>
+  <%= link_to "Requests", requests_path, :class => "small-margins" %>
+  <%= link_to "Assignments", assignments_path, :class => "small-margins" %>
+</div>
+
 <h1>Riders</h1>
 
 <table>
@@ -24,6 +30,7 @@
         <td><%= rider.local_address %></td>
         <td><%= link_to 'Show', rider %></td>
         <td><%= link_to 'Edit', edit_rider_path(rider) %></td>
+		<td><%= link_to 'Destroy', rider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

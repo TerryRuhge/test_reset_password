@@ -35,5 +35,11 @@
   <%= @assignment.queue_pos %>
 </p>
 
-<%= link_to 'Edit', edit_assignment_path(@assignment) %> |
-<%= link_to 'Back', assignments_path %>
+<%= link_to 'Edit', edit_assignment_path(@request) %>
+<% if not current_member %>
+	<%= link_to 'Back To Requests', rider_requests_path(@rider) %>
+	<%= link_to 'Back To Assignments', rider_assignments_path(@rider) %>
+<% else %>
+	<%= link_to 'Back To Requests', requests_path %>
+	<%= link_to 'Back To Assignments', assignments_path %>
+<% end %>

@@ -36,11 +36,10 @@
 </p>
 
 
+<%= link_to 'Edit', edit_request_path(@request) %>
 <% if not current_member %>
-    <%= link_to 'Edit', edit_request_path(@request) %>
 	<%= link_to 'Back To Requests', rider_requests_path(@rider) %>
 <% else %>
-	<%= link_to 'Edit', edit_request_path(@request) %> |
-	<%= link_to 'Back To Requests', requests_path %> |
+	<%= link_to 'Back To Requests', requests_path %>
 	<%= link_to 'Back To Assignments', assignments_path %>
 <% end %>

@@ -1,6 +1,6 @@
 class RiderRequestsController < ApplicationController
-  before_action :set_rider, only: %i[index cancel]
-  before_action :set_request, only: %i[cancel]
+  before_action :set_rider, only: %i[ index cancel ]
+  before_action :set_request, only: %i[ cancel ]
 
   # GET /riders/1/index
   def index
