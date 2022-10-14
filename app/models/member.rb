@@ -21,7 +21,6 @@ class Member < ApplicationRecord
   validates :last_name, :first_name, :is_male, :phone, :address, :emergency_full_name, :emergency_phone_number, presence: true, if: :valid_non_provider?
 
   def valid_non_provider?
-    puts "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + "#{self.provider.nil?}"
     return self.provider.nil?
   end
 
