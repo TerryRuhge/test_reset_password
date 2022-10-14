@@ -15,17 +15,41 @@
 
     
       <div class="header-bar" id="header-bar">
-        <%= link_to root_path do %>
-          <div class="logo" id="logo"></div>
-          <h1 class="carpool-logo-text" id="carpool-logo-text">CARPOOL</h1>
+        <div class="left-side"></div>
+        <div class="middle">
+          <%= link_to root_path do %>
+            <div class="logo" id="logo"></div>
+            <h1 class="carpool-logo-text" id="carpool-logo-text">CARPOOL</h1>
+          <% end %>
+        </div>
+        
+        <!--Login and Logout -->
+        
+          <div class="current-member right-side">
+            <% if current_member %>
+              <div>
+                <h2><%= current_member.email %></h2>
+                  <div class="member-options">
+                    <%= link_to "Assigned Rider", member_rider_info_path %>
+                    <%= link_to "Edit Account", edit_member_registration_path %>
+                    <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
+                  </div>  
+              </div>
+            <% end %>
+          </div>
+
+          <%# Mobile Menu %>
+        <% if current_member %>
+          <div class="mobile-menu">
+            <div class="arrow">▼</div>
+            <div>Menu</div>
+          </div>
         <% end %>
       </div>
-    
   </head>
   
 
   <body>
     <%= yield %>
   </body>
-
 </html>
