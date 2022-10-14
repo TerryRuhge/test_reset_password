@@ -22,7 +22,7 @@
 
 <%= link_to 'Edit', edit_rider_path(@rider) %>
 <% if not current_member %>
-	<%= link_to 'Back', search_path %>
+	<%= link_to 'Back', root_path %>
 <% else %>
 	<%= link_to 'Back', riders_path %>
 <% end %>
