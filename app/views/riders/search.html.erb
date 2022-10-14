@@ -2,20 +2,24 @@
 
 <h1>Search Rider</h1>
 
-<%= form_tag(search_path, method: :get) do %>
-	<%= label_tag "Enter first name:" %>
-	<%= text_field_tag(:search_first_name, params[:search_first_name]) %>
+<div class="small-margins">
+	<%= form_tag(search_path, method: :get) do %>
+		<div class="row">
+			<%= label_tag "Enter first name:" %> <%= text_field_tag(:search_first_name, params[:search_first_name]) %>
+		</div>
+		
+		<div class="row">
+			<%= label_tag "Enter last name:" %>
+			<%= text_field_tag(:search_last_name, params[:search_last_name]) %>
+		</div>
+		
+		<%= submit_tag ("Search for Rider Autofill") %>
+	<% end %>
+</div>
 	
-	<%= label_tag "Enter last name:" %>
-	<%= text_field_tag(:search_last_name, params[:search_last_name]) %>
-	
-	<%= submit_tag ("Search") %>
-<% end %>
-
 <table>
   <thead>
     <tr>
-      <th>Rider</th>
       <th>First name</th>
       <th>Last name</th>
 	  <th>Phone number</th>
@@ -27,12 +31,12 @@
   <tbody>
     <% @rider.each do |rider| %>
       <tr>
-        <td><%= rider.rider_id %></td>
         <td><%= rider.first_name %></td>
         <td><%= rider.last_name %></td>
         <td><%= rider.phone_number %></td>
         <td><%= rider.local_address %></td>
         <td><%= link_to 'Edit', edit_rider_path(rider) %></td>
+		<td><%= link_to 'View Requests' %></td>
         <td><%= link_to 'Destroy', rider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
