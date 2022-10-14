@@ -24,19 +24,21 @@ class AssignmentsController < ApplicationController
   # POST /assignments or /assignments.json
   def create
     @assignment = Assignment.new(assignment_params)
-    if Assignment.count > 0
-      next_queue_pos = Assignment.where.not(queue_pos: 0).count + 1
-      @assignment.update_attribute(:queue_pos, next_queue_pos)
-    else
-      @assignment.update_attribute(:queue_pos, 1)
-    end
-	
-    # update the status in request accordingly
-    @request = Request.where(request_id: @assignment.request_id).last
-    @request.update_attribute(:request_status, 'In Progress')
 
     respond_to do |format|
       if @assignment.save
+	    # update the queue position of the assignment
+	    if Assignment.count > 0
+          next_queue_pos = Assignment.where.not(queue_pos: 0).count + 1
+          @assignment.update_attribute(:queue_pos, next_queue_pos)
+        else
+          @assignment.update_attribute(:queue_pos, 1)
+        end
+	
+        # update the status in request accordingly
+        @request = Request.where(request_id: @assignment.request_id).last
+        @request.update_attribute(:request_status, 'In Progress')
+	  
         format.html { redirect_to assignment_url(@assignment), notice: "Assignment was successfully created." }
         format.json { render :show, status: :created, location: @assignment }
       else

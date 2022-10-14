@@ -22,10 +22,12 @@ class RequestsController < ApplicationController
   # POST /requests or /requests.json
   def create
     @request = Request.new(request_params)
-	@request.update_attribute(:request_status, 'Unassigned')
 	
     respond_to do |format|
       if @request.save
+	    # update the request status attribute
+		@request.update_attribute(:request_status, 'Unassigned')
+	  
         format.html { redirect_to request_url(@request), notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @request }
       else
@@ -39,14 +41,14 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
-        format.html { redirect_to request_url(@request), notice: 'Request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @request }
-	    
-		# update the queue in assignment accordingly, if request status is changed
-		if (@request.request_status != 'In Progress') || (@request.request_status != 'Unassigned')
-	      @assignment = Assignment.where(request_id: @request.request_id).last
+	    # update the queue in assignment accordingly, if request status is changed
+		if (@request.request_status != 'In Progress') && (@request.request_status != 'Unassigned')
+		  @assignment = Assignment.where(request_id: @request.request_id).last
 	      @assignment.update_attribute(:queue_pos, 0)
 		end
+	  
+        format.html { redirect_to request_url(@request), notice: 'Request was successfully updated.' }
+        format.json { render :show, status: :ok, location: @request }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @request.errors, status: :unprocessable_entity }
