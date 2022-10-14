@@ -68,6 +68,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection', "~> 1.0"
+gem 'seed_dump'
 
 # Enable AJAX/JQuery support for cool browser CSS tricks
 gem 'jquery-rails'
