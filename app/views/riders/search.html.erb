@@ -43,6 +43,7 @@
         <td><%= link_to 'Edit', edit_rider_path(rider) %></td>
 		<td><%= link_to 'View Requests', rider_requests_path(rider) %></td>
 		<td><%= link_to 'View Assignments', rider_assignments_path(rider) %></td>
+		<td><%= link_to 'View Queue', rider_queue_path(rider) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -51,5 +52,3 @@
 <br><br>
 
 Note: If a mistake has been made, or you want to remove your rider account, please contact Carpool.
-<br>
-(If coming from the Edit/Show page, re-enter the proper first name, last name, and phone number)

@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to "Queue Page", rider_assignments_path(@rider) %>
+<div class="horiz-container">
+  <%= link_to "Request Page", rider_requests_path(@rider), :class => "small-margins" %>
+  <%= link_to "Assignment Page", rider_assignments_path(@rider), :class => "small-margins" %>
+  <%= link_to "Queue Page", rider_queue_path(@rider), :class => "small-margins" %>
+</div>
 
 <h1><td><%= @rider.first_name %> <%= @rider.last_name %>'s </td> Requests</h1>
 

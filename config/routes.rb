@@ -12,9 +12,11 @@ Rails.application.routes.draw do
 	
   resources :riders do
     get 'requests', to: 'rider_requests#index'
-    get 'requests/:request_id/cancel', to: 'rider_requests#cancel', as: 'request_cancel'
+    get 'requests/:request_id/request_cancel', to: 'rider_requests#cancel', as: 'request_cancel'
 	
     get 'assignments', to: 'rider_assignments#index'
+	get 'queue', to: 'rider_assignments#queue'
+	get 'requests/:request_id/queue_cancel', to: 'rider_assignments#cancel', as: 'queue_cancel'
   end
   get 'search', to: 'riders#search'
 

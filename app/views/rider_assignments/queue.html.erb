@@ -1,0 +1,82 @@
+<p id="notice"><%= notice %></p>
+
+<div class="horiz-container">
+  <%= link_to "Request Page", rider_requests_path(@rider), :class => "small-margins" %>
+  <%= link_to "Assignment Page", rider_assignments_path(@rider), :class => "small-margins" %>
+  <%= link_to "Queue Page", rider_queue_path(@rider), :class => "small-margins" %>
+</div>
+
+<h1><td><%= @rider.first_name %> <%= @rider.last_name %>'s </td> Queue Information</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Queue Position</th>
+	  <th>Driver Id</th>
+	  <th>Request Status</th>
+      <th>Time</th>
+	  <th>Pick Up Location</th>
+	  <th>Drop Off Location</th>
+	  <th>Num of Passengers</th>
+      <th>Additional Info</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @queued_assignments.each do |assignment| %>
+	  <% request = Request.find_by(request_id: assignment.request_id) %>
+      <tr>
+	    <td><%= assignment.queue_pos %></td>
+		<td><%= assignment.driver_id %></td>
+        <td><%= request.request_status %></td>
+        <td><%= request.date_time %></td>
+        <td><%= request.pick_up_loc %></td>
+        <td><%= @rider.local_address %></td>
+        <td><%= request.num_passengers %></td>
+        <td><%= request.additional_info %></td>
+        <td><%= link_to 'Show', request %></td>
+        <td><%= link_to 'Edit', edit_request_path(request) %></td>
+		<td><%= link_to 'Cancel', rider_queue_cancel_path(request.rider_id, request.request_id), data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="horiz-container small-margins">
+  <%= link_to "Refresh Queue Page", rider_queue_path(@rider), :class => "grey-button small-margins" %>
+</div>
+
+<h1><td><%= @rider.first_name %> <%= @rider.last_name %>'s </td> Unassigned Rides</h1>
+
+<table>
+  <thead>
+    <tr>
+	  <th>Status</th>
+      <th>Time</th>
+      <th>Pick Up Location</th>
+      <th>Drop Off Location</th>
+      <th>Num of Passengers</th>
+      <th>Additional Info</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rider_unassigned_requests.each do |request| %>
+      <tr>
+	    <td><%= request.request_status %></td>
+        <td><%= request.date_time %></td>
+        <td><%= request.pick_up_loc %></td>
+        <td><%= @rider.local_address %></td>
+        <td><%= request.num_passengers %></td>
+        <td><%= request.additional_info %></td>
+        <td><%= link_to 'Show', request %></td>
+        <td><%= link_to 'Edit', edit_request_path(request) %></td>
+		<td><%= link_to 'Cancel', rider_queue_cancel_path(request.rider_id, request.request_id), data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br>

@@ -39,6 +39,7 @@
 <%= link_to 'Edit', edit_request_path(@request) %>
 <% if not current_member %>
 	<%= link_to 'Back To Requests', rider_requests_path(@rider) %>
+	<%= link_to 'Back To Queue', rider_queue_path(@rider) %>
 <% else %>
 	<%= link_to 'Back To Requests', requests_path %>
 	<%= link_to 'Back To Assignments', assignments_path %>
