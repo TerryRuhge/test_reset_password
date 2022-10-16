@@ -18,7 +18,7 @@ class Member < ApplicationRecord
   # validates :is_male, presence: true
   # validates :first_name, presence: true
   #validates :last_name, :first_name, :is_male, :phone, :address, :emergency_full_name, :emergency_phone_number, presence: true, on: [:update]
-  validates :last_name, :first_name, :is_male, :phone, :address, :emergency_full_name, :emergency_phone_number, presence: true, if: :valid_non_provider?
+  validates :last_name, :first_name, :phone, :address, :emergency_full_name, :emergency_phone_number, presence: true, if: :valid_non_provider?
 
   def valid_non_provider?
     return self.provider.nil?
