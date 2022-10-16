@@ -3,16 +3,24 @@
 
 <div class="card" id="home-card">
     <h1>CARPOOL HOME</h1>
-    <br><br>
+    <br>
     <p>
         Click the link below to submit a new ride request
     </p>
-    <%= link_to 'Request a Ride', new_request_path, :class => "green-button large" %>
+    <br>
+    <%= link_to 'REQUEST A RIDE', new_request_path, :class => "green button large" %>
 </div>
 
+<br><br><br><br>
+
 <% if not current_member %>
-    <div class="horiz-container medium-margins">
-        <%= link_to "Login", new_member_session_path, :class => "grey-button small-margins" %>
-        <%= link_to "Create Account", new_member_registration_path, :class => "grey-button small-margins" %>
+    <div class="centered">
+        <p class=""> Are you a CARPOOL member?</p>
+        <%= link_to "LOGIN", new_member_session_path, :class => "grey button" %>
+        
+        <div>
+            <p class=""> Don't have an account yet? <%= link_to "Sign Up", new_member_registration_path, class: "link" %> </p>
+        <div>
+
     </div>
 <% end %>
