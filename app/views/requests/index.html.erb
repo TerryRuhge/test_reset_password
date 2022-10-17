@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <div class="horiz-container">
-  <%= link_to "Riders", riders_path, :class => "small-margins" %>
-  <%= link_to "Requests", requests_path, :class => "small-margins" %>
-  <%= link_to "Assignments", assignments_path, :class => "small-margins" %>
+  <%= link_to "Riders", riders_path, :class => "grey button small-margins" %>
+  <%= link_to "Requests", requests_path, :class => "grey button small-margins" %>
+  <%= link_to "Assignments", assignments_path, :class => "grey button small-margins" %>
 </div>
 
 <h1>Requests</h1>
@@ -62,4 +62,4 @@
 
 <br>
 
-<%= link_to 'New Request', new_request_path %>
+<%= link_to 'New Request', new_request_path, class: "green button small-margins" %>
