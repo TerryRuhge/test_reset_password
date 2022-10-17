@@ -92,7 +92,7 @@ RSpec.describe 'Changing status of an assignment', type: :feature do
     click_on 'Create Assignment'
     visit request_status_path(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')))
 	select('Finished', from: 'request_request_status')
-	click_on 'SUBMIT'
+	click_on 'Update Request'
 	visit assignments_path
     expect(page).to have_content('Finished')
 	expect(page).to have_content('7')
@@ -118,7 +118,7 @@ RSpec.describe 'Driver notes of an assignment', type: :feature do
     click_on 'Create Assignment'
     visit request_status_path(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')))
 	select('Finished', from: 'request_request_status')
-	click_on 'SUBMIT'
+	click_on 'Update Request'
 	visit assignment_notes_path(Assignment.find_by_request_id(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')).request_id))
 	fill_in 'Driver notes', with: 'Everything went smoothly.'
 	click_on 'Update Assignment'
