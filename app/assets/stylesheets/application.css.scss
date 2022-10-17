@@ -303,6 +303,12 @@ div.field {
   &:hover{background-color: rgb(133, 133, 133);}
 }
 
+.red {
+  background-color: red;
+  input {background-color: red;}
+  &:hover {background-color: rgb(132, 0, 0);}
+}
+
 .google {
   background-color: rgb(255, 255, 255);
   justify-content: space-between;
