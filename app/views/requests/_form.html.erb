@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :rider_id %>
-    <%= form.text_field :rider_id %>
+    <%= form.select :rider_id, @riders.map { |rider| [(rider.last_name + ', ' + rider.first_name), rider.rider_id] }, include_blank: true, id:"rider_select_box" %>
   </div>
 
   <div class="field">
@@ -24,11 +24,6 @@
   <div class="field">
     <%= form.label :pick_up_loc %>
     <%= form.text_field :pick_up_loc %>
-  </div>
-
-  <div class="field">
-    <%= form.label :drop_off_loc %>
-    <%= form.text_field :drop_off_loc %>
   </div>
 
   <div class="field">
@@ -44,6 +39,6 @@
   <br>
 
   <div class="actions">
-      <%= form.submit "SUBMIT", class: "green button" %>
+      <%= form.submit "Create Request", class: "green button" %>
   </div>
 <% end %>

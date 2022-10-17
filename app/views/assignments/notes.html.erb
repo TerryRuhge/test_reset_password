@@ -1,4 +1,4 @@
-<h1>Editing Assignment</h1>
+<h1>Editing Assignment Driver Notes</h1>
 
 <%= form_with(model: @assignment) do |form| %>
   <% if @assignment.errors.any? %>
@@ -14,15 +14,14 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :driver_id %>
-    <%= form.text_field :driver_id %>
+    <%= form.label :driver_notes %>
+    <%= form.text_field :driver_notes %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
-
 
 <%= link_to 'Show', @assignment %> |
 <%= link_to 'Back', assignments_path %>

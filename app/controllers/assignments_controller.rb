@@ -5,16 +5,22 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments or /assignments.json
   def index
-    @assignments = Assignment.all
+    @queued_assignments = Assignment.where.not(queue_pos: 0).order('queue_pos ASC')
+	@other_assignments = Assignment.where(queue_pos: 0).order('queue_pos ASC')
   end
 
   # GET /assignments/1 or /assignments/1.json
   def show
+    @request = Request.find_by(request_id: @assignment.request_id)
+	@rider = Rider.find_by(rider_id: @request.rider_id)
   end
 
   # GET /assignments/new
   def new
     @assignment = Assignment.new
+	
+	# added for select field
+	@valid_requests = Request.where(request_status: 'Unassigned')
   end
 
   # GET /assignments/1/edit
@@ -83,7 +89,6 @@ class AssignmentsController < ApplicationController
   
   def notes
     @assignment = Assignment.find(params[:assignment_id])
-	render :edit_notes
   end
 
   # DELETE /assignments/1 or /assignments/1.json

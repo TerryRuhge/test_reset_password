@@ -2,5 +2,11 @@
 
 <%= render 'form', request: @request %>
 
-<%= link_to 'Show', @request %> |
-<%= link_to 'Back', requests_path %>
+<%= link_to 'Show', @request %>
+<% if not current_member %>
+	<%= link_to 'Back To Requests', rider_requests_path(@request.rider_id) %>
+	<%= link_to 'Back To Queue', rider_queue_path(@request.rider_id) %>
+<% else %>
+	<%= link_to 'Back To Requests', requests_path %>
+<% end %>
+

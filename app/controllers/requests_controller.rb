@@ -5,19 +5,28 @@ class RequestsController < ApplicationController
 
   # GET /requests or /requests.json
   def index
-    @requests = Request.all
+    @other_requests = Request.where.not(request_status: 'Cancelled').order('request_id ASC')
+    @cancelled_requests = Request.where(request_status: 'Cancelled').order('request_id ASC')
   end
 
   # GET /requests/1 or /requests/1.json
-  def show; end
+  def show
+    # added to display rider name
+	@rider = Rider.find_by(rider_id: @request.rider_id)
+  end
 
   # GET /requests/new
   def new
     @request = Request.new
+	
+	# added for select field
+	@riders = Rider.order('last_name ASC').order('first_name ASC')
   end
 
   # GET /requests/1/edit
-  def edit; end
+  def edit
+    @riders = Rider.order('last_name ASC').order('first_name ASC')
+  end
 
   # POST /requests or /requests.json
   def create
@@ -58,7 +67,6 @@ class RequestsController < ApplicationController
   
   def status
     @request = Request.find(params[:request_id])
-	render :edit_status
   end
   
   def cancel
@@ -95,6 +103,6 @@ class RequestsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def request_params
-    params.require(:request).permit(:rider_id, :request_status, :date_time, :pick_up_loc, :drop_off_loc, :num_passengers, :additional_info)
+    params.require(:request).permit(:rider_id, :request_status, :date_time, :pick_up_loc, :num_passengers, :additional_info)
   end
 end

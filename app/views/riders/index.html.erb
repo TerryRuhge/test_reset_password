@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<div class="horiz-container">
+  <%= link_to "Riders", riders_path, :class => "small-margins" %>
+  <%= link_to "Requests", requests_path, :class => "small-margins" %>
+  <%= link_to "Assignments", assignments_path, :class => "small-margins" %>
+</div>
+
+<h1>Riders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rider</th>
+      <th>First name</th>
+      <th>Last name</th>
+	  <th>Phone number</th>
+      <th>Local address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @riders.each do |rider| %>
+      <tr>
+        <td><%= rider.rider_id %></td>
+        <td><%= rider.first_name %></td>
+        <td><%= rider.last_name %></td>
+        <td><%= rider.phone_number %></td>
+        <td><%= rider.local_address %></td>
+        <td><%= link_to 'Show', rider %></td>
+        <td><%= link_to 'Edit', edit_rider_path(rider) %></td>
+		<td><%= link_to 'Destroy', rider, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rider', new_rider_path %>
