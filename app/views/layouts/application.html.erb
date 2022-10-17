@@ -32,6 +32,7 @@
                   <div class="member-options">
                     <%= link_to "Assigned Rider", member_rider_info_path %>
                     <%= link_to "Edit Account", edit_member_registration_path %>
+                    <%= link_to 'Check In', "signs/new" %>
                     <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
                   </div>  
               </div>
