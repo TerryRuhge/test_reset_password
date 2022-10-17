@@ -31,7 +31,7 @@ class Members::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # GET|POST /users/auth/twitter/callback
   # def failure
-  #   super
+  #   redirect_to new_member_session_path
   # end
 
   # protected
