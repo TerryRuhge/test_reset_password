@@ -24,15 +24,6 @@ RSpec.configure do |config|
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
 
-  # Used to test Omniauth Google tokens
-  config.include IntegrationSpecHelper, :type => :reques
-  Capybara.default_host = 'http://example.org'
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.auth_mocks = NewAuthMock
-  OmniAuth.config.add_mock(:google_oauth2, {
-    :uid => '12345',
-    :nickname => 'zapnap'
-  })
 
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`

@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2022_10_07_000438) do
     t.datetime "remember_created_at"
     t.string "first_name"
     t.string "last_name"
-    t.boolean "is_male"
     t.string "phone"
     t.string "address"
     t.string "emergency_full_name"

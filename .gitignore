@@ -44,3 +44,9 @@ yarn-debug.log*
 .yarn-integrity
 
 coverage/
+
+# Ignore Docker Image
+docker-compose.yml
+Dockerfile
+entrypoint.sh
+/spec/support/system.rb
