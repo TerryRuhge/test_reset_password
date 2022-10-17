@@ -1,0 +1,6 @@
+<h1>About </h1>
+
+<%= form_with(scope: "cat") do |f| %>
+    <%= f.select :id, @cats.map { |c| [c.name, c.id] } %>
+    <%= f.submit %>
+<% end %>
