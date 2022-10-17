@@ -1,18 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <div class="horiz-container">
-  <%= link_to "Riders", riders_path, :class => "small-margins" %>
-  <%= link_to "Requests", requests_path, :class => "small-margins" %>
-  <%= link_to "Assignments", assignments_path, :class => "small-margins" %>
+  <%= link_to "Request Page", rider_requests_path(@rider), :class => "small-margins" %>
+  <%= link_to "Assignment Page", rider_assignments_path(@rider), :class => "small-margins" %>
+  <%= link_to "Queue Page", rider_queue_path(@rider), :class => "small-margins" %>
 </div>
 
-<h1>Requests</h1>
+<h1><td><%= @rider.first_name %> <%= @rider.last_name %>'s </td> Requests</h1>
 
 <table>
   <thead>
     <tr>
 	  <th>Id</th>
-      <th>Rider</th>
 	  <th>Status</th>
       <th>Time</th>
       <th>Pick Up Location</th>
@@ -25,36 +24,30 @@
 
   <tbody>
     <% @other_requests.each do |request| %>
-	  <% rider = Rider.find_by(rider_id: request.rider_id) %>
       <tr>
 	    <td><%= request.request_id %></td>
-        <td><%= rider.last_name %>, <%= rider.first_name %></td>
 		<td><%= request.request_status %></td>
         <td><%= request.date_time %></td>
         <td><%= request.pick_up_loc %></td>
-        <td><%= rider.local_address %></td>
+        <td><%= @rider.local_address %></td>
         <td><%= request.num_passengers %></td>
         <td><%= request.additional_info %></td>
         <td><%= link_to 'Show', request %></td>
         <td><%= link_to 'Edit', edit_request_path(request) %></td>
-		<td><%= link_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<td><%= link_to 'Cancel', rider_request_cancel_path(request.rider_id, request.request_id), data: { confirm: 'Are you sure?' } %></td>
       </tr>
 	<% end %>
 	  
 	<% @cancelled_requests.each do |request| %>
-	  <% rider = Rider.find_by(rider_id: request.rider_id) %>
       <tr>
 	    <td><%= request.request_id %></td>
-        <td><%= rider.last_name %>, <%= rider.first_name %></td>
 		<td><%= request.request_status %></td>
         <td><%= request.date_time %></td>
         <td><%= request.pick_up_loc %></td>
-        <td><%= rider.local_address %></td>
+        <td><%= @rider.local_address %></td>
         <td><%= request.num_passengers %></td>
         <td><%= request.additional_info %></td>
         <td><%= link_to 'Show', request %></td>
-        <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

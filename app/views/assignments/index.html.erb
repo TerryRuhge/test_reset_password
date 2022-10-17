@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to "Request Page", requests_path %>
+<div class="horiz-container">
+  <%= link_to "Riders", riders_path, :class => "small-margins" %>
+  <%= link_to "Requests", requests_path, :class => "small-margins" %>
+  <%= link_to "Assignments", assignments_path, :class => "small-margins" %>
+</div>
 
 <h1>Assignments</h1>
 
@@ -16,10 +20,10 @@
   </thead>
 
   <tbody>
-    <% @assignments.where.not(queue_pos: 0).order('queue_pos ASC').each do |assignment| %>
+    <% @queued_assignments.each do |assignment| %>
       <tr>
 	    <td><%= assignment.queue_pos %></td>
-        <td><%= Request.where(request_id: assignment.request_id).last.request_status %></td>
+        <td><%= Request.find_by(request_id: assignment.request_id).request_status %></td>
         <td><%= assignment.request_id %></td>
         <td><%= assignment.driver_id %></td>
         <td><%= link_to 'Show', assignment %></td>
@@ -32,10 +36,10 @@
       </tr>
     <% end %>
 	
-	<% @assignments.where(queue_pos: 0).order('queue_pos ASC').each do |assignment| %>
+	<% @other_assignments.each do |assignment| %>
       <tr>
 	    <td><%= assignment.queue_pos %></td>
-        <td><%= Request.where(request_id: assignment.request_id).last.request_status %></td>
+        <td><%= Request.find_by(request_id: assignment.request_id).request_status %></td>
         <td><%= assignment.request_id %></td>
         <td><%= assignment.driver_id %></td>
         <td><%= link_to 'Show', assignment %></td>
