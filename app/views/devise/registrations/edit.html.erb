@@ -83,12 +83,14 @@
     <% end %>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class: "green button small-margins" %>
   </div>
-  
+
+  <%= link_to "Back", :back, class: "grey button" %>
 <% end %>
-<h3>Cancel my account</h3>
 
-<p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<br><br>
 
-<%= link_to "Back", :back %>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "red button" %></p>
+
+
