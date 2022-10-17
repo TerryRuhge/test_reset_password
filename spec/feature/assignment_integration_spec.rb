@@ -13,7 +13,7 @@ RSpec.describe 'Creating an assignment', type: :feature do
 	select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
 	visit new_assignment_path
 	select(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')).request_id, from: 'assignment_request_id')
     fill_in 'Driver', with: 7
@@ -36,7 +36,7 @@ RSpec.describe 'Showing an assignment', type: :feature do
     select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
 	visit new_assignment_path
 	select(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')).request_id, from: 'assignment_request_id')
     fill_in 'Driver', with: 7
@@ -59,7 +59,7 @@ RSpec.describe 'Updating an assignment', type: :feature do
     select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
 	visit new_assignment_path
 	select(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')).request_id, from: 'assignment_request_id')
     fill_in 'Driver', with: 7
@@ -85,14 +85,14 @@ RSpec.describe 'Changing status of an assignment', type: :feature do
     select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
 	visit new_assignment_path
 	select(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')).request_id, from: 'assignment_request_id')
     fill_in 'Driver', with: 7
     click_on 'Create Assignment'
     visit request_status_path(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')))
 	select('Finished', from: 'request_request_status')
-	click_on 'Update Request'
+	click_on 'SUBMIT'
 	visit assignments_path
     expect(page).to have_content('Finished')
 	expect(page).to have_content('7')
@@ -111,14 +111,14 @@ RSpec.describe 'Driver notes of an assignment', type: :feature do
     select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
 	visit new_assignment_path
 	select(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')).request_id, from: 'assignment_request_id')
     fill_in 'Driver', with: 7
     click_on 'Create Assignment'
     visit request_status_path(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')))
 	select('Finished', from: 'request_request_status')
-	click_on 'Update Request'
+	click_on 'SUBMIT'
 	visit assignment_notes_path(Assignment.find_by_request_id(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')).request_id))
 	fill_in 'Driver notes', with: 'Everything went smoothly.'
 	click_on 'Update Assignment'
@@ -141,7 +141,7 @@ RSpec.describe 'Deleting an assignment', type: :feature do
     select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
 	visit new_assignment_path
 	select(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')).request_id, from: 'assignment_request_id')
     fill_in 'Driver', with: 7

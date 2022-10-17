@@ -13,7 +13,7 @@ RSpec.describe 'Creating a request', type: :feature do
     select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
     visit requests_path
 	expect(page).to have_content('Martinez, Ricardo')
     expect(page).to have_content('Unassigned')
@@ -35,7 +35,7 @@ RSpec.describe 'Showing a request', type: :feature do
     select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
 	visit request_path(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')))
 	expect(page).to have_content('Martinez, Ricardo')
 	expect(page).to have_content('Unassigned')
@@ -57,11 +57,11 @@ RSpec.describe 'Updating a request', type: :feature do
     select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
 	visit edit_request_path(Request.find_by_rider_id(Rider.find_by_phone_number('2105270414')))
 	fill_in 'Pick up loc', with: '676 Lubbock St, College Station, TX 77840'
 	fill_in 'Num passengers', with: 2
-	click_on 'Update Request'
+	click_on 'SUBMIT'
 	visit requests_path
 	expect(page).to have_content('Martinez, Ricardo')
     expect(page).to have_content('Unassigned')
@@ -83,7 +83,7 @@ RSpec.describe 'Canceling a request', type: :feature do
     select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
 	visit requests_path
 	expect(page).to have_content('Martinez, Ricardo')
     expect(page).to have_content('Unassigned')
@@ -108,7 +108,7 @@ RSpec.describe 'Deleting a request', type: :feature do
     select('Martinez, Ricardo', from: 'request_rider_id')
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
 	fill_in 'Num passengers', with: 3
-    click_on 'Create Request'
+    click_on 'SUBMIT'
 	visit requests_path
 	expect(page).to have_content('Martinez, Ricardo')
 	expect(page).to have_content('Unassigned')
