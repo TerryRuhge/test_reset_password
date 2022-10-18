@@ -39,8 +39,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails'
 
-  #Gems for testing Devise
-  gem 'webdrivers', require: !ENV['SELENIUM_REMOTE_URL']
+  # Gems for testing Devise
   gem 'factory_bot_rails'
   gem 'faker'
 end
@@ -75,7 +74,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection', "~> 1.0"
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'seed_dump'
 
 # Enable AJAX/JQuery support for cool browser CSS tricks

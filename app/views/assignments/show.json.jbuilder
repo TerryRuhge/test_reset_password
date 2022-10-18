@@ -1,1 +1,3 @@
-json.partial! "assignments/assignment", assignment: @assignment
+# frozen_string_literal: true
+
+json.partial! 'assignments/assignment', assignment: @assignment

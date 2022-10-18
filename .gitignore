@@ -45,6 +45,9 @@ yarn-debug.log*
 
 coverage/
 
+
+rubocop.txt
+
 # Ignore Docker Image
 docker-compose.yml
 Dockerfile

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 # # # location: spec/feature/session_integration_spec.rb
 # require 'rails_helper'
 
 # # RSpec.describe 'Signing up with Form', type: :system do
-# #     before do 
+# #     before do
 # #         member = FactoryBot.create(:member)
 # #         #member.confirmed_at = Time.now
 # #         sign_in member
