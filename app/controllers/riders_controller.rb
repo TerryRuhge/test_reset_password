@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RidersController < ApplicationController
-  before_action :set_rider, only: %i[ show edit update destroy ]
+  before_action :set_rider, only: %i[show edit update destroy]
 
   # GET /riders or /riders.json
   def index
@@ -7,8 +9,7 @@ class RidersController < ApplicationController
   end
 
   # GET /riders/1 or /riders/1.json
-  def show
-  end
+  def show; end
 
   # GET /riders/new
   def new
@@ -16,8 +17,7 @@ class RidersController < ApplicationController
   end
 
   # GET /riders/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /riders or /riders.json
   def create
@@ -25,7 +25,7 @@ class RidersController < ApplicationController
 
     respond_to do |format|
       if @rider.save
-        format.html { redirect_to rider_url(@rider), notice: "Rider was successfully created." }
+        format.html { redirect_to rider_url(@rider), notice: 'Rider was successfully created.' }
         format.json { render :show, status: :created, location: @rider }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class RidersController < ApplicationController
   def update
     respond_to do |format|
       if @rider.update(rider_params)
-        format.html { redirect_to rider_url(@rider), notice: "Rider was successfully updated." }
+        format.html { redirect_to rider_url(@rider), notice: 'Rider was successfully updated.' }
         format.json { render :show, status: :ok, location: @rider }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -46,7 +46,7 @@ class RidersController < ApplicationController
       end
     end
   end
-  
+
   def search
     @rider = Rider.search(params[:search_first_name], params[:search_last_name], params[:search_phone_number])
   end
@@ -56,19 +56,21 @@ class RidersController < ApplicationController
     @rider.destroy
 
     respond_to do |format|
-      format.html { redirect_to riders_url, notice: "Rider was successfully destroyed." }
+      format.html { redirect_to riders_url, notice: 'Rider was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rider
-      @rider = Rider.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def rider_params
-      params.require(:rider).permit(:phone_number, :first_name, :last_name, :local_address, :search_first_name, :search_last_name, :search_phone_number)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_rider
+    @rider = Rider.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def rider_params
+    params.require(:rider).permit(:phone_number, :first_name, :last_name, :local_address, :search_first_name,
+                                  :search_last_name, :search_phone_number)
+  end
 end
