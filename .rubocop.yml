@@ -24,6 +24,8 @@ Metrics/AbcSize:
 # IgnoredMethods: refine
 Metrics/BlockLength:
   Max: 48
+  Exclude: 
+    - 'db/schema.rb'
 
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.
@@ -34,6 +36,8 @@ Metrics/CyclomaticComplexity:
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 Metrics/MethodLength:
   Max: 20
+  Exclude: 
+    - 'db/schema.rb'
 
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.

@@ -2,8 +2,8 @@
 
 module Members
   class RegistrationsController < Devise::RegistrationsController
-    # before_action :configure_sign_up_params, only: [:create]
-    # before_action :configure_account_update_params, only: [:update]
+    before_action :configure_sign_up_params, only: [:create]
+    before_action :configure_account_update_params, only: [:update]
 
     # GET /resource/sign_up
     # def new
@@ -30,6 +30,19 @@ module Members
     #   super
     # end
 
+    # Do not display current password if they've signed in with oAuth for the first time.
+    def update_resource(resource, params)
+      if (resource.provider == 'google_oauth2') && !resource.created_password
+        params.delete('current_password')
+        resource.password = params['password']
+        resource.created_password = true
+        resource.update_without_password(params)
+      else
+        # Otherwise update with current password
+        resource.update_with_password(params)
+      end
+    end
+
     # GET /resource/cancel
     # Forces the session data which is usually expired after sign
     # in to be expired now. This is useful if the user wants to
@@ -39,21 +52,24 @@ module Members
     #   super
     # end
 
-    # protected
+    protected
 
     # If you have extra params to permit, append them to the sanitizer.
-    # def configure_sign_up_params
-    #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-    # end
+    def configure_sign_up_params
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name is_male address phone emergency_full_name emergency_phone_number])
+    end
 
     # If you have extra params to permit, append them to the sanitizer.
-    # def configure_account_update_params
-    #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-    # end
+    def configure_account_update_params
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name is_male address phone emergency_full_name emergency_phone_number])
+    end
 
     # The path used after sign up.
     # def after_sign_up_path_for(resource)
-    #   super(resource)
+    #   if current_member.present?
+    #     edit_member_registration_path
+    #   end
+    #     super(resource)
     # end
 
     # The path used after sign up for inactive accounts.
