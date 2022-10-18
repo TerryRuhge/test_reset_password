@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2022_10_12_184935) do
     t.datetime "date_time"
     t.string "pick_up_loc"
     t.boolean "is_address_BCS"
-    t.string "drop_off_loc"
     t.integer "num_passengers"
     t.string "additional_info"
     t.datetime "created_at", precision: 6, null: false
