@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to "Queue Page", assignments_path %>
+<div class="horiz-container">
+  <%= link_to "Riders", riders_path, :class => "grey button small-margins" %>
+  <%= link_to "Requests", requests_path, :class => "grey button small-margins" %>
+  <%= link_to "Assignments", assignments_path, :class => "grey button small-margins" %>
+</div>
 
 <h1>Requests</h1>
 
@@ -20,14 +24,15 @@
   </thead>
 
   <tbody>
-    <% @requests.where.not(request_status: 'Cancelled').order('request_id ASC').each do |request| %>
+    <% @other_requests.each do |request| %>
+	  <% rider = Rider.find_by(rider_id: request.rider_id) %>
       <tr>
 	    <td><%= request.request_id %></td>
-        <td><%= request.rider_id %></td>
+        <td><%= rider.last_name %>, <%= rider.first_name %></td>
 		<td><%= request.request_status %></td>
         <td><%= request.date_time %></td>
         <td><%= request.pick_up_loc %></td>
-        <td><%= request.drop_off_loc %></td>
+        <td><%= rider.local_address %></td>
         <td><%= request.num_passengers %></td>
         <td><%= request.additional_info %></td>
         <td><%= link_to 'Show', request %></td>
@@ -37,14 +42,15 @@
       </tr>
 	<% end %>
 	  
-	<% @requests.where(request_status: 'Cancelled').order('request_id ASC').each do |request| %>
+	<% @cancelled_requests.each do |request| %>
+	  <% rider = Rider.find_by(rider_id: request.rider_id) %>
       <tr>
 	    <td><%= request.request_id %></td>
-        <td><%= request.rider_id %></td>
+        <td><%= rider.last_name %>, <%= rider.first_name %></td>
 		<td><%= request.request_status %></td>
         <td><%= request.date_time %></td>
         <td><%= request.pick_up_loc %></td>
-        <td><%= request.drop_off_loc %></td>
+        <td><%= rider.local_address %></td>
         <td><%= request.num_passengers %></td>
         <td><%= request.additional_info %></td>
         <td><%= link_to 'Show', request %></td>
@@ -56,4 +62,4 @@
 
 <br>
 
-<%= link_to 'New Request', new_request_path %>
+<%= link_to 'New Request', new_request_path, class: "green button small-margins" %>

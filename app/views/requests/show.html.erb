@@ -2,7 +2,7 @@
 
 <p>
   <strong>Rider:</strong>
-  <%= @request.rider_id %>
+  <%= @rider.last_name %>, <%= @rider.first_name %>
 </p>
 
 <p>
@@ -22,7 +22,7 @@
 
 <p>
   <strong>Drop Off Location:</strong>
-  <%= @request.drop_off_loc %>
+  <%= @rider.local_address %>
 </p>
 
 <p>
@@ -35,6 +35,12 @@
   <%= @request.additional_info %>
 </p>
 
-<%= link_to 'Edit', edit_request_path(@request) %> |
-<%= link_to 'Back to Requests', requests_path %> |
-<%= link_to 'Back to Queue', assignments_path %>
+
+<%= link_to 'Edit', edit_request_path(@request) %>
+<% if not current_member %>
+	<%= link_to 'Back To Requests', rider_requests_path(@rider) %>
+	<%= link_to 'Back To Queue', rider_queue_path(@rider) %>
+<% else %>
+	<%= link_to 'Back To Requests', requests_path %>
+	<%= link_to 'Back To Assignments', assignments_path %>
+<% end %>

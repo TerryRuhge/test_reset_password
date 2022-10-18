@@ -1,0 +1,37 @@
+<%= form_with(model: rider) do |form| %>
+  <% if rider.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rider.errors.count, "error") %> prohibited this rider from being saved:</h2>
+
+      <ul>
+        <% rider.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :local_address %>
+    <%= form.text_field :local_address %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "green button small-margins" %>
+  </div>
+<% end %>
