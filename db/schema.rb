@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 2022_10_12_184935) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "address"
+    t.string "emergency_full_name"
+    t.string "emergency_phone_number"
+    t.boolean "created_password", default: true
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
@@ -51,7 +58,6 @@ ActiveRecord::Schema.define(version: 2022_10_12_184935) do
     t.datetime "date_time"
     t.string "pick_up_loc"
     t.boolean "is_address_BCS"
-    t.string "drop_off_loc"
     t.integer "num_passengers"
     t.string "additional_info"
     t.datetime "created_at", precision: 6, null: false
