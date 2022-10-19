@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :drivers
   root 'home#index'
 
   get '/member/rider_info', to: 'member#rider_info'
