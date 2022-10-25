@@ -37,9 +37,16 @@ ActiveRecord::Schema.define(version: 2022_10_19_165547) do
   end
 
   create_table "members", primary_key: "member_id", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "address"
     t.boolean "is_admin", default: false
-    t.boolean "is_supervisor"
+    t.boolean "is_supervisor", default: false
     t.decimal "leaderboard_points"
+    t.boolean "created_password", default: true
+    t.string "emergency_phone_number"
+    t.string "emergency_full_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -51,34 +58,20 @@ ActiveRecord::Schema.define(version: 2022_10_19_165547) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone"
-    t.string "address"
-    t.string "emergency_full_name"
-    t.string "emergency_phone_number"
-    t.boolean "created_password", default: true
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
   create_table "requests", primary_key: "request_id", force: :cascade do |t|
-    t.integer "rider_id"
+    t.string "name"
+    t.string "phone_number"
     t.string "request_status"
     t.datetime "date_time"
     t.string "pick_up_loc"
+    t.string "drop_off_loc"
     t.boolean "is_address_BCS"
     t.integer "num_passengers"
     t.string "additional_info"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "riders", primary_key: "rider_id", force: :cascade do |t|
-    t.string "phone_number"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "local_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
