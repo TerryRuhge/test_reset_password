@@ -17,6 +17,13 @@ class AssignmentsController < ApplicationController
     @rider = Rider.find_by(rider_id: @request.rider_id)
   end
 
+  # GET /queue
+  def show_all_queue
+    @assignments = Assignment.where.not(queue_pos: '0').order('queue_pos ASC')
+
+    @requests = Request.where
+  end
+
   # GET /assignments/new
   def new
     @assignment = Assignment.new

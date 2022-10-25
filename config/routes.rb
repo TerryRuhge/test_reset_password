@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/member/rider_info', to: 'member#rider_info'
+  get '/member/all_statuses', to: 'member#all_statuses'
+  get '/assignments/queue', to: 'assignments#show_all_queue'
+  get '/assignments/assign', to: 'assignments#new'
+
   devise_for :members, controllers: {
     registrations: 'members/registrations',
     sessions: 'members/sessions',
