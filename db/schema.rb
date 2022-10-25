@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2022_10_19_165547) do
   end
 
   create_table "members", primary_key: "member_id", force: :cascade do |t|
-    t.boolean "is_admin"
+    t.boolean "is_admin", default: false
     t.boolean "is_supervisor"
     t.decimal "leaderboard_points"
     t.datetime "created_at", precision: 6, null: false

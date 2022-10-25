@@ -24,9 +24,15 @@
         </div>
         
         <!--Login and Logout -->
-        
+          
           <div class="current-member right-side">
             <% if current_member %>
+                <% if !current_member.is_admin%>
+                  <div class="member-options">
+                      <%= link_to "Edit Form", member_rider_info_path %>
+                      <%= link_to "Queue", assignments_queue_path %>  
+                  </div>
+                  <% end %>
               <div>
                 <h2><%= current_member.email %></h2>
                   <div class="member-options">
