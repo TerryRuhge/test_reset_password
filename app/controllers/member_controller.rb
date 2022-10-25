@@ -9,5 +9,7 @@ class MemberController < ApplicationController
     @assigned_rides = Assignment.where(driver_id: @driver).where.not(queue_pos: '0').order('request_id ASC')
   end
 
+  def all_statuses
+  end
   helper_method :rider_info
 end

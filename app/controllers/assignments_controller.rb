@@ -24,6 +24,7 @@ class AssignmentsController < ApplicationController
     @requests = Request.where
   end
 
+
   # GET /assignments/new
   def new
     @assignment = Assignment.new
