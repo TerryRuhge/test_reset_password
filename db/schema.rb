@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 2022_10_19_165547) do
     t.boolean "is_supervisor", default: false
     t.decimal "leaderboard_points"
     t.boolean "created_password", default: true
-    t.string "emergency_phone_number"
     t.string "emergency_full_name"
+    t.string "emergency_phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 2022_10_19_165547) do
     t.string "name"
     t.string "phone_number"
     t.string "request_status"
-    t.datetime "date_time"
     t.string "pick_up_loc"
     t.string "drop_off_loc"
     t.boolean "is_address_BCS"

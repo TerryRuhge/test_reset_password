@@ -3,7 +3,7 @@
 class Request < ApplicationRecord
   has_many :assignment
 
-  validates :name, :phone_number, :date_time, :pick_up_loc, :drop_off_loc, :num_passengers, presence: true
+  validates :name, :phone_number, :pick_up_loc, :drop_off_loc, :num_passengers, presence: true
   
   # phone numbers organized by NPA-NXX-XXXX (assumed NA only)
   # NPA is area code (201-999)
