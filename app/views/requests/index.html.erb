@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <div class="horiz-container">
-  <%= link_to "Riders", riders_path, :class => "grey button small-margins" %>
   <%= link_to "Requests", requests_path, :class => "grey button small-margins" %>
   <%= link_to "Assignments", assignments_path, :class => "grey button small-margins" %>
 </div>
@@ -12,7 +11,8 @@
   <thead>
     <tr>
 	  <th>Id</th>
-      <th>Rider</th>
+      <th>Name</th>
+      <th>Phone Number</th>
 	  <th>Status</th>
       <th>Time</th>
       <th>Pick Up Location</th>
@@ -25,14 +25,14 @@
 
   <tbody>
     <% @other_requests.each do |request| %>
-	  <% rider = Rider.find_by(rider_id: request.rider_id) %>
       <tr>
-	    <td><%= request.request_id %></td>
-        <td><%= rider.last_name %>, <%= rider.first_name %></td>
-		<td><%= request.request_status %></td>
-        <td><%= request.date_time %></td>
+        <td><%= request.request_id %></td>
+        <td><%= request.name %></td>
+        <td><%= request.phone_number %></td>
+        <td><%= request.request_status %></td>
+        <td><%= request.created_at %></td>
         <td><%= request.pick_up_loc %></td>
-        <td><%= rider.local_address %></td>
+        <td><%= request.drop_off_loc %></td>
         <td><%= request.num_passengers %></td>
         <td><%= request.additional_info %></td>
         <td><%= link_to 'Show', request %></td>
@@ -40,17 +40,17 @@
 		<td><%= link_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-	<% end %>
+    <% end %>
 	  
-	<% @cancelled_requests.each do |request| %>
-	  <% rider = Rider.find_by(rider_id: request.rider_id) %>
+    <% @cancelled_requests.each do |request| %>
       <tr>
 	    <td><%= request.request_id %></td>
-        <td><%= rider.last_name %>, <%= rider.first_name %></td>
-		<td><%= request.request_status %></td>
-        <td><%= request.date_time %></td>
+        <td><%= request.name %></td>
+        <td><%= request.phone_number %></td>
+        <td><%= request.request_status %></td>
+        <td><%= request.created_at %></td>
         <td><%= request.pick_up_loc %></td>
-        <td><%= rider.local_address %></td>
+        <td><%= request.drop_off_loc %></td>
         <td><%= request.num_passengers %></td>
         <td><%= request.additional_info %></td>
         <td><%= link_to 'Show', request %></td>

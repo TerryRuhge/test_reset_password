@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Rider:</strong>
-  <%= @rider.last_name %>, <%= @rider.first_name %>
+  <strong>Name:</strong>
+  <%= @request.name %>
+</p>
+
+<p>
+  <strong>Phone Number:</strong>
+  <%= @request.phone_number %>
 </p>
 
 <p>
@@ -12,7 +17,7 @@
 
 <p>
   <strong>Date and Time:</strong>
-  <%= @request.date_time %>
+  <%= @request.created_at %>
 </p>
 
 <p>
@@ -22,7 +27,7 @@
 
 <p>
   <strong>Drop Off Location:</strong>
-  <%= @rider.local_address %>
+  <%= @request.drop_off_loc %>
 </p>
 
 <p>
@@ -38,9 +43,8 @@
 
 <%= link_to 'Edit', edit_request_path(@request) %>
 <% if not current_member %>
-	<%= link_to 'Back To Requests', rider_requests_path(@rider) %>
-	<%= link_to 'Back To Queue', rider_queue_path(@rider) %>
+  <%= link_to 'Go To Queue', root_path %>
 <% else %>
-	<%= link_to 'Back To Requests', requests_path %>
-	<%= link_to 'Back To Assignments', assignments_path %>
+  <%= link_to 'Back To Requests', requests_path %>
+  <%= link_to 'Back To Assignments', assignments_path %>
 <% end %>

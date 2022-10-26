@@ -5,10 +5,7 @@ require 'rails_helper'
 
 RSpec.describe Assignment, type: :model do
   subject do
-    Rider.create(rider_id: 1, first_name: 'Ricardo', last_name: 'Martinez', phone_number: '2105270414',
-                 local_address: '<address>')
-    Request.create(request_id: 1, rider_id: 1, date_time: '2022-09-18 22:26:00', pick_up_loc: '<address>',
-                   num_passengers: 1)
+    Request.create(request_id: 1, name: 'Ricardo', phone_number: '2105270414', pick_up_loc: '125 Spence Str, College Station, TX 77840', drop_off_loc: '719 S Rosemary Dr, Bryan, TX 77802', num_passengers: 1)
     described_class.create(request_id: 1, driver_id: 1)
   end
 
