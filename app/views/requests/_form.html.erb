@@ -12,8 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :rider_id %>
-    <%= form.select :rider_id, @riders.map { |rider| [(rider.last_name + ', ' + rider.first_name), rider.rider_id] }, include_blank: true, id:"rider_select_box" %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
   </div>
 
   <div class="field">
@@ -24,6 +29,11 @@
   <div class="field">
     <%= form.label :pick_up_loc %>
     <%= form.text_field :pick_up_loc %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :drop_off_loc %>
+    <%= form.text_field :drop_off_loc %>
   </div>
 
   <div class="field">

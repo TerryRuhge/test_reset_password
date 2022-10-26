@@ -11,21 +11,15 @@ class RequestsController < ApplicationController
 
   # GET /requests/1 or /requests/1.json
   def show
-    # added to display rider name
-    @rider = Rider.find_by(rider_id: @request.rider_id)
   end
 
   # GET /requests/new
   def new
     @request = Request.new
-
-    # added for select field
-    @riders = Rider.order('last_name ASC').order('first_name ASC')
   end
 
   # GET /requests/1/edit
   def edit
-    @riders = Rider.order('last_name ASC').order('first_name ASC')
   end
 
   # POST /requests or /requests.json
@@ -101,7 +95,6 @@ class RequestsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def request_params
-    params.require(:request).permit(:rider_id, :request_status, :date_time, :pick_up_loc, :num_passengers,
-                                    :additional_info)
+    params.require(:request).permit(:name, :phone_number, :request_status, :date_time, :pick_up_loc, :drop_off_loc, :num_passengers, :additional_info)
   end
 end
