@@ -15,30 +15,27 @@
 
     
       <div class="header-bar" id="header-bar">
+
+
         <div class="left-side">
           <div class="current-member left-side">
-              <!--Specifically for admin pages-->
-              <% if current_member and !current_member.is_admin%> <!---For testing purposes is it negated-->
-                <div>
-                  <h2>Admin Pages</h2>
-                  <div class="member-options">
-                      <%= link_to "Edit Form", member_rider_info_path %>
-                      <%= link_to "Queue and Requests", assignments_queue_path %>  
-                  </div>
-                </div>
-                
-              <% end %>
+            <!--Specifically for admin pages-->
+            <!---For testing purposes is it negated-->
+            <div class="member-options">
               <% if current_member and !current_member.is_supervisor%> 
-                <div>
-                  <h2>Supervisor Pages</h2>
-                  <div class="member-options">
-                      <%= link_to "Driver Statuses", member_all_statuses_path %>
-                      <%= link_to "Assign Requests", assignments_assign_path %>  
-                  </div>
-                </div>
+                <%= link_to "Driver Statuses", member_all_statuses_path %>
+                <%= link_to "Assign Requests", assignments_assign_path %>
+                <%= link_to "Assigned Rider", member_rider_info_path %>
               <% end %>
+              <% if current_member and !current_member.is_admin%>
+                <%= link_to "Edit Form", member_rider_info_path %>
+                <%= link_to "Queue and Requests", assignments_queue_path %>
+              <% end %>
+            </div>
           </div>
         </div>
+
+
         <div class="middle">
           <%= link_to root_path do %>
             <div class="logo" id="logo"></div>
@@ -46,17 +43,30 @@
           <% end %>
         </div>
         
+        
         <!--Login and Logout -->
-        <% if current_member %>
-          <div class="current-member right-side">
+        
+        <div class="current-member right-side">
+          <% if current_member %>
             <h2><%= current_member.email %></h2>
-              <div class="member-options">
+            <div class="member-options">
+              <%= link_to "Edit Account", edit_member_registration_path %>
+              <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
+            </div>
+            <div class="admin-options">
+              <% if current_member and !current_member.is_supervisor%> 
+                <%= link_to "Driver Statuses", member_all_statuses_path %>
+                <%= link_to "Assign Requests", assignments_assign_path %>
                 <%= link_to "Assigned Rider", member_rider_info_path %>
-                <%= link_to "Edit Account", edit_member_registration_path %>
-                <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
-              </div>  
-          </div>
-        <% end %>
+              <% end %>
+              <% if current_member and !current_member.is_admin%>
+                <%= link_to "Edit Form", member_rider_info_path %>
+                <%= link_to "Queue and Requests", assignments_queue_path %>
+              <% end %>
+            </div>  
+          <% end %>
+        </div>
+        
 
 
           <%# Mobile Menu %>

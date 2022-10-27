@@ -90,6 +90,7 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
     docile (1.4.0)
+    erb-formatter (0.3.0)
     erubi (1.11.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -318,6 +319,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  erb-formatter
   factory_bot_rails
   faker
   jbuilder (~> 2.7)

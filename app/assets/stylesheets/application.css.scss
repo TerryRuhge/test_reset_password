@@ -43,13 +43,22 @@ div.field {
   flex-direction: column;
   justify-content: left;
   width: 25vw;
+
   input {
-    width: 25vmax;
+    width: auto;
     height: 2.5vmin;
   }
   label {
     display: flex;
     align-items: center;
+  }
+  select {
+    height: 2.5vmin;
+    border-radius: 0px;
+    option {
+      display: flex;
+      text-align: center;
+    }
   }
 }
 
@@ -116,7 +125,6 @@ div.field {
   .mobile-menu {
     color: white;
     display: none;
-
   }
 
   .current-member {
@@ -135,10 +143,11 @@ div.field {
       color: white;
     }
 
-    .member-options {
+    .member-options, .admin-options {
       display: flex;
       flex-direction: row;
       justify-content: center;
+      margin-left: 1vw;
 
       a, input {
         display: flex;
@@ -157,7 +166,7 @@ div.field {
         font-family: "Roboto", sans-serif;
         text-decoration: none;
 
-        border-radius: 0.2vh;
+        border-radius: 0.5vh;
         border-style: none;
 
         cursor: pointer;
@@ -168,6 +177,10 @@ div.field {
           background-color: #969696;
         }
       }
+    }
+
+    .admin-options {
+      display: none;
     }
   }
 }
@@ -369,6 +382,10 @@ div.field {
 
 .link {
   color:rgb(121, 194, 0);
+
+  &:hover {
+    color:rgb(76, 104, 33);
+  }
 }
 
 
@@ -420,7 +437,7 @@ div.field {
 
       &.active {
         opacity: 1;
-        height: 10vh;
+        height: 40vh;
         transform: translate(0,1vh);
 
         * {pointer-events: all;}
@@ -462,6 +479,22 @@ div.field {
       .member-options {
         a {margin-right: 2vw;}
         * {font-size: 3.5vmin;}
+        margin-bottom: 5vh;
+      }
+
+      .admin-options {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          margin-bottom: 1vmin;
+          padding: 2vmin;
+          width: 45vw;
+          text-align: center;
+          justify-content: center;
+        }
       }
     }
   }
