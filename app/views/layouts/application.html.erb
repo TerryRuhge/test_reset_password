@@ -19,17 +19,22 @@
           <div class="current-member left-side">
               <!--Specifically for admin pages-->
               <% if current_member and !current_member.is_admin%> <!---For testing purposes is it negated-->
-                <h2>Admin Pages</h2>
-                <div class="member-options">
-                    <%= link_to "Edit Form", member_rider_info_path %>
-                    <%= link_to "Queue and Requests", assignments_queue_path %>  
+                <div>
+                  <h2>Admin Pages</h2>
+                  <div class="member-options">
+                      <%= link_to "Edit Form", member_rider_info_path %>
+                      <%= link_to "Queue and Requests", assignments_queue_path %>  
+                  </div>
                 </div>
+                
               <% end %>
               <% if current_member and !current_member.is_supervisor%> 
-                <h2>Admin Pages</h2>
-                <div class="member-options">
-                    <%= link_to "Driver Statuses", member_all_statuses_path %>
-                    <%= link_to "Assign Requests", assignments_assign_path %>  
+                <div>
+                  <h2>Supervisor Pages</h2>
+                  <div class="member-options">
+                      <%= link_to "Driver Statuses", member_all_statuses_path %>
+                      <%= link_to "Assign Requests", assignments_assign_path %>  
+                  </div>
                 </div>
               <% end %>
           </div>

@@ -90,11 +90,14 @@ div.field {
       flex-direction: row;
       text-decoration: none;
     }
+    a:hover {
+      background-color: rgba(0, 0, 0, 0);
+    }
   }
 
   .left-side {
     display: flex;
-    flex-direction: column;
+    flex-direction: row !important;
     width: 30vw;
     height: 7vh;
     justify-content: center;
@@ -137,28 +140,33 @@ div.field {
       flex-direction: row;
       justify-content: center;
 
-      a {
-        margin-right: 1.2vw;
-      }
-
-      * {
+      a, input {
         display: flex;
         align-items: center;
         text-align: center;
-
-        border-style: none;
-        text-decoration: none;
         padding-left: 0.5vh;
         padding-right: 0.5vh;
         padding-top: 0.2vh;
         padding-bottom: 0.2vh;
 
-        background-color: rgb(223, 223, 223);
-        color: rgb(61, 61, 61);
+        margin-right: 1.2vw;
+
+        background-color: #565656;
+        color: white;
+
         font-family: "Roboto", sans-serif;
+        text-decoration: none;
+
         border-radius: 0.2vh;
+        border-style: none;
 
         cursor: pointer;
+
+        transition: background-color 0.1s ease-in-out;
+
+        &:hover {
+          background-color: #969696;
+        }
       }
     }
   }
