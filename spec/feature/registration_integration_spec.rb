@@ -10,7 +10,7 @@ RSpec.describe 'Signing up with Form', type: :system do
     end
 
     scenario 'valid inputs' do
-        fill_in 'first_name', with: "Test"
+        fill_in 'project[first_name]', with: "Test"
         fill_in 'last_name', with: 'Phol'
         fill_in 'email', with: email
         fill_in 'address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
