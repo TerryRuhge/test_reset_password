@@ -1,28 +1,31 @@
-# # frozen_string_literal: true
-# # location: spec/feature/registration_integration_spec.rb
-# require 'rails_helper'
+# frozen_string_literal: true
+# location: spec/feature/registration_integration_spec.rb
+require 'rails_helper'
 
-# RSpec.describe 'Signing up with Form', type: :system do
-#     let(:email) {Faker::Internet.email}
-#     let(:password) {Faker::Internet.password(min_length: 6)}
-#     before do
-#         visit new_member_registration_path
-#     end
-#     scenario 'valid inputs' do
-#         fill_in 'first_name', with: "Test"
-#         fill_in 'last_name', with: 'Phol'
-#         fill_in 'email', with: email
-#         fill_in 'address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
-#         fill_in 'phone', with: '3343987387'
-#         select 'gender', with: true
-#         fill_in 'emergency_full_name', with: 'John Phol'
-#         fill_in 'emergency_phone_number', with: '5656354563'
-#         fill_in 'password', with: password
-#         fill_in 'password_confirmation', with: password
-#         click_on 'Sign up'
-#         visit root
-#         expect(page).to have_content('gipahe6735@imdutex.com')
-#     end
+RSpec.describe 'Signing up with Form', type: :system do
+    let(:email) {Faker::Internet.email}
+    let(:password) {Faker::Internet.password(min_length: 6)}
+    before do
+        visit new_member_registration_path
+    end
+
+    scenario 'valid inputs' do
+        fill_in 'first_name', with: "Test"
+        fill_in 'last_name', with: 'Phol'
+        fill_in 'email', with: email
+        fill_in 'address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
+        fill_in 'phone', with: '3343987387'
+        select 'gender', with: true
+        fill_in 'emergency_full_name', with: 'John Phol'
+        fill_in 'emergency_phone_number', with: '5656354563'
+        fill_in 'password', with: password
+        fill_in 'password_confirmation', with: password
+        click_on 'Sign up'
+
+        expect(page).to have_content(email)
+    end
+    
+end
 #     scenario 'invalid password confirmation' do
 #         visit new_registration_path
 #         fill_in 'first_name', with: 'Jilly'
