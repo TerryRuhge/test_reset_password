@@ -24,7 +24,6 @@ RSpec.describe 'Signing up with Form', type: :system do
         expect(page).to have_content(email)
     end
     scenario 'invalid password confirmation' do
-        visit new_registration_path
         fill_in 'member_first_name', with: 'Jilly'
         fill_in 'member_last_name', with: 'Phol'
         fill_in 'member_email', with: 'gipahe67764@imdutex.com'
@@ -47,7 +46,6 @@ RSpec.describe 'Signing up with Form', type: :system do
         expect(page).to have_content("can't be blank")
     end
     scenario 'Email already taken' do
-        visit new_registration_path
         fill_in 'member_first_name', with: 'Jilly'
         fill_in 'member_last_name', with: 'Phol'
         fill_in 'member_email', with: 'gipahe6735@imdutex.com'
