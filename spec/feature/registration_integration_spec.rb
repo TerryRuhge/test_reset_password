@@ -56,7 +56,6 @@ RSpec.describe 'Signing up with Form', type: :system do
         fill_in 'member_password', with: '123456'
         fill_in 'member_password_confirmation', with: '123456'
         click_on 'Sign up'
-        visit root
         expect(page).to have_content('Email has already been taken')
     end
 end
