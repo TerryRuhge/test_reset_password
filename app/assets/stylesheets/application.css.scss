@@ -266,7 +266,24 @@ div.field {
     font-size: 3vmin;
   }
 
+  h2.urgent {
+    color: maroon;
+  }
+
   p {font-size: 1.5vmin;}
+
+  li {
+    font-size: 1.5vmin;
+    margin-bottom: 1vh;
+  }
+
+  &.small {
+    min-height: 10vh;
+    padding-bottom: 0;
+    p {
+      font-size: 1.4vmin;
+    }
+  }
 }
 
 /* -------------------------------------------------------------------------- */
