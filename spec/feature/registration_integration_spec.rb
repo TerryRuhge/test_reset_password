@@ -56,14 +56,14 @@ RSpec.describe 'Signing up with Form', type: :system do
         fill_in 'member_password', with: '123456'
         fill_in 'member_password_confirmation', with: '123456'
         click_on 'Sign up'
-        click_on 'Edit'
+        click_on 'Edit Account'
         expect(page).to have_content('Email has already been taken')
     end
 end
 
 RSpec.describe 'Signing up with Google', type: :feature do
     scenario 'valid input' do
-        visit new_registration_path
+        visit new_member_registration_path
         click_on 'Sign in with Google'
         expect(page).to have_content('Edit')
     end
