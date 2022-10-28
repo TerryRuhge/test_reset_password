@@ -46,9 +46,10 @@ RSpec.describe 'Signing up with Form', type: :system do
         expect(page).to have_content("can't be blank")
     end
     scenario 'Email already taken' do
+        @member1 = create :member
         fill_in 'member_first_name', with: 'Jilly'
         fill_in 'member_last_name', with: 'Phol'
-        fill_in 'member_email', with: 'gipafsfg67764@imdutex.com'
+        fill_in 'member_email', with: 'jane.doe@hey.com'
         fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
         fill_in 'member_phone', with: '3343987387'
         fill_in 'member_emergency_full_name', with: 'John Phol'
