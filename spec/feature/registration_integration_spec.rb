@@ -29,7 +29,7 @@ RSpec.describe 'Signing up with Form', type: :system do
         fill_in 'member_email', with: 'gipahe67764@imdutex.com'
         fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
         fill_in 'member_phone', with: '3343987387'
-        fill_in 'emergency_full_name', with: 'John Phol'
+        fill_in 'member_emergency_full_name', with: 'John Phol'
         fill_in 'member_emergency_phone_number', with: '3343962503'
         fill_in 'member_password', with: '123456'
         fill_in 'member_password_confirmation', with: '12345'
