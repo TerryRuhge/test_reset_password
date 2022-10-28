@@ -10,16 +10,15 @@ RSpec.describe 'Signing up with Form', type: :system do
     end
 
     scenario 'valid inputs' do
-        fill_in 'project[first_name]', with: "Test"
-        fill_in 'last_name', with: 'Phol'
-        fill_in 'email', with: email
-        fill_in 'address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
-        fill_in 'phone', with: '3343987387'
-        select 'gender', with: true
-        fill_in 'emergency_full_name', with: 'John Phol'
-        fill_in 'emergency_phone_number', with: '5656354563'
-        fill_in 'password', with: password
-        fill_in 'password_confirmation', with: password
+        fill_in 'member_first_name', with: "Test"
+        fill_in 'member_last_name', with: 'Phol'
+        fill_in 'member_email', with: email
+        fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
+        fill_in 'member_phone', with: '3343987387'
+        fill_in 'member_emergency_full_name', with: 'John Phol'
+        fill_in 'member_emergency_phone_number', with: '5656354563'
+        fill_in 'member_password', with: password
+        fill_in 'member_password_confirmation', with: password
         click_on 'Sign up'
 
         expect(page).to have_content(email)
