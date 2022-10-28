@@ -48,7 +48,7 @@ RSpec.describe 'Signing up with Form', type: :system do
     scenario 'Email already taken' do
         fill_in 'member_first_name', with: 'Jilly'
         fill_in 'member_last_name', with: 'Phol'
-        fill_in 'member_email', with: 'gipahe6735@imdutex.com'
+        fill_in 'member_email', with: 'gipafsfg67764@imdutex.com'
         fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
         fill_in 'member_phone', with: '3343987387'
         fill_in 'member_emergency_full_name', with: 'John Phol'
