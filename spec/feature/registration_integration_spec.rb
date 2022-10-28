@@ -61,10 +61,10 @@ RSpec.describe 'Signing up with Form', type: :system do
     end
 end
 
-RSpec.describe 'Signing up with Google', type: :feature do
-    scenario 'valid input' do
-        visit new_member_registration_path
-        click_on 'Sign in with Google'
-        expect(page).to have_content('Edit')
-    end
-end
+# RSpec.describe 'Signing up with Google', type: :feature do
+#     scenario 'valid input' do
+#         visit new_member_registration_path
+#         click_on 'Sign in with Google'
+#         expect(page).to have_content('Edit')
+#     end
+# end
