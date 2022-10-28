@@ -23,10 +23,10 @@ RSpec.describe 'Signing in with Form', type: :system do
 
     scenario "valid with correct credentials" do
         visit new_member_session_path
-        fill_in "member_email", with: "Test@gmail.com"
-        fill_in "member_password", with: "123456"
+        fill_in "member_email", with: @member.email
+        fill_in "member_password", with: @member.password
         click_button "LOGIN"
-
+        visit root_path
         expect(page).to have_text "Test@gmail.com"
     end
 end
