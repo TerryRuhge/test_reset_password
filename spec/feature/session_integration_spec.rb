@@ -25,7 +25,7 @@ RSpec.describe 'Signing in with Form', type: :system do
         visit new_member_session_path
         fill_in "member_email", with: "Test@gmail.com"
         fill_in "member_password", with: "123456"
-        click_button "login"
+        click_button "LOGIN"
 
         expect(page).to have_text "Test@gmail.com"
     end
