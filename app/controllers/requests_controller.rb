@@ -10,8 +10,7 @@ class RequestsController < ApplicationController
   end
 
   # GET /requests/1 or /requests/1.json
-  def show
-  end
+  def show; end
 
   # GET /requests/new
   def new
@@ -19,8 +18,7 @@ class RequestsController < ApplicationController
   end
 
   # GET /requests/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /requests or /requests.json
   def create

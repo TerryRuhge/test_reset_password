@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 end
@@ -8,12 +10,12 @@ FactoryBot.define do
   factory :auth_hash, class: OmniAuth::AuthHash do
     initialize_with do
       OmniAuth::AuthHash.new({
-        provider: provider,
-        uid: uid,
-        info: {
-          email: email
-        }
-      })
+                               provider: provider,
+                               uid: uid,
+                               info: {
+                                 email: email
+                               }
+                             })
     end
 
     trait :google_oauth2 do

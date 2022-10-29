@@ -16,7 +16,7 @@ RSpec.describe Request, type: :model do
     subject.name = nil
     expect(subject).not_to be_valid
   end
-  
+
   it 'is not valid without a phone number' do
     subject.phone_number = nil
     expect(subject).not_to be_valid
@@ -26,7 +26,7 @@ RSpec.describe Request, type: :model do
     subject.pick_up_loc = nil
     expect(subject).not_to be_valid
   end
-  
+
   it 'is not valid without a drop off location' do
     subject.drop_off_loc = nil
     expect(subject).not_to be_valid

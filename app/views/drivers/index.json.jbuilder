@@ -1,1 +1,3 @@
-json.array! @drivers, partial: "drivers/driver", as: :driver
+# frozen_string_literal: true
+
+json.array! @drivers, partial: 'drivers/driver', as: :driver
