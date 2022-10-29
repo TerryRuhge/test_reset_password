@@ -27,6 +27,6 @@ RSpec.describe 'Signing in with Form', type: :system do
         fill_in "member_password", with: @member1.password
         click_button "LOGIN"
         visit root_path
-        expect(page).to have_text "Test@gmail.com"
+        expect(page).to have_text @member1.email
     end
 end
