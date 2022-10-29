@@ -44,7 +44,7 @@ div.field {
   justify-content: left;
   width: 25vw;
 
-  input[type=text] {
+  input[type=text], input[type=email], input[type=password] {
     width: auto;
     height: 2.5vmin;
 
