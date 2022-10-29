@@ -9,7 +9,6 @@ RSpec.describe 'Signing up with Form', type: :system do
   before do
     visit new_member_registration_path
   end
-
   scenario 'valid inputs' do
     fill_in 'member_first_name', with: 'Test'
     fill_in 'member_last_name', with: 'Phol'
@@ -21,7 +20,6 @@ RSpec.describe 'Signing up with Form', type: :system do
     fill_in 'member_password', with: password
     fill_in 'member_password_confirmation', with: password
     click_on 'Sign up'
-
     expect(page).to have_content(email)
   end
   scenario 'invalid password confirmation' do
@@ -39,8 +37,6 @@ RSpec.describe 'Signing up with Form', type: :system do
   end
   scenario 'Missing Field' do
     fill_in 'member_email', with: 'gipafsfg67764@imdutex.com'
-    fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
-    fill_in 'member_phone', with: '3343987387'
     fill_in 'member_password', with: '123456'
     fill_in 'member_password_confirmation', with: '12345'
     click_on 'Sign up'
@@ -51,10 +47,6 @@ RSpec.describe 'Signing up with Form', type: :system do
     fill_in 'member_first_name', with: 'Jilly'
     fill_in 'member_last_name', with: 'Phol'
     fill_in 'member_email', with: 'jane.doe@hey.com'
-    fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
-    fill_in 'member_phone', with: '3343987387'
-    fill_in 'member_emergency_full_name', with: 'John Phol'
-    fill_in 'member_emergency_phone_number', with: '3343962503'
     fill_in 'member_password', with: '123456'
     fill_in 'member_password_confirmation', with: '123456'
     click_on 'Sign up'
