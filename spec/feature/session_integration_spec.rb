@@ -17,7 +17,7 @@ RSpec.describe 'Signing up with Form', type: :system do
 
   scenario 'Logging out', type: :system do
     visit root_path
-    sign_out member
+    click_button "Logout"
     #Should redirect to login page
     expect(page).to have_content("LOGIN")
   end
