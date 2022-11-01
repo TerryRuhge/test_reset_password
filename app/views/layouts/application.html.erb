@@ -28,7 +28,7 @@
                 <%= link_to "Assigned Rider", member_rider_info_path %>
               <% end %>
               <% if current_member and !current_member.is_admin%>
-                <%= link_to "Edit Form", member_rider_info_path %>
+                <%= link_to "Admin", whitelists_path %>
                 <%= link_to "Queue and Requests", assignments_queue_path %>
               <% end %>
             </div>
@@ -60,7 +60,7 @@
                 <%= link_to "Assigned Rider", member_rider_info_path %>
               <% end %>
               <% if current_member and !current_member.is_admin%>
-                <%= link_to "Edit Form", member_rider_info_path %>
+                <%= link_to "Admin", whitelists_path %>
                 <%= link_to "Queue and Requests", assignments_queue_path %>
               <% end %>
             </div>  
