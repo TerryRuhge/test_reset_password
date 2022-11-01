@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "whitelists/show", type: :view do
+RSpec.describe 'whitelists/show', type: :view do
   before(:each) do
     @whitelist = assign(:whitelist, Whitelist.create!(
-      email: "Email"
-    ))
+                                      email: 'Email'
+                                    ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Email/)
   end

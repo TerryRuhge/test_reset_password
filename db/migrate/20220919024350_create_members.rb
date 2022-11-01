@@ -14,7 +14,7 @@ class CreateMembers < ActiveRecord::Migration[6.1]
       t.boolean :created_password, default: true
       t.string :emergency_full_name
       t.string :emergency_phone_number
-	  
+
       t.timestamps
     end
   end

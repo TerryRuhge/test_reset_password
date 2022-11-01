@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :whitelist do
-    email { "MyString" }
+    email { 'MyString' }
   end
 end

@@ -7,9 +7,9 @@ RSpec.describe 'Creating an assignment', type: :feature do
   scenario 'valid inputs' do
     visit new_request_path
     fill_in 'Name', with: 'Ricardo'
-	fill_in 'Phone number', with: '2105270414'
+    fill_in 'Phone number', with: '2105270414'
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
-	fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
+    fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Num passengers', with: 3
     click_on 'Create Request'
     visit new_assignment_path
@@ -26,9 +26,9 @@ RSpec.describe 'Showing an assignment', type: :feature do
   scenario 'show inputs' do
     visit new_request_path
     fill_in 'Name', with: 'Ricardo'
-	fill_in 'Phone number', with: '2105270414'
+    fill_in 'Phone number', with: '2105270414'
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
-	fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
+    fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Num passengers', with: 3
     click_on 'Create Request'
     visit new_assignment_path
@@ -45,9 +45,9 @@ RSpec.describe 'Updating an assignment', type: :feature do
   scenario 'update inputs' do
     visit new_request_path
     fill_in 'Name', with: 'Ricardo'
-	fill_in 'Phone number', with: '2105270414'
+    fill_in 'Phone number', with: '2105270414'
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
-	fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
+    fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Num passengers', with: 3
     click_on 'Create Request'
     visit new_assignment_path
@@ -67,9 +67,9 @@ RSpec.describe 'Changing status of an assignment', type: :feature do
   scenario 'change status' do
     visit new_request_path
     fill_in 'Name', with: 'Ricardo'
-	fill_in 'Phone number', with: '2105270414'
+    fill_in 'Phone number', with: '2105270414'
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
-	fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
+    fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Num passengers', with: 3
     click_on 'Create Request'
     visit new_assignment_path
@@ -89,9 +89,9 @@ RSpec.describe 'Driver notes of an assignment', type: :feature do
   scenario 'driver notes' do
     visit new_request_path
     fill_in 'Name', with: 'Ricardo'
-	fill_in 'Phone number', with: '2105270414'
+    fill_in 'Phone number', with: '2105270414'
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
-	fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
+    fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Num passengers', with: 3
     click_on 'Create Request'
     visit new_assignment_path
@@ -115,9 +115,9 @@ RSpec.describe 'Deleting an assignment', type: :feature do
   scenario 'delete inputs' do
     visit new_request_path
     fill_in 'Name', with: 'Ricardo'
-	fill_in 'Phone number', with: '2105270414'
+    fill_in 'Phone number', with: '2105270414'
     fill_in 'Pick up loc', with: '125 Spence Str, College Station, TX 77840'
-	fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
+    fill_in 'Drop off loc', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Num passengers', with: 3
     click_on 'Create Request'
     visit new_assignment_path
