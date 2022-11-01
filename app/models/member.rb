@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Member < ApplicationRecord
+  belongs_to :Whitelist
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -18,6 +19,14 @@ class Member < ApplicationRecord
   # validates :first_name, presence: true
   # validates :last_name, :first_name, :is_male, :phone, :address, :emergency_full_name, :emergency_phone_number, presence: true, on: [:update]
   validates :last_name, :first_name, :phone, :address, :emergency_full_name, :emergency_phone_number, presence: true, if: :valid_non_provider?
+  validate :validate_email_on_whitelist
+
+  def validate_email_on_whitelist
+    email = self.email 
+    if !Whitelist.exists?(:email => email)
+      errors.add(:member, "email is not approved by admins, Please contact CARPOOL executives to create account.")
+    end
+  end
 
   def valid_non_provider?
     provider.nil?
