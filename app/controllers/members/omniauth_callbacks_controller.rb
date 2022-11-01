@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 module Members
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # You should configure your model like this:
@@ -8,18 +7,17 @@ module Members
     # You should also create an action method in this controller like this:
     # def twitter
     # end
-
     def google_oauth2
       member = Member.from_omniauth(auth)
 
-      if member.present?
+      if member.present? and Whitelist.exists?(:email => member.email)
         sign_out_all_scopes
         flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
         sign_in_and_redirect member, even: :authentifciation
       else
         flash[:alert] =
           t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
-        redirect_to new_member_session_path
+        redirect_to root_path
       end
     end
 
