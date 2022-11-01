@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_19_165547) do
+ActiveRecord::Schema.define(version: 2022_11_01_012410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,12 @@ ActiveRecord::Schema.define(version: 2022_10_19_165547) do
     t.boolean "is_address_BCS"
     t.integer "num_passengers"
     t.string "additional_info"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "whitelists", force: :cascade do |t|
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
