@@ -16,7 +16,7 @@ RSpec.describe 'Signing up with Form', type: :system do
   end
 
   scenario 'Logging out', type: :system do
-    member = FactoryBot.create(:member)
+    sign_in member
     visit root_path
     sign_out member
     expect(page).to have_content("LOGIN")
