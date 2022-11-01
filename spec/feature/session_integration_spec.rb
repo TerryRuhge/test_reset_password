@@ -19,7 +19,7 @@ RSpec.describe 'Signing up with Form', type: :system do
     visit root_path
     click_button "Logout"
     #Should redirect to login page
-    expect(page).to have_content("LOGIN")
+    expect(page).to have_current_path(new_member_session_path)
   end
 end
 
