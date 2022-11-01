@@ -1,58 +1,68 @@
 <div>
-
-  <h2>Sign up</h2>
+  <br><br>
+  <h2 class="centered">Sign up</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :first_name %> <br />
-    <%= f.text_field :first_name, autofocus: true %>
-  </div>
+    <div class="horiz-container">
+      <div class="field small-margins">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, autofocus: true %>
+      </div>
 
-  <div class="field">
-    <%= f.label :last_name %> <br />
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone %> <br />
-    <%= f.text_field :phone %>
-  </div>
-
-  <div class="Address Field">
-    <div class="field">
-      <%= f.label :address %> <br />
-      <%= f.text_field :address %>
+      <div class="field small-margins">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, autofocus: true %>
+      </div>
     </div>
-  </div>
 
-  <div class="Emergency Contact Field">
-    <div class="field">
-      <%= f.label :emergency_full_name %> <br />
-      <%= f.text_field :emergency_full_name %>
+    <div class="horiz-container">
+      <div class="field small-margins">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field small-margins">
+        <%= f.label :phone %>
+        <%= f.text_field :phone %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :emergency_phone_number %> <br />
-      <%= f.text_field :emergency_phone_number %>
+
+    <br>
+
+    <div class="horiz-container">
+      <div class="field small-margins">
+        <%= f.label :emergency_full_name %>
+        <%= f.text_field :emergency_full_name %>
+      </div>
+      <div class="field small-margins">
+        <%= f.label :emergency_phone_number %>
+        <%= f.text_field :emergency_phone_number %>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <br>
+
+    <div class="Address Field">
+      <div class="field">
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+      </div>
+    </div>
+
+    <br>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 

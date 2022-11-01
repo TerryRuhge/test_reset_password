@@ -9,12 +9,13 @@
 
 <% if current_member %>
     <div class="horiz-container">
-        <%= link_to "Riders", riders_path, :class => "grey button small-margins" %>
+        <%# <%= link_to "Riders", riders_path, :class => "grey button small-margins" %>
         <%= link_to "Requests", requests_path, :class => "grey button small-margins" %>
 		<%= link_to "Assignments", assignments_path, :class => "grey button small-margins" %>
     </div>
 <% else %>
     <div class="centered">
+        <br><br>
         <p class=""> Are you a CARPOOL member?</p>
         <%= link_to "LOGIN", new_member_session_path, :class => "grey button" %>
         
