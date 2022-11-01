@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Whitelists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @whitelists.each do |whitelist| %>
+      <tr>
+        <td><%= whitelist.email %></td>
+        <td><%= link_to 'Edit', edit_whitelist_path(whitelist) %></td>
+        <td><%= link_to 'Remove', whitelist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add Email', new_whitelist_path %>

@@ -43,13 +43,32 @@ div.field {
   flex-direction: column;
   justify-content: left;
   width: 25vw;
-  input {
-    width: 25vmax;
+
+  input[type=text], input[type=email], input[type=password] {
+    width: auto;
     height: 2.5vmin;
+
+    outline:none;
+    border-color: #9e9e9e;
+    border-style: solid;
+    border-width: 1px;
+    border-image: none;
+
+    &:focus {
+      border: 2px solid #6d9630;
+    }
   }
   label {
     display: flex;
     align-items: center;
+  }
+  select {
+    height: 2.5vmin;
+    border-radius: 0px;
+    option {
+      display: flex;
+      text-align: center;
+    }
   }
 }
 
@@ -90,11 +109,14 @@ div.field {
       flex-direction: row;
       text-decoration: none;
     }
+    a:hover {
+      background-color: rgba(0, 0, 0, 0);
+    }
   }
 
   .left-side {
     display: flex;
-    flex-direction: column;
+    flex-direction: row !important;
     width: 30vw;
     height: 7vh;
     justify-content: center;
@@ -113,7 +135,6 @@ div.field {
   .mobile-menu {
     color: white;
     display: none;
-
   }
 
   .current-member {
@@ -132,34 +153,44 @@ div.field {
       color: white;
     }
 
-    .member-options {
+    .member-options, .admin-options {
       display: flex;
       flex-direction: row;
       justify-content: center;
+      margin-left: 1vw;
 
-      a {
-        margin-right: 1.2vw;
-      }
-
-      * {
+      a, input {
         display: flex;
         align-items: center;
         text-align: center;
-
-        border-style: none;
-        text-decoration: none;
         padding-left: 0.5vh;
         padding-right: 0.5vh;
         padding-top: 0.2vh;
         padding-bottom: 0.2vh;
 
-        background-color: rgb(223, 223, 223);
-        color: rgb(61, 61, 61);
+        margin-right: 1.2vw;
+
+        background-color: #565656;
+        color: white;
+
         font-family: "Roboto", sans-serif;
-        border-radius: 0.2vh;
+        text-decoration: none;
+
+        border-radius: 0.5vh;
+        border-style: none;
 
         cursor: pointer;
+
+        transition: background-color 0.1s ease-in-out;
+
+        &:hover {
+          background-color: #969696;
+        }
       }
+    }
+
+    .admin-options {
+      display: none;
     }
   }
 }
@@ -245,7 +276,25 @@ div.field {
     font-size: 3vmin;
   }
 
+  h2.urgent {
+    color: maroon;
+  }
+
   p {font-size: 1.5vmin;}
+
+  li {
+    font-size: 1.5vmin;
+    margin-bottom: 1vh;
+  }
+
+  &.small {
+    min-height: 10vh;
+    padding-bottom: 0;
+
+    p {
+      font-size: 1.4vmin;
+    }
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -281,6 +330,7 @@ div.field {
   
   input {
     border-style: none;
+    border-radius: 5px;
     background-color: rgb(121, 194, 0);
     font-family: "Helvetica", sans-serif;
     color: rgb(255, 255, 255);
@@ -361,6 +411,10 @@ div.field {
 
 .link {
   color:rgb(121, 194, 0);
+
+  &:hover {
+    color:rgb(76, 104, 33);
+  }
 }
 
 
@@ -374,7 +428,7 @@ div.field {
 @media only screen and (max-device-width: 480px) {
   .card {
     width: 100vw;
-    height: 40vh;
+    min-height: 40vh;
 
     h1 {font-size: 7vmin;}
 
@@ -383,6 +437,20 @@ div.field {
       margin-right: 2vh;
       text-align: center;
       font-size: 4vmin;
+    }
+
+    &.small {
+      min-height: 10vh;
+      
+
+      p {font-size: 4vmin;}
+
+      li {
+        font-size: 4vmin;
+        padding-right: 3vw;
+        padding-left: 3vw;
+      }
+
     }
   }
 
@@ -412,7 +480,7 @@ div.field {
 
       &.active {
         opacity: 1;
-        height: 10vh;
+        height: 40vh;
         transform: translate(0,1vh);
 
         * {pointer-events: all;}
@@ -454,6 +522,22 @@ div.field {
       .member-options {
         a {margin-right: 2vw;}
         * {font-size: 3.5vmin;}
+        margin-bottom: 5vh;
+      }
+
+      .admin-options {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          margin-bottom: 1vmin;
+          padding: 2vmin;
+          width: 45vw;
+          text-align: center;
+          justify-content: center;
+        }
       }
     }
   }

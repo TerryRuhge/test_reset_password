@@ -12,7 +12,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20_221_019_165_547) do
+=======
+ActiveRecord::Schema.define(version: 20_221_101_162_706) do
+>>>>>>> d32712ca0a1540cf2efd02b69e97c34eb6c49701
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -75,4 +79,13 @@ ActiveRecord::Schema.define(version: 20_221_019_165_547) do
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end
+<<<<<<< HEAD
+=======
+
+  create_table 'whitelists', force: :cascade do |t|
+    t.string 'email'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+>>>>>>> d32712ca0a1540cf2efd02b69e97c34eb6c49701
 end
