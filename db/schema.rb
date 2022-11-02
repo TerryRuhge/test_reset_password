@@ -38,8 +38,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_001807) do
 
   create_table "drivers", primary_key: "driver_id", force: :cascade do |t|
     t.integer "member_id"
-    t.string "phone_number"
-    t.string "car_model"
+    t.integer "car_id"
     t.datetime "check_in_time"
     t.string "driver_status"
     t.datetime "created_at", precision: 6, null: false
