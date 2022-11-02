@@ -53,3 +53,24 @@ RSpec.describe 'Signing up with Form', type: :system do
     expect(page).to have_content('Email has already been taken')
   end
 end
+
+Rspec.describe 'Update Registration' do
+  fill_in 'member_first_name', with: 'Test'
+  fill_in 'member_last_name', with: 'Phol'
+  fill_in 'member_email', with: email
+  fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
+  fill_in 'member_phone', with: '3343987387'
+  fill_in 'member_emergency_full_name', with: 'John Phol'
+  fill_in 'member_emergency_phone_number', with: '5656354563'
+  fill_in 'member_password', with: password
+  fill_in 'member_password_confirmation', with: password
+  click_on 'Sign up'
+  expect(page).to have_content(email)
+
+  visit edit_member_registration_path
+  fill_in 'member_first_name', with: 'Terri'
+  fill_in 'member_password', with: '123456'
+  fill_in 'member_password_confirmation', with: '123456'
+  fill_in 'member_current_password', with: password
+  expect(page).to have_content('Terri')
+end
