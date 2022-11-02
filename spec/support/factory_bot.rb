@@ -47,4 +47,17 @@ FactoryBot.define do
     emergency_phone_number { '592487590284375' }
     address { 'adafdsf342' }
   end
+
+  factory(:member2) do
+    email { 'jane.doe2@hey.com' }
+    password { '123456' }
+    # confirmed_at {Time.now}
+    password_confirmation { '123456' }
+    phone { '845723945' }
+    first_name { 'firstName' }
+    last_name { 'lastName2' }
+    emergency_full_name { 'TestingName' }
+    emergency_phone_number { '592487590284375' }
+    address { 'adafdsf342' }
+  end
 end
