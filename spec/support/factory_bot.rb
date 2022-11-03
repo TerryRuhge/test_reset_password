@@ -47,7 +47,7 @@ FactoryBot.define do
     emergency_phone_number { '592487590284375' }
     address { 'adafdsf342' }
   end
-ss
+
   factory(:member2) do
     email { 'jane.doe2@hey.com' }
     password { '123456' }
