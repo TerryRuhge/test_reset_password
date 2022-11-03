@@ -43,10 +43,27 @@ ActiveRecord::Schema.define(version: 2022_11_01_162706) do
     t.string "address"
     t.boolean "is_admin", default: false
     t.boolean "is_supervisor", default: false
-    t.decimal "leaderboard_points"
+    t.decimal "leaderboard_points", default: "0.0"
     t.boolean "created_password", default: true
-    t.string "emergency_full_name"
-    t.string "emergency_phone_number"
+    t.string "emergency_1_full_name"
+    t.string "emergency_1_phone_number"
+    t.string "emergency_2_full_name"
+    t.string "emergency_2_phone_number"
+    t.string "drivers_license_number"
+    t.string "state_issue_lciense"
+    t.boolean "current_license", default: false
+    t.date "date_of_birth"
+    t.string "parent_number"
+    t.string "parent_street_address"
+    t.string "parent_city"
+    t.string "parent_state"
+    t.string "parent_zip"
+    t.string "tshirt_size", default: "Medium"
+    t.boolean "has_insurance", default: false
+    t.string "allergies"
+    t.string "special_dietary_needs"
+    t.decimal "semesters_as_member", default: "0.0"
+    t.string "college_major"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
