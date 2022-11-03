@@ -65,7 +65,7 @@ RSpec.describe 'Update Registration', type: :system do
     fill_in 'member_current_password', with: @member2.password
     click_on "Update"
     #expect(page).to have_content('Terri')
-    member2.reload
+    @member2.reload
     expect(@member2.first_name).to eq('Terri')
   end
 end
