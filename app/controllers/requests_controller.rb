@@ -2,11 +2,11 @@
 
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
+  before_action :set_request_id, only: %i[status cancel]
 
   # GET /requests or /requests.json
   def index
-    @other_requests = Request.where.not(request_status: 'Cancelled').order('request_id ASC')
-    @cancelled_requests = Request.where(request_status: 'Cancelled').order('request_id ASC')
+    @requests = Request.all.order('request_id ASC')
   end
 
   # GET /requests/1 or /requests/1.json
@@ -26,7 +26,9 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       if @request.save
-        # update the request status attribute
+        # update the queue position of the request
+        next_queue_pos = Request.where(request_status: 'Unassigned').count + 1
+        @request.update_attribute(:queue_pos, next_queue_pos)
         @request.update_attribute(:request_status, 'Unassigned')
 
         format.html { redirect_to request_url(@request), notice: 'Request was successfully created.' }
@@ -42,10 +44,9 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
-        # update the queue in assignment accordingly, if request status is changed
-        if (@request.request_status != 'In Progress') && (@request.request_status != 'Unassigned')
-          @assignment = Assignment.where(request_id: @request.request_id).last
-          @assignment.update_attribute(:queue_pos, 0)
+        # update the queue position accordingly, if request status is changed
+        if (@request.request_status != 'Unassigned')
+          @request.update_attribute(:queue_pos, 0)
         end
 
         format.html { redirect_to request_url(@request), notice: 'Request was successfully updated.' }
@@ -57,16 +58,20 @@ class RequestsController < ApplicationController
     end
   end
 
-  def status
-    @request = Request.find(params[:request_id])
-  end
+  # GET /requests/1/status
+  def status; end
 
+  # POST /requests/1/cancel
   def cancel
-    @request = Request.find(params[:request_id])
+    # update the queue position of all requests later in the queue
+    if @request.queue_pos.positive?
+      Request.where('queue_pos > :pos', pos: @request.queue_pos).each do |request|
+        request.update_attribute(:queue_pos, request.queue_pos - 1)
+      end
+    end
+    
+    @request.update_attribute(:queue_pos, 0)
     @request.update_attribute(:request_status, 'Cancelled')
-
-    # update the queue in assignment accordingly
-    @assignment.update_attribute(:queue_pos, 0) if @assignment = Assignment.where(request_id: @request.request_id).last
 
     respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Request was successfully cancelled.' }
@@ -76,6 +81,13 @@ class RequestsController < ApplicationController
 
   # DELETE /requests/1 or /requests/1.json
   def destroy
+    # update the queue position of all requests later in the queue
+    if @request.queue_pos.positive?
+      Request.where('queue_pos > :pos', pos: @request.queue_pos).each do |request|
+        request.update_attribute(:queue_pos, request.queue_pos - 1)
+      end
+    end
+    
     @request.destroy
 
     respond_to do |format|
@@ -89,6 +101,10 @@ class RequestsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_request
     @request = Request.find(params[:id])
+  end
+  
+  def set_request_id
+    @request = Request.find(params[:request_id])
   end
 
   # Only allow a list of trusted parameters through.

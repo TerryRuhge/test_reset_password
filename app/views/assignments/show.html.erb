@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Request Status:</strong>
-  <%= @request.request_status %>
-</p>
-
-<p>
   <strong>Request:</strong>
   <%= @assignment.request_id %>
 </p>
@@ -16,8 +11,8 @@
 </p>
 
 <p>
-  <strong>Driver notes:</strong>
-  <%= @assignment.driver_notes %>
+  <strong>Notes:</strong>
+  <%= @assignment.notes %>
 </p>
 
 <p>
@@ -28,11 +23,6 @@
 <p>
   <strong>Drop Off Time:</strong>
   <%= @assignment.drop_off_time %>
-</p>
-
-<p>
-  <strong>Queue Position:</strong>
-  <%= @assignment.queue_pos %>
 </p>
 
 <% if not current_member %>

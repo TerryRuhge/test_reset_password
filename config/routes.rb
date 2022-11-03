@@ -18,12 +18,12 @@ Rails.application.routes.draw do
 
   resources :requests do
     get 'status', to: 'requests#status'
-    get 'cancel'
+    post 'cancel'
   end
 
   resources :assignments do
-    get 'picked_up'
-    get 'dropped_off'
+    post 'picked_up'
+    post 'dropped_off'
     get 'notes', to: 'assignments#notes'
   end
 

@@ -4,23 +4,16 @@ require 'date'
 
 class AssignmentsController < ApplicationController
   before_action :set_assignment, only: %i[show edit update destroy]
+  before_action :set_assignment_id, only: %i[picked_up dropped_off notes]
 
   # GET /assignments or /assignments.json
   def index
-    @queued_assignments = Assignment.where.not(queue_pos: 0).order('queue_pos ASC')
-    @other_assignments = Assignment.where(queue_pos: 0).order('queue_pos ASC')
+    @assignments = Assignment.all.order('assignment_id ASC')
   end
 
   # GET /assignments/1 or /assignments/1.json
   def show
     @request = Request.find_by(request_id: @assignment.request_id)
-  end
-
-  # GET /queue
-  def show_all_queue
-    @assignments = Assignment.where.not(queue_pos: '0').order('queue_pos ASC')
-
-    @requests = Request.where
   end
 
   # GET /assignments/new
@@ -40,17 +33,13 @@ class AssignmentsController < ApplicationController
 
     respond_to do |format|
       if @assignment.save
-        # update the queue position of the assignment
-        if Assignment.count.positive?
-          next_queue_pos = Assignment.where.not(queue_pos: 0).count + 1
-          @assignment.update_attribute(:queue_pos, next_queue_pos)
-        else
-          @assignment.update_attribute(:queue_pos, 1)
+        # update the entire queue and the status of the appropriate request
+        @request = Request.find_by_request_id(@assignment.request_id)
+		Request.where('queue_pos > :pos', pos: @request.queue_pos).each do |request|
+          request.update_attribute(:queue_pos, request.queue_pos - 1)
         end
-
-        # update the status in request accordingly
-        @request = Request.where(request_id: @assignment.request_id).last
-        @request.update_attribute(:request_status, 'In Progress')
+    	@request.update_attribute(:queue_pos, 0)
+        @request.update_attribute(:request_status, 'Assigned Driver')
 
         format.html { redirect_to assignment_url(@assignment), notice: 'Assignment was successfully created.' }
         format.json { render :show, status: :created, location: @assignment }
@@ -74,8 +63,8 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  # POST /assignments/1/picked_up
   def picked_up
-    @assignment = Assignment.find(params[:assignment_id])
     @assignment.update_attribute(:pick_up_time, DateTime.now.strftime('%d/%m/%Y %H:%M'))
 
     respond_to do |format|
@@ -84,8 +73,8 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  # POST /assignments/1/dropped_off
   def dropped_off
-    @assignment = Assignment.find(params[:assignment_id])
     @assignment.update_attribute(:drop_off_time, DateTime.now.strftime('%d/%m/%Y %H:%M'))
 
     respond_to do |format|
@@ -94,18 +83,12 @@ class AssignmentsController < ApplicationController
     end
   end
 
-  def notes
-    @assignment = Assignment.find(params[:assignment_id])
-  end
+  # GET /assignments/1/notes
+  def notes; end
 
   # DELETE /assignments/1 or /assignments/1.json
   def destroy
     @assignment.destroy
-    if @assignment.queue_pos.positive?
-      Assignment.where('queue_pos > :pos', pos: @assignment.queue_pos).each do |assignment|
-        assignment.update_attribute(:queue_pos, assignment.queue_pos - 1)
-      end
-    end
 
     respond_to do |format|
       format.html { redirect_to assignments_url, notice: 'Assignment was successfully destroyed.' }
@@ -119,9 +102,13 @@ class AssignmentsController < ApplicationController
   def set_assignment
     @assignment = Assignment.find(params[:id])
   end
+  
+  def set_assignment_id
+    @assignment = Assignment.find(params[:assignment_id])
+  end
 
   # Only allow a list of trusted parameters through.
   def assignment_params
-    params.require(:assignment).permit(:request_id, :driver_id, :driver_notes)
+    params.require(:assignment).permit(:request_id, :driver_id, :notes)
   end
 end
