@@ -25,13 +25,9 @@ FactoryBot.define do
     end
 
     trait :google_oauth2_fail do
-      provider { 'google_oauth' }
-      uid { 'fdadf' }
-      email { 'dadfasd@gmail.com' }
-    end
-
-    trait :does_not_persist do
-      email { '' }
+      provider { 'twitter' }
+      uid { "test" }
+      email { 'dadfasd@twitter' }
     end
   end
 
