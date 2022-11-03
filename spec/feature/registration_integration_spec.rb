@@ -56,7 +56,7 @@ end
 
 RSpec.describe 'Update Registration', type: :system do
   scenario 'valid inputs' do
-    @member2 = FactoryBot.create(:member2)
+    @member2 = create :member
     sign_in @member2
     visit edit_member_registration_path
     fill_in 'member_first_name', with: 'Terri'
