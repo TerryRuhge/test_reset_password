@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= f.label :phone %> <br />
-    <%= f.text_field :phone %>
+    <%= f.telephone_field :phone %>
   </div>
 
   <h3> Address </h3>
@@ -35,19 +35,101 @@
     </div>
   </div>
 
-  <h3> Emergency Contact </h3>
-
   <div class="Emergency Contact Field">
+    <h3> Emergency Contact </h3>
     <div class="field">
-      <%= f.label :emergency_full_name %> <br />
-      <%= f.text_field :emergency_full_name %>
+      <%= f.label :emergency_1_full_name %> <br />
+      <%= f.text_field :emergency_1_full_name %>
     </div>
     <div class="field">
-      <%= f.label :emergency_phone_number %> <br />
-      <%= f.text_field :emergency_phone_number %>
+      <%= f.label :emergency_1_phone_number %> <br />
+      <%= f.telephone_field :emergency_1_phone_number %>
+    </div>
+    <div class="field">
+      <%= f.label :emergency_2_full_name %> <br />
+      <%= f.text_field :emergency_2_full_name %>
+    </div>
+    <div class="field">
+      <%= f.label :emergency_2_phone_number %> <br />
+      <%= f.telephone_field :emergency_2_phone_number %>
     </div>
   </div>
+
   
+  <div class = "Parent Information">
+    <h3> Parent Information </h3>
+    <div class="field">
+      <%= f.label :parent_number %> <br />
+      <%= f.telephone_field :parent_number %>
+    </div>
+    <div class="field">
+      <%= f.label :parent_street_address %> <br />
+      <%= f.text_field :parent_street_address %>
+    </div>
+    <div class="field">
+      <%= f.label :parent_city %> <br />
+      <%= f.text_field :parent_city %>
+    </div>
+    <div class="field">
+      <%= f.label :parent_state %> <br />
+      <%= f.text_field :parent_state %>
+    </div>
+    <div class="field">
+      <%= f.label :parent_zip %> <br />
+      <%= f.text_field :parent_zip %>
+    </div>
+  </div>
+
+  <div class = "Driver's License">
+    <h3> Driver's License Information </h3>
+    <div class="field">
+      <%= f.label :drivers_license_number %> <br />
+      <%= f.text_field :drivers_license_number %>
+    </div>
+    <div class="field">
+      <%= f.label :state_issue_lciense %> <br />
+      <%= f.text_field :state_issue_lciense %>
+    </div>
+    <div class="field">
+      <%= f.label :current_license %> <br />
+      <%= f.check_box :current_license %>
+    </div>
+    <div class="field">
+      <%= f.label :date_of_birth %> <br />
+      <%= f.date_field :date_of_birth %>
+    </div>
+  </div>
+
+  <div class = "Miscellaneous">
+    <h3> Miscellaneous </h3>
+    <div class="field">
+      <%= f.label :tshirt_size %> <br />
+      <%= f.select :tshirt_size, ["Small", "Medium", "Large", "X-Large", "2X-Large", "3X-Large"] %>
+    </div>
+    <div class="field">
+      <%= f.label :has_insurance %> <br />
+      <%= f.check_box :has_insurance %>
+    </div>
+    <div class="field">
+      <%= f.label :allergies %> <br />
+      <%= f.text_field :allergies %>
+    </div>
+    <div class="field">
+      <%= f.label :special_dietary_needs %> <br />
+      <%= f.text_field :special_dietary_needs %>
+    </div>
+    <div class="field">
+      <%= f.label :semesters_as_member %> <br />
+      <%= f.select :semesters_as_member, options_for_select(0..30) %>
+    </div>
+    <div class="field">
+      <%= f.label :college_major %> <br />
+      <%= f.text_field :college_major %>
+    </div>
+  </div>
+
+
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
