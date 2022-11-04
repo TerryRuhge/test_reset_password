@@ -161,10 +161,17 @@ a:visited:not(.link) {color: white !important;}
   .right-side {
     display: flex;
     flex-direction: column;
+
     width: 30vw;
     height: 7vh;
+
     justify-content: center;
     align-items: flex-end;
+
+    h2 {
+      margin-top: 1vh;
+      margin-bottom: 0;
+    }
   }
 
   .mobile-menu {
@@ -178,7 +185,6 @@ a:visited:not(.link) {color: white !important;}
     margin-right: 1vw;
 
     h2 {
-      margin-top: 0;
       color: white;
       font-weight: 100;
     }
@@ -201,21 +207,27 @@ a:visited:not(.link) {color: white !important;}
         align-items: center;
         justify-content: center;
         text-align: center;
+
+        width: 5vw;
+        height: 5vh;
         
         padding-left: 0.5vh;
         padding-right: 0.5vh;
         padding-top: 0.2vh;
         padding-bottom: 0.2vh;
 
+        margin-left: .5vw;
+
         background-color: #323232;
         color: white;
 
-        width: 5vw;
+        border-color: #565656;
+        border-width: 1px;
 
         font-family: "Roboto", sans-serif;
         text-decoration: none;
 
-        border-style: none;
+        border-style: solid;
         border-radius: 5px;
 
         cursor: pointer;
@@ -228,7 +240,28 @@ a:visited:not(.link) {color: white !important;}
       }
     }
 
+    .member-options {
+      a {
+        width: 10vh;
+        height: 2vh;
+      }
+
+      input {
+        width: 12vh;
+        height: 2.5vh;
+
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+
     .admin-options {
+      margin-left: 4vw;
+    }
+
+    .mobile-admin-options {
       display: none;
     }
   }
@@ -560,6 +593,7 @@ a:visited:not(.link) {color: white !important;}
     .current-member {
       h2 {
         margin-top: 0;
+        margin-bottom: 2vh;
         color: white;
       }
 
@@ -593,7 +627,7 @@ a:visited:not(.link) {color: white !important;}
         }
       }
 
-      .admin-options {
+      .mobile-admin-options {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -601,12 +635,13 @@ a:visited:not(.link) {color: white !important;}
 
         height: fit-content;
 
-        a {
+        a, input {
           margin-bottom: 1vmin;
           padding: 2vmin;
           width: 45vw;
           text-align: center;
           justify-content: center;
+          text-decoration: none;
 
           background-color: #565656;
         }
