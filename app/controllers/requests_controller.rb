@@ -46,8 +46,8 @@ class RequestsController < ApplicationController
           format.json { head :no_content }
         end
 
-        # TODO: root_path needs to be replaced with the search feature
-        format.html { redirect_to root_url, notice: 'Request was successfully created.' }
+        search_query_path = '/assignments/queue/?search_name=' + @request.name + '&search_phone_number=' + @request.phone_number
+        format.html { redirect_to search_query_path, notice: 'Request was successfully created.' }
         format.json { head :no_content }
       else
 	    if current_member
@@ -75,8 +75,8 @@ class RequestsController < ApplicationController
           format.json { head :no_content }
         end
 
-        # TODO: root_path needs to be replaced with the search feature
-        format.html { redirect_to root_url, notice: 'Request was successfully updated.' }
+        search_query_path = '/assignments/queue/?search_name=' + @request.name + '&search_phone_number=' + @request.phone_number
+        format.html { redirect_to search_query_path, notice: 'Request was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -122,7 +122,8 @@ class RequestsController < ApplicationController
         format.json { head :no_content }
       end
 
-      format.html { redirect_back fallback_location: root_url, notice: 'Request was successfully cancelled.' }
+      search_query_path = '/assignments/queue/?search_name=' + @request.name + '&search_phone_number=' + @request.phone_number
+      format.html { redirect_to search_query_path, notice: 'Request was successfully cancelled.' }
       format.json { head :no_content }
     end
   end
