@@ -17,6 +17,11 @@
 /* -------------------------------------------------------------------------- */
 /*                                   GLOBALS                                  */
 /* -------------------------------------------------------------------------- */
+input {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
 
 
 * {font-family: 'Roboto', sans-serif;}
@@ -29,6 +34,7 @@ body {
   flex-direction: column;
   overflow-x: hidden;
   background-color: rgb(252, 252, 252);
+  padding-bottom: 10vh;
 }
 
 form {
@@ -38,13 +44,28 @@ form {
   justify-content: center;
 }
 
-// fix text fields to be more mobile friendly and fit the theme
+h2.header, .title {
+  width: 100vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  font-weight: normal;
+  text-align: center;
+
+  background-color: #629b0d;
+  color: white;
+}
+
+
 div.field {
   display: flex;
   flex-direction: column;
   justify-content: left;
   width: 25vw;
 
+  // fix text fields to be more mobile friendly and fit the theme
   input[type=text], input[type=email], input[type=password] {
     width: auto;
     height: 2.5vmin;
@@ -56,14 +77,27 @@ div.field {
     border-image: none;
 
     &:focus {
-      border: 2px solid #6d9630;
+      border: 2px solid #629b0d;
       margin-bottom: -2px;
     }
   }
+
+  // normalize checkbox fields
+  input[type="checkbox"] {
+    width: 2vmin;
+    height: 2vmin;
+    margin-right: 2vw;
+    -webkit-appearance: checkbox;
+    appearance: checkbox;
+  }
+
+  // fix text labels
   label {
     display: flex;
     align-items: center;
   }
+
+  // normalize select boxes
   select {
     height: 2.5vmin;
     border-radius: 0px;
@@ -74,14 +108,10 @@ div.field {
   }
 }
 
-// normalize checkbox fields
-div.field {
-  input[type="checkbox"] {
-    width: 2vmin;
-    height: 2vmin;
-    margin-right: 2vw;
-  }
+hr {
+  width: 100%;
 }
+
 
 // fix links on buttons since scaffolds makes them all grey
 a:visited:not(.link) {color: white !important;}
@@ -162,34 +192,38 @@ a:visited:not(.link) {color: white !important;}
       display: flex;
       flex-direction: row;
       justify-content: center;
-      margin-left: 1vw;
+      align-items: center;
+
+      height: 100%;
 
       a, input {
         display: flex;
         align-items: center;
+        justify-content: center;
         text-align: center;
+        
         padding-left: 0.5vh;
         padding-right: 0.5vh;
         padding-top: 0.2vh;
         padding-bottom: 0.2vh;
 
-        margin-right: 1.2vw;
-
-        background-color: #565656;
+        background-color: #323232;
         color: white;
+
+        width: 5vw;
 
         font-family: "Roboto", sans-serif;
         text-decoration: none;
 
-        border-radius: 0.5vh;
         border-style: none;
+        border-radius: 5px;
 
         cursor: pointer;
 
         transition: background-color 0.1s ease-in-out;
 
         &:hover {
-          background-color: #969696;
+          background-color: #565656;
         }
       }
     }
@@ -224,6 +258,13 @@ a:visited:not(.link) {color: white !important;}
 
 .small-margins {
   margin: 20pt;
+}
+
+.no-margins {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;;
+  margin-right: 0 !important;;
 }
 
 .row {
@@ -347,8 +388,8 @@ a:visited:not(.link) {color: white !important;}
 }
 
 .green {
-  background-color: rgb(121, 194, 0);
-  input {background-color: rgb(121, 194, 0);}
+  background-color: #629b0d;
+  input {background-color: #629b0d;}
   &:hover {background-color: rgb(76, 104, 33);}
 }
 
@@ -371,7 +412,7 @@ a:visited:not(.link) {color: white !important;}
 
   width: fit-content !important;
   height: fit-content !important;
-  padding: .5vmin;
+  padding: 1vh;
 
   box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.445);
 
@@ -451,16 +492,12 @@ a:visited:not(.link) {color: white !important;}
 
     &.small {
       min-height: 10vh;
-      
-
       p {font-size: 4vmin;}
-
       li {
         font-size: 4vmin;
         padding-right: 3vw;
         padding-left: 3vw;
       }
-
     }
   }
 
@@ -468,8 +505,10 @@ a:visited:not(.link) {color: white !important;}
     flex-direction: column;
     height: fit-content;
 
-
-    .middle {width: 100vw;}
+    .middle {
+      width: 100vw;
+      height: 9vh;
+    }
 
     .left-side {
       height: 0vh;
@@ -530,9 +569,28 @@ a:visited:not(.link) {color: white !important;}
       }
 
       .member-options {
-        a {margin-right: 2vw;}
-        * {font-size: 3.5vmin;}
         margin-bottom: 5vh;
+
+        height: fit-content;
+
+        a {margin-right: 2vw;}
+
+        a, input {
+          height: 4vh;
+          padding: 0;
+          background-color: #797979;
+          width: 45vw;
+        }
+
+        * {
+          display: flex;
+          justify-content: center;
+          text-align: center;
+
+          width: 45vw;
+
+          font-size: 3.5vmin;
+        }
       }
 
       .admin-options {
@@ -541,28 +599,26 @@ a:visited:not(.link) {color: white !important;}
         align-items: center;
         justify-content: center;
 
+        height: fit-content;
+
         a {
           margin-bottom: 1vmin;
           padding: 2vmin;
           width: 45vw;
           text-align: center;
           justify-content: center;
+
+          background-color: #565656;
         }
       }
     }
   }
 
-  .small-margins {
-    margin: 5vmin;
-  }
+  .small-margins {margin: 5vmin;}
 
-  .horiz-container {
-    flex-direction: column;
-  }
+  .horiz-container {flex-direction: column;}
 
-  .force {
-    flex-direction: row;
-  }
+  .force {flex-direction: row;}
 
   
 
@@ -578,15 +634,35 @@ a:visited:not(.link) {color: white !important;}
   }
 
   div.field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
     width: 80vw;
-    input {
-      width: 80vw;
-      height: 6vmin;
+
+    input:not(input[type="checkbox"]){
+      width: 70vw;
+      height: 4vh;
       margin-bottom: 3vh;
+
+      &:focus {
+        margin-bottom: 3vh;
+      }
     }
     label {
-      font-size: 20px;
+      font-size: 15px;
+      font-weight: normal;
       margin-bottom: 1vh;
+    }
+    // normalize select boxes
+    select {
+      height: 4vh;
+      width: 80vw;
+      border-radius: 0px;
+      option {
+        display: flex;
+        text-align: center;
+      }
     }
   }
 
@@ -600,9 +676,7 @@ a:visited:not(.link) {color: white !important;}
   }
 
   //prevent zooming in on the field for mobile devices
-  input, select, textarea {
-    font-size: 16px;
-  }
+  input, select, textarea {font-size: 16px;}
 }
 
 // // tablets
