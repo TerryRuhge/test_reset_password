@@ -29,7 +29,8 @@
               <% end %>
               <% if current_member and !current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
-                <%= link_to "Queue and Requests", new_assignment_path %>
+				<!---TODO: Ask teammates about point of this button-->
+                <%= link_to "Queue and Requests", root_path %>
               <% end %>
             </div>
           </div>
@@ -61,7 +62,8 @@
               <% end %>
               <% if current_member and !current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
-                <%= link_to "Queue and Requests", new_assignment_path %>
+				<!---TODO: Ask teammates about point of this button-->
+                <%= link_to "Queue and Requests", root_path %>
               <% end %>
             </div>  
           <% end %>
