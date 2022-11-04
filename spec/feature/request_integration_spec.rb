@@ -59,7 +59,7 @@ RSpec.describe 'Canceling a request', type: :feature do
     expect(page).to have_content('719 S Rosemary Dr, Bryan, TX 77802')
     expect(page).to have_content('3')
     click_on 'Cancel'
-	visit assignments_done_path
+    visit assignments_done_path
     expect(page).to have_content('Cancelled')
     expect(page).to have_content('Ricardo')
     expect(page).to have_content('2105270414')
@@ -84,7 +84,7 @@ RSpec.describe 'Deleting a request', type: :feature do
     expect(page).to have_content('125 Spence Str, College Station, TX 77840')
     expect(page).to have_content('719 S Rosemary Dr, Bryan, TX 77802')
     expect(page).to have_content('3')
-	visit requests_path
+    visit requests_path
     click_on 'Destroy'
     expect(page).not_to have_content('Ricardo')
     expect(page).not_to have_content('2105270414')

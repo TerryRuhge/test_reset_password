@@ -13,7 +13,7 @@ RSpec.describe 'Creating an assignment', type: :feature do
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
     visit requests_waiting_path
-	click_on 'Assign'
+    click_on 'Assign'
     fill_in 'Car:', with: 7
     click_on 'Create Assignment'
     visit assignments_riding_path
@@ -36,7 +36,7 @@ RSpec.describe 'Updating an assignment', type: :feature do
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
     visit requests_waiting_path
-	click_on 'Assign'
+    click_on 'Assign'
     fill_in 'Car:', with: 7
     click_on 'Create Assignment'
     visit edit_assignment_path(Assignment.find_by_request_id(Request.find_by_phone_number('2105270414')))
@@ -62,7 +62,7 @@ RSpec.describe 'Marking an assignment as Done', type: :feature do
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
     visit requests_waiting_path
-	click_on 'Assign'
+    click_on 'Assign'
     fill_in 'Car:', with: 7
     click_on 'Create Assignment'
     visit assignments_riding_path
@@ -87,15 +87,15 @@ RSpec.describe 'Driver notes of an assignment', type: :feature do
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
     visit requests_waiting_path
-	click_on 'Assign'
+    click_on 'Assign'
     fill_in 'Car:', with: 7
     click_on 'Create Assignment'
     visit assignment_notes_path(Assignment.find_by_request_id(Request.find_by_phone_number('2105270414')))
     fill_in 'Notes', with: 'Everything went smoothly.'
     click_on 'Update Assignment'
-	visit assignments_riding_path
-	click_on 'Done'
-	visit assignments_done_path
+    visit assignments_riding_path
+    click_on 'Done'
+    visit assignments_done_path
     expect(page).to have_content('Done')
     expect(page).to have_content('7')
     expect(page).to have_content('Everything went smoothly.')
@@ -116,7 +116,7 @@ RSpec.describe 'Deleting an assignment', type: :feature do
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
     visit requests_waiting_path
-	click_on 'Assign'
+    click_on 'Assign'
     fill_in 'Car:', with: 7
     click_on 'Create Assignment'
     visit assignments_riding_path
@@ -125,9 +125,9 @@ RSpec.describe 'Deleting an assignment', type: :feature do
     expect(page).to have_content('2105270414')
     expect(page).to have_content('125 Spence Str, College Station, TX 77840')
     expect(page).to have_content('719 S Rosemary Dr, Bryan, TX 77802')
-	visit assignments_path
+    visit assignments_path
     click_on 'Destroy'
-	visit assignments_riding_path
+    visit assignments_riding_path
     expect(page).not_to have_content('7')
     expect(page).not_to have_content('Ricardo')
     expect(page).not_to have_content('2105270414')

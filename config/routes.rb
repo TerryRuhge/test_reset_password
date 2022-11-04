@@ -3,38 +3,37 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  get "history", to: "history#index"
+  get 'history', to: 'history#index'
   get '/member/rider_info', to: 'member#rider_info'
   get '/member/all_statuses', to: 'member#all_statuses'
-  
+
   get '/requests/incoming', to: 'requests#incoming'
   get '/requests/waiting', to: 'requests#waiting'
-  
-  get '/assignments/riding', to: 'assignments#riding' 
-  get '/assignments/done', to: 'assignments#done' 
+
+  get '/assignments/riding', to: 'assignments#riding'
+  get '/assignments/done', to: 'assignments#done'
   get '/assignments/queue', to: 'assignments#queue', as: 'search'
-  
 
   devise_for :members, controllers: {
     registrations: 'members/registrations',
     sessions: 'members/sessions',
     omniauth_callbacks: 'members/omniauth_callbacks'
   }
-  
+
   resources :whitelists
   resources :drivers
 
   # for end product, index and show not being used (so disable later on)
   resources :requests do
     # pages handling buttons or actions (at the moment, status isn't used)
-	get 'status'
+    get 'status'
     post 'done'
     post 'cancel'
 
-	get 'assign', to: 'assignments#assign', as: 'assign'
-	post 'assign', to: 'assignments#create', as: 'create_assignment'
+    get 'assign', to: 'assignments#assign', as: 'assign'
+    post 'assign', to: 'assignments#create', as: 'create_assignment'
   end
-  #post 'requests/:request_id/assign', to: 'assignments#create', as: 'create_assignment'
+  # post 'requests/:request_id/assign', to: 'assignments#create', as: 'create_assignment'
 
   # for end product, index and show not being used (so disable later on)
   resources :assignments do

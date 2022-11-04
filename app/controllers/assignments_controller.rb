@@ -10,22 +10,22 @@ class AssignmentsController < ApplicationController
   def index
     @assignments = Assignment.all.order('assignment_id ASC')
   end
-  
+
   # GET /assignments/riding
   def riding
     @assignments = Assignment.where(request_id: Request.where(request_status: 'Assigned Driver')).order('created_at ASC')
   end
-  
+
   # GET /assignments/done
   def done
-    @requests = Request.where(request_status: ['Done', 'Cancelled', 'Missed']).order('updated_at DESC')
+    @requests = Request.where(request_status: %w[Done Cancelled Missed]).order('updated_at DESC')
   end
-  
+
   # GET/assignments/queue
   def queue
     @requests_waiting = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: 'Unassigned').order('created_at ASC')
     @requests_riding = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: 'Assigned Driver').order('created_at ASC')
-    @requests_done = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: ['Done', 'Cancelled', 'Missed']).order('updated_at DESC')
+    @requests_done = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: %w[Done Cancelled Missed]).order('updated_at DESC')
   end
 
   # GET /assignments/1 or /assignments/1.json
@@ -40,7 +40,7 @@ class AssignmentsController < ApplicationController
     # added for select field
     @valid_requests = Request.where(request_status: 'Unassigned')
   end
-  
+
   # GET /assignments/assign
   def assign
     @assignment = Assignment.new
@@ -53,16 +53,16 @@ class AssignmentsController < ApplicationController
   # POST /assignments or /assignments.json
   def create
     @assignment = Assignment.new(assignment_params)
-	@request = Request.find(params[:request_id])
+    @request = Request.find(params[:request_id])
 
     respond_to do |format|
       if @assignment.save
         # update the entire queue and the status of the appropriate request
         @request = Request.find_by_request_id(@assignment.request_id)
-		Request.where('queue_pos > :pos', pos: @request.queue_pos).each do |request|
+        Request.where('queue_pos > :pos', pos: @request.queue_pos).each do |request|
           request.update_attribute(:queue_pos, request.queue_pos - 1)
         end
-    	@request.update_attribute(:queue_pos, 0)
+        @request.update_attribute(:queue_pos, 0)
         @request.update_attribute(:request_status, 'Assigned Driver')
 
         format.html { redirect_to assignments_riding_url, notice: 'Assignment was successfully created.' }
@@ -126,7 +126,7 @@ class AssignmentsController < ApplicationController
   def set_assignment
     @assignment = Assignment.find(params[:id])
   end
-  
+
   def set_assignment_id
     @assignment = Assignment.find(params[:assignment_id])
   end
@@ -135,7 +135,7 @@ class AssignmentsController < ApplicationController
   def assignment_params
     params.require(:assignment).permit(:request_id, :car_id, :notes)
   end
-  
+
   # Used for the search feature on the queue page
   def request_params
     params.require(:request).permit(:search_name, :search_phone_number)
