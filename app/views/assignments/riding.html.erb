@@ -2,9 +2,9 @@
 
 <div class="horiz-container">
   <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
-  <%= link_to "Waiting", requests_waiting_path, :class => "grey button small-margins" %>
-  <%= link_to "Riding", assignments_riding_path, :class => "green button small-margins" %>
-  <%= link_to "Done", assignments_done_path, :class => "grey button small-margins" %>
+  <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
+  <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "green button small-margins" %>
+  <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "grey wide-button small-margins" %>
 </div>
 
 <div class="view-table">

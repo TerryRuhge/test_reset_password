@@ -11,12 +11,12 @@ class AssignmentsController < ApplicationController
     @assignments = Assignment.all.order('assignment_id ASC')
   end
   
-  # GET /requests/riding
+  # GET /assignments/riding
   def riding
     @assignments = Assignment.where(request_id: Request.where(request_status: 'Assigned Driver')).order('created_at ASC')
   end
   
-  # GET /requests/done
+  # GET /assignments/done
   def done
     @requests = Request.where(request_status: ['Done', 'Cancelled', 'Missed']).order('updated_at DESC')
   end

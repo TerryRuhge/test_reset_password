@@ -18,8 +18,8 @@ module AssignmentsHelper
   def time_home(assignment)
     # making sure drop off time was specified
     if assignment.drop_off_time
-      time = assignment.drop_off_time.to_datetime.in_time_zone('America/Chicago').strftime('%H:%m')
-    # otherwise default to 0
+      time = assignment.drop_off_time.to_datetime.in_time_zone('America/Chicago').strftime('%H:%M')
+    # otherwise default to ''
 	else
 	  time = ''
     end
