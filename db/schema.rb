@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2022_11_01_162706) do
 
   create_table "assignments", primary_key: "assignment_id", force: :cascade do |t|
     t.integer "request_id"
-    t.integer "driver_id"
+    t.integer "car_id"
     t.string "notes"
     t.datetime "pick_up_time"
     t.datetime "drop_off_time"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 2022_11_01_162706) do
     t.integer "num_passengers"
     t.string "additional_info"
     t.integer "queue_pos"
-    t.datetime "time_assigned"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -12,7 +12,7 @@
     <tr>
       <th>Assignment Id</th>
       <th>Request Id</th>
-      <th>Driver Id</th>
+      <th>Car Id</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,9 +22,9 @@
       <tr>
         <td><%= assignment.assignment_id %></td>
         <td><%= assignment.request_id %></td>
-        <td><%= assignment.driver_id %></td>
+        <td><%= assignment.car_id %></td>
         <td><%= link_to 'Show', assignment %></td>
-        <td><%= link_to 'Edit Driver', edit_assignment_path(assignment) %></td>
+        <td><%= link_to 'Edit Car', edit_assignment_path(assignment) %></td>
         <td><%= link_to 'Change Status', request_status_path(Request.find_by_request_id(assignment.request_id)) %></td>
         <td><%= button_to 'Picked Up', assignment_picked_up_path(assignment) %></td>
         <td><%= button_to 'Dropped Off', assignment_dropped_off_path(assignment) %></td>
