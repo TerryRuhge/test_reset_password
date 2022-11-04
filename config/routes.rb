@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   get '/member/rider_info', to: 'member#rider_info'
   get '/member/all_statuses', to: 'member#all_statuses'
   
-  get '/assignments/riding', to: 'assignments#riding' 
-  get '/assignments/done', to: 'assignments#done' 
-  #get '/assignments/queue', to: 'assignments#show_all_queue'
-  
   get '/requests/incoming', to: 'requests#incoming'
   get '/requests/waiting', to: 'requests#waiting'
+  
+  get '/assignments/riding', to: 'assignments#riding' 
+  get '/assignments/done', to: 'assignments#done' 
+  get '/assignments/queue', to: 'assignments#queue', as: 'search'
   
 
   devise_for :members, controllers: {

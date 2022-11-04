@@ -4,7 +4,7 @@
   <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
   <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
   <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "grey button small-margins" %>
-  <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "green wide-button small-margins" %>
+  <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "green wide button small-margins" %>
 </div>
 
 <div class="view-table">
@@ -30,8 +30,8 @@
 	    <% assignment = Assignment.find_by_request_id(request.request_id) %>
         <% if assignment %>
           <tr>
-            <td><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table-button" %></td>
-		    <td><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table-button" %></td>
+            <td><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
+		    <td><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
             <td><%= request.request_status %></td>
             <td><%= assignment.car_id %></td>
             <td><%= assignment.notes %></td>
