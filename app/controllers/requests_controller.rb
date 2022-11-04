@@ -8,12 +8,22 @@ class RequestsController < ApplicationController
   def index
     @requests = Request.all.order('request_id ASC')
   end
+  
+  # GET /requests/waiting
+  def waiting
+    @requests = Request.where(request_status: 'Unassigned').order('created_at ASC')
+  end
 
   # GET /requests/1 or /requests/1.json
   def show; end
 
   # GET /requests/new
   def new
+    @request = Request.new
+  end
+  
+  # GET /requests/incoming
+  def incoming
     @request = Request.new
   end
 
@@ -31,9 +41,20 @@ class RequestsController < ApplicationController
         @request.update_attribute(:queue_pos, next_queue_pos)
         @request.update_attribute(:request_status, 'Unassigned')
 
-        format.html { redirect_to request_url(@request), notice: 'Request was successfully created.' }
-        format.json { render :show, status: :created, location: @request }
+	    if current_member
+          format.html { redirect_to requests_waiting_url, notice: 'Request was successfully created.' }
+          format.json { head :no_content }
+        end
+
+        # TODO: root_path needs to be replaced with the search feature
+        format.html { redirect_to root_url, notice: 'Request was successfully created.' }
+        format.json { head :no_content }
       else
+	    if current_member
+          format.html { render :incoming, status: :unprocessable_entity }
+          format.json { render json: @request.errors, status: :unprocessable_entity }
+        end
+
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
@@ -49,8 +70,14 @@ class RequestsController < ApplicationController
           @request.update_attribute(:queue_pos, 0)
         end
 
-        format.html { redirect_to request_url(@request), notice: 'Request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @request }
+        if current_member
+          format.html { redirect_to requests_waiting_url, notice: 'Request was successfully updated.' }
+          format.json { head :no_content }
+        end
+
+        # TODO: root_path needs to be replaced with the search feature
+        format.html { redirect_to root_url, notice: 'Request was successfully updated.' }
+        format.json { head :no_content }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @request.errors, status: :unprocessable_entity }
@@ -74,7 +101,13 @@ class RequestsController < ApplicationController
     @request.update_attribute(:request_status, 'Cancelled')
 
     respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Request was successfully cancelled.' }
+      if current_member
+        format.html { redirect_to requests_waiting_url, notice: 'Request was successfully cancelled.' }
+        format.json { head :no_content }
+      end
+
+      # TODO: root_path needs to be replaced with the search feature
+      format.html { redirect_to root_url, notice: 'Request was successfully cancelled.' }
       format.json { head :no_content }
     end
   end

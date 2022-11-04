@@ -10,6 +10,14 @@ class AssignmentsController < ApplicationController
   def index
     @assignments = Assignment.all.order('assignment_id ASC')
   end
+  
+  # GET /requests/riding
+  def riding
+  end
+  
+  # GET /requests/done
+  def done
+  end
 
   # GET /assignments/1 or /assignments/1.json
   def show
