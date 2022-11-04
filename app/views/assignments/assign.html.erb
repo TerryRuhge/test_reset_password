@@ -4,7 +4,11 @@
   <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
   <%= link_to "Waiting", requests_waiting_path, :class => "grey button small-margins" %>
   <%= link_to "Riding", assignments_riding_path, :class => "grey button small-margins" %>
-  <%= link_to "Done", assignments_done_path, :class => "green button small-margins" %>
+  <%= link_to "Done", assignments_done_path, :class => "grey button small-margins" %>
 </div>
 
-<h1>Done Room</h1>
+<h1>Assign Request with Driver</h1>
+
+<%= render 'form_assign', assignment: @assignment %>
+
+<%= link_to 'Back', requests_waiting_path, class: "grey button" %>

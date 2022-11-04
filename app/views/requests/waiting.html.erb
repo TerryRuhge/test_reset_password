@@ -2,7 +2,7 @@
 
 <div class="horiz-container">
   <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
-  <%= link_to "Waiting", requests_waiting_path, :class => "grey button small-margins" %>
+  <%= link_to "Waiting", requests_waiting_path, :class => "green button small-margins" %>
   <%= link_to "Riding", assignments_riding_path, :class => "grey button small-margins" %>
   <%= link_to "Done", assignments_done_path, :class => "grey button small-margins" %>
 </div>
@@ -25,9 +25,9 @@
     <tbody>
       <% @requests.each do |request| %>
         <tr>
-          <td><%= link_to 'Assign', new_assignment_path, :class => "black button2" %></td>
-          <td><%= link_to 'Edit', edit_request_path(request), :class => "grey button2" %></td>
-          <td><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red button2" %></td>
+          <td><%= link_to 'Assign', request_assign_path(request), :class => "black table-button" %></td>
+          <td><%= link_to 'Edit', edit_request_path(request), :class => "grey table-button" %></td>
+          <td><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table-button" %></td>
           <td><%= request.name %></td>
           <td><%= request.phone_number %></td>
           <td><%= request.pick_up_loc %></td>

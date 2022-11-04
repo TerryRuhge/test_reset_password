@@ -31,6 +31,12 @@ class AssignmentsController < ApplicationController
     # added for select field
     @valid_requests = Request.where(request_status: 'Unassigned')
   end
+  
+  # GET /assignments/assign
+  def assign
+    @assignment = Assignment.new
+    @request = Request.find(params[:request_id])
+  end
 
   # GET /assignments/1/edit
   def edit; end
@@ -38,6 +44,7 @@ class AssignmentsController < ApplicationController
   # POST /assignments or /assignments.json
   def create
     @assignment = Assignment.new(assignment_params)
+	@request = Request.find(params[:request_id])
 
     respond_to do |format|
       if @assignment.save
@@ -49,10 +56,10 @@ class AssignmentsController < ApplicationController
     	@request.update_attribute(:queue_pos, 0)
         @request.update_attribute(:request_status, 'Assigned Driver')
 
-        format.html { redirect_to assignment_url(@assignment), notice: 'Assignment was successfully created.' }
-        format.json { render :show, status: :created, location: @assignment }
+        format.html { redirect_to assignments_riding_path, notice: 'Assignment was successfully created.' }
+        format.json { head :no_content }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :assign, status: :unprocessable_entity }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
       end
     end

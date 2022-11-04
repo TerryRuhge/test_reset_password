@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get '/assignments/riding', to: 'assignments#riding' 
   get '/assignments/done', to: 'assignments#done' 
   #get '/assignments/queue', to: 'assignments#show_all_queue'
-  #get '/assignments/assign', to: 'assignments#new'
   
   get '/requests/incoming', to: 'requests#incoming'
   get '/requests/waiting', to: 'requests#waiting'
@@ -28,7 +27,11 @@ Rails.application.routes.draw do
     # pages handling buttons or actions
     get 'status'
     post 'cancel'
+
+	get 'assign', to: 'assignments#assign', as: 'assign'
+	post 'assign', to: 'assignments#create', as: 'create_assignment'
   end
+  #post 'requests/:request_id/assign', to: 'assignments#create', as: 'create_assignment'
 
   resources :assignments do
     # pages handling buttons or actions
