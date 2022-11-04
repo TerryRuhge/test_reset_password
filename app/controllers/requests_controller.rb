@@ -102,7 +102,7 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       if current_member
-        format.html { redirect_to requests_waiting_url, notice: 'Request was successfully cancelled.' }
+        format.html { redirect_back fallback_location: requests_waiting_url, notice: 'Request was successfully cancelled.' }
         format.json { head :no_content }
       end
 

@@ -4,7 +4,12 @@ require 'date'
 
 module RequestsHelper
   # finds the time waited between the creation of the request and now (in minutes)
-  def time_waited(request)
-    ((DateTime.now - request.created_at.to_datetime) * 24 * 60).to_i
+  def time_waiting(request)
+    ((DateTime.now - request.created_at.to_datetime) * 24 * 60).to_i.to_s + 'm'
+  end
+  
+  # finds the time waited between the creation of the request and assignment (in minutes)
+  def time_diff(request, assignment)
+    ((assignment.created_at.to_datetime - request.created_at.to_datetime) * 24 * 60).to_i.to_s + 'm'
   end
 end
