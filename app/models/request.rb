@@ -31,4 +31,8 @@ class Request < ApplicationRecord
   def self.cancelled
     return Request.where(request_status: 'Cancelled').count
   end
+  
+  def self.search(search_name, search_phone_number)
+    Request.where(name: search_name, phone_number: search_phone_number)
+  end
 end

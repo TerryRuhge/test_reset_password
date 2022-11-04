@@ -20,6 +20,13 @@ class AssignmentsController < ApplicationController
   def done
     @requests = Request.where(request_status: ['Done', 'Cancelled', 'Missed']).order('updated_at DESC')
   end
+  
+  # GET/assignments/queue
+  def queue
+    @requests_waiting = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: 'Unassigned').order('created_at ASC')
+    @requests_riding = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: 'Assigned Driver').order('created_at ASC')
+    @requests_done = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: ['Done', 'Cancelled', 'Missed']).order('updated_at DESC')
+  end
 
   # GET /assignments/1 or /assignments/1.json
   def show
@@ -127,5 +134,10 @@ class AssignmentsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def assignment_params
     params.require(:assignment).permit(:request_id, :car_id, :notes)
+  end
+  
+  # Used for the search feature on the queue page
+  def request_params
+    params.require(:request).permit(:search_name, :search_phone_number)
   end
 end

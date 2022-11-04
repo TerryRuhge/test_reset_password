@@ -122,8 +122,7 @@ class RequestsController < ApplicationController
         format.json { head :no_content }
       end
 
-      # TODO: root_path needs to be replaced with the search feature
-      format.html { redirect_to root_url, notice: 'Request was successfully cancelled.' }
+      format.html { redirect_back fallback_location: root_url, notice: 'Request was successfully cancelled.' }
       format.json { head :no_content }
     end
   end
