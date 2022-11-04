@@ -12,13 +12,13 @@
   <% end %>
   
   <div class="field">
-    <%= form.label :request_id %>
+    <%= form.label :request_id, 'Requester Name:' %>
     <%= form.hidden_field :request_id, value: @request.request_id %>
 	<%= @request.name %>
   </div>
 
   <div class="field">
-    <%= form.label :car_id %>
+    <%= form.label :car_id, 'Car:' %>
     <%= form.text_field :car_id %>
   </div>
 

@@ -58,7 +58,7 @@ class AssignmentsController < ApplicationController
     	@request.update_attribute(:queue_pos, 0)
         @request.update_attribute(:request_status, 'Assigned Driver')
 
-        format.html { redirect_to assignments_riding_path, notice: 'Assignment was successfully created.' }
+        format.html { redirect_to assignments_riding_url, notice: 'Assignment was successfully created.' }
         format.json { head :no_content }
       else
         format.html { render :assign, status: :unprocessable_entity }
@@ -71,8 +71,8 @@ class AssignmentsController < ApplicationController
   def update
     respond_to do |format|
       if @assignment.update(assignment_params)
-        format.html { redirect_to assignment_url(@assignment), notice: 'Assignment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @assignment }
+        format.html { redirect_to assignments_riding_url, notice: 'Assignment was successfully updated.' }
+        format.json { head :no_content }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }

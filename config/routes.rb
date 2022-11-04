@@ -23,9 +23,11 @@ Rails.application.routes.draw do
   resources :whitelists
   resources :drivers
 
+  # for end product, index and show not being used (so disable later on)
   resources :requests do
-    # pages handling buttons or actions
-    get 'status'
+    # pages handling buttons or actions (at the moment, status isn't used)
+	get 'status'
+    post 'done'
     post 'cancel'
 
 	get 'assign', to: 'assignments#assign', as: 'assign'
@@ -33,6 +35,7 @@ Rails.application.routes.draw do
   end
   #post 'requests/:request_id/assign', to: 'assignments#create', as: 'create_assignment'
 
+  # for end product, index and show not being used (so disable later on)
   resources :assignments do
     # pages handling buttons or actions
     post 'picked_up'

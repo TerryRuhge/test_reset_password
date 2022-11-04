@@ -1,3 +1,10 @@
+<div class="horiz-container">
+  <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
+  <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
+  <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "green button small-margins" %>
+  <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "grey wide-button small-margins" %>
+</div>
+
 <h1>Editing Assignment</h1>
 
 <%= form_with(model: @assignment) do |form| %>
@@ -12,17 +19,21 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="field">
+    Passenger Name:
+	<br>
+	<%= Request.find_by_request_id(@assignment.request_id).name %>
+  </div>
 
   <div class="field">
-    <%= form.label :car_id %>
+    <%= form.label :car_id, 'Car: ' %>
     <%= form.text_field :car_id %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "green button small-margins" %>
   </div>
 <% end %>
 
-
-<%= link_to 'Show', @assignment %> |
-<%= link_to 'Back', assignments_path %>
+<%= link_to 'Back', :back, class: "grey button" %>

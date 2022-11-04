@@ -2,7 +2,7 @@
 
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
-  before_action :set_request_id, only: %i[status cancel]
+  before_action :set_request_id, only: %i[status done cancel]
 
   # GET /requests or /requests.json
   def index
@@ -88,6 +88,17 @@ class RequestsController < ApplicationController
   # GET /requests/1/status
   def status; end
 
+  # POST /requests/1/done
+  def done
+    @request.update_attribute(:request_status, 'Done')
+
+    respond_to do |format|
+      format.html { redirect_to assignments_done_path, notice: 'Request was successfully finished.' }
+      format.json { head :no_content }
+    end
+  end
+
+
   # POST /requests/1/cancel
   def cancel
     # update the queue position of all requests later in the queue
@@ -98,8 +109,13 @@ class RequestsController < ApplicationController
     end
     
     @request.update_attribute(:queue_pos, 0)
-    @request.update_attribute(:request_status, 'Cancelled')
-
+    # request is declared missed if time waited greater than 30min
+    if helpers.time_dur(@request) > 30
+      @request.update_attribute(:request_status, 'Missed')
+	else
+	  @request.update_attribute(:request_status, 'Cancelled')
+    end
+	  
     respond_to do |format|
       if current_member
         format.html { redirect_back fallback_location: requests_waiting_url, notice: 'Request was successfully cancelled.' }
