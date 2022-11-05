@@ -19,8 +19,6 @@
 
         <div class="left-side">
           <div class="current-member left-side">
-            <!--Specifically for admin pages-->
-            <!---For testing purposes is it negated-->
             <div class="admin-options">
               <% if current_member and !current_member.is_supervisor%> 
                 <%= link_to "Driver Statuses", member_all_statuses_path %>
