@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :drivers
   root 'home#index'
 
+  get "history", to: "history#index"
   get '/member/rider_info', to: 'member#rider_info'
   get '/member/all_statuses', to: 'member#all_statuses'
   get '/assignments/queue', to: 'assignments#show_all_queue'
