@@ -1,15 +1,16 @@
 <h1 class="title">Home</h1>
 
-<div class="card" id="home-card">
-    <p>
-        Need a Ride? Click the button below!
-    </p>
-    <%= link_to 'Request a Ride', new_request_path, :class => "green button large" %>
-</div>
+<div class="card">
+    <div class="centered card-item">
+        <p>Need a Ride? Click the button below.</p>
+        <%= link_to 'Request a Ride', new_request_path, :class => "green button large large-text" %>
+    </div>
 
-<div class="top-margins">
-    <p> Type in Rider information below to view progress of your request </p>
-    <%= render 'assignments/form_rider', request: @request %>
+    <hr>
+
+    <div class="card-item">
+        <%= render 'assignments/form_rider', request: @request %>
+    </div>
 </div>
 
 <% if current_member %>
@@ -28,3 +29,4 @@
         </div>
     </div>
 <% end %>
+
