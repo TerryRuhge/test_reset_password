@@ -6,8 +6,15 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 93
+ 
+# Offense count: 72
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: native, lf, crlf
 Layout/EndOfLine:
   Enabled: false
+
+# Offense count: 1
+# Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
+# IgnoredMethods: refine
+Metrics/BlockLength:
+  Max: 54
