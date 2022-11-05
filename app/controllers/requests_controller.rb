@@ -2,11 +2,16 @@
 
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
+  before_action :set_request_id, only: %i[status done cancel]
 
   # GET /requests or /requests.json
   def index
-    @other_requests = Request.where.not(request_status: 'Cancelled').order('request_id ASC')
-    @cancelled_requests = Request.where(request_status: 'Cancelled').order('request_id ASC')
+    @requests = Request.all.order('request_id ASC')
+  end
+
+  # GET /requests/waiting
+  def waiting
+    @requests = Request.where(request_status: 'Unassigned').order('created_at ASC')
   end
 
   # GET /requests/1 or /requests/1.json
@@ -14,6 +19,11 @@ class RequestsController < ApplicationController
 
   # GET /requests/new
   def new
+    @request = Request.new
+  end
+
+  # GET /requests/incoming
+  def incoming
     @request = Request.new
   end
 
@@ -26,12 +36,25 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       if @request.save
-        # update the request status attribute
+        # update the queue position of the request
+        next_queue_pos = Request.where(request_status: 'Unassigned').count + 1
+        @request.update_attribute(:queue_pos, next_queue_pos)
         @request.update_attribute(:request_status, 'Unassigned')
 
-        format.html { redirect_to request_url(@request), notice: 'Request was successfully created.' }
-        format.json { render :show, status: :created, location: @request }
+        if current_member
+          format.html { redirect_to requests_waiting_url, notice: 'Request was successfully created.' }
+          format.json { head :no_content }
+        end
+
+        search_query_path = "/assignments/queue/?search_name=#{@request.name}&search_phone_number=#{@request.phone_number}"
+        format.html { redirect_to search_query_path, notice: 'Request was successfully created.' }
+        format.json { head :no_content }
       else
+        if current_member
+          format.html { render :incoming, status: :unprocessable_entity }
+          format.json { render json: @request.errors, status: :unprocessable_entity }
+        end
+
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
@@ -42,14 +65,17 @@ class RequestsController < ApplicationController
   def update
     respond_to do |format|
       if @request.update(request_params)
-        # update the queue in assignment accordingly, if request status is changed
-        if (@request.request_status != 'In Progress') && (@request.request_status != 'Unassigned')
-          @assignment = Assignment.where(request_id: @request.request_id).last
-          @assignment.update_attribute(:queue_pos, 0)
+        # update the queue position accordingly, if request status is changed
+        @request.update_attribute(:queue_pos, 0) if @request.request_status != 'Unassigned'
+
+        if current_member
+          format.html { redirect_to requests_waiting_url, notice: 'Request was successfully updated.' }
+          format.json { head :no_content }
         end
 
-        format.html { redirect_to request_url(@request), notice: 'Request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @request }
+        search_query_path = "/assignments/queue/?search_name=#{@request.name}&search_phone_number=#{@request.phone_number}"
+        format.html { redirect_to search_query_path, notice: 'Request was successfully updated.' }
+        format.json { head :no_content }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @request.errors, status: :unprocessable_entity }
@@ -57,25 +83,57 @@ class RequestsController < ApplicationController
     end
   end
 
-  def status
-    @request = Request.find(params[:request_id])
-  end
+  # GET /requests/1/status
+  def status; end
 
-  def cancel
-    @request = Request.find(params[:request_id])
-    @request.update_attribute(:request_status, 'Cancelled')
-
-    # update the queue in assignment accordingly
-    @assignment.update_attribute(:queue_pos, 0) if @assignment = Assignment.where(request_id: @request.request_id).last
+  # POST /requests/1/done
+  def done
+    @request.update_attribute(:request_status, 'Done')
 
     respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Request was successfully cancelled.' }
+      format.html { redirect_to assignments_done_path, notice: 'Request was successfully finished.' }
+      format.json { head :no_content }
+    end
+  end
+
+  # POST /requests/1/cancel
+  def cancel
+    # update the queue position of all requests later in the queue
+    if @request.queue_pos.positive?
+      Request.where('queue_pos > :pos', pos: @request.queue_pos).each do |request|
+        request.update_attribute(:queue_pos, request.queue_pos - 1)
+      end
+    end
+
+    @request.update_attribute(:queue_pos, 0)
+    # request is declared missed if time waited greater than 30min
+    if helpers.time_dur(@request) > 30
+      @request.update_attribute(:request_status, 'Missed')
+    else
+      @request.update_attribute(:request_status, 'Cancelled')
+    end
+
+    respond_to do |format|
+      if current_member
+        format.html { redirect_back fallback_location: requests_waiting_url, notice: 'Request was successfully cancelled.' }
+        format.json { head :no_content }
+      end
+
+      search_query_path = "/assignments/queue/?search_name=#{@request.name}&search_phone_number=#{@request.phone_number}"
+      format.html { redirect_to search_query_path, notice: 'Request was successfully cancelled.' }
       format.json { head :no_content }
     end
   end
 
   # DELETE /requests/1 or /requests/1.json
   def destroy
+    # update the queue position of all requests later in the queue
+    if @request.queue_pos.positive?
+      Request.where('queue_pos > :pos', pos: @request.queue_pos).each do |request|
+        request.update_attribute(:queue_pos, request.queue_pos - 1)
+      end
+    end
+
     @request.destroy
 
     respond_to do |format|
@@ -89,6 +147,10 @@ class RequestsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_request
     @request = Request.find(params[:id])
+  end
+
+  def set_request_id
+    @request = Request.find(params[:request_id])
   end
 
   # Only allow a list of trusted parameters through.

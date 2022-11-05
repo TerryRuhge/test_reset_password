@@ -1,27 +1,26 @@
 <div class="card" id="home-card">
-    <h1>CARPOOL HOME</h1>
-    <br><br>
-    <p>
-        Click the link below to submit a new ride request
-    </p>
-    <%= link_to 'Request a Ride', new_request_path, :class => "green button large" %>
+  <h1>CARPOOL HOME</h1>
+  <br><br>
+  <p>
+    Click the link below to submit a new ride request
+  </p>
+  <%= link_to 'Request a Ride', new_request_path, :class => "green button large" %>
+  
+  <div class="top-margins">
+    <p> Type in Rider information below to view progress of your request </p>
+    <%= render 'assignments/form_rider', request: @request %>
+  </div>
 </div>
 
-<% if current_member %>
-    <div class="horiz-container">
-        <%# <%= link_to "Riders", riders_path, :class => "grey button small-margins" %>
-        <%= link_to "Requests", requests_path, :class => "grey button small-margins" %>
-		<%= link_to "Assignments", assignments_path, :class => "grey button small-margins" %>
+<% if !current_member %>
+  <div class="centered">
+    <br><br>
+    <p class=""> Are you a CARPOOL member?</p>
+    <%= link_to "LOGIN", new_member_session_path, :class => "grey button" %>
+    
+    <div>
+      <p class=""> Don't have an account yet? <%= link_to "Sign Up", new_member_registration_path, class: "link" %> </p>
     </div>
-<% else %>
-    <div class="centered">
-        <br><br>
-        <p class=""> Are you a CARPOOL member?</p>
-        <%= link_to "LOGIN", new_member_session_path, :class => "grey button" %>
-        
-        <div>
-            <p class=""> Don't have an account yet? <%= link_to "Sign Up", new_member_registration_path, class: "link" %> </p>
-        </div>
 
-    </div>
+  </div>
 <% end %>

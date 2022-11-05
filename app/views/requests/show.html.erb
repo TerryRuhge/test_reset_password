@@ -16,11 +16,6 @@
 </p>
 
 <p>
-  <strong>Date and Time:</strong>
-  <%= @request.created_at %>
-</p>
-
-<p>
   <strong>Pick Up Location:</strong>
   <%= @request.pick_up_loc %>
 </p>
@@ -40,6 +35,10 @@
   <%= @request.additional_info %>
 </p>
 
+<p>
+  <strong>Queue Position:</strong>
+  <%= @request.queue_pos %>
+</p>
 
 <%= link_to 'Edit', edit_request_path(@request) %>
 <% if not current_member %>

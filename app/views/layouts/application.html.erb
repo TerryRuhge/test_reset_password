@@ -24,12 +24,13 @@
             <div class="member-options">
               <% if current_member and !current_member.is_supervisor%> 
                 <%= link_to "Driver Statuses", member_all_statuses_path %>
-                <%= link_to "Assign Requests", assignments_assign_path %>
+                <%= link_to "Phone Room", requests_incoming_path %>
                 <%= link_to "Assigned Rider", member_rider_info_path %>
               <% end %>
               <% if current_member and !current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
-                <%= link_to "Queue and Requests", assignments_queue_path %>
+				<!---TODO: Ask teammates about point of this button-->
+                <%= link_to "Queue and Requests", root_path %>
               <% end %>
             </div>
           </div>
@@ -56,12 +57,13 @@
             <div class="admin-options">
               <% if current_member and !current_member.is_supervisor%> 
                 <%= link_to "Driver Statuses", member_all_statuses_path %>
-                <%= link_to "Assign Requests", assignments_assign_path %>
+                <%= link_to "Phone Room", new_request_path %>
                 <%= link_to "Assigned Rider", member_rider_info_path %>
               <% end %>
               <% if current_member and !current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
-                <%= link_to "Queue and Requests", assignments_queue_path %>
+				<!---TODO: Ask teammates about point of this button-->
+                <%= link_to "Queue and Requests", root_path %>
               <% end %>
             </div>  
           <% end %>

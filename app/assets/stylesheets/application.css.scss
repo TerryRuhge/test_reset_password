@@ -221,11 +221,16 @@ div.field {
   margin: 20pt;
 }
 
+.top-margins {
+  margin-top: 40pt;
+}
+
 .row {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: flex-end;
+  width: 50vh;
+  margin-bottom: 1vh;
 }
 
 .centered {
@@ -279,6 +284,10 @@ div.field {
   h2.urgent {
     color: maroon;
   }
+  
+  h2.urgent-green {
+    color: rgb(121, 194, 0);
+  }
 
   p {font-size: 1.5vmin;}
 
@@ -294,6 +303,15 @@ div.field {
     p {
       font-size: 1.4vmin;
     }
+  }
+}
+
+.view-table {
+  background-color: white;
+
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
   }
 }
 
@@ -338,7 +356,15 @@ div.field {
     cursor: pointer;
   }
 
+  &.wide {
+    width: 23vh;
+  }
   
+  &.table {
+    width: 10vh;
+    margin-right: 0vw;
+    margin-left: 0vw;
+  }
 }
 
 .green {
@@ -353,10 +379,22 @@ div.field {
   &:hover{background-color: rgb(133, 133, 133);}
 }
 
+.black {
+  background-color: rgb(0, 0, 0);
+  input {background-color: rgb(0, 0, 0);}
+  &:hover{background-color: rgb(70, 70, 70);}
+}
+
 .red {
   background-color: red;
   input {background-color: red;}
   &:hover {background-color: rgb(132, 0, 0);}
+}
+
+.dark-red {
+  background-color: rgb(220, 20, 60);
+  input {background-color: rgb(220, 20, 60);}
+  &:hover {background-color: rgb(250, 50, 90);}
 }
 
 .google {
@@ -416,9 +454,6 @@ div.field {
     color:rgb(76, 104, 33);
   }
 }
-
-
-
 
 /* -------------------------------------------------------------------------- */
 /*                               MOBILE SETTINGS                              */
