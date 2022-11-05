@@ -4,25 +4,25 @@ RSpec.describe "cars/index", type: :view do
   before(:each) do
     assign(:cars, [
       Car.create!(
-        make: "MyText",
-        model: "MyText",
-        color: "MyText",
-        plate_number: "MyText"
+        make: "Toyota",
+        model: "Corolla",
+        color: "White",
+        plate_number: "LHV5314",
+        registration_expiry: '2023-01-01'
       ),
       Car.create!(
-        make: "MyText",
-        model: "MyText",
-        color: "MyText",
-        plate_number: "MyText"
+        make: "Dodge",
+        model: "Challenger",
+        color: "Red",
+        plate_number: "MB7QTL",
+        registration_expiry: '2023-01-01'
       )
     ])
   end
 
   it "renders a list of cars" do
     render
-    assert_select "tr>td", text: "MyText".to_s, count: 2
-    assert_select "tr>td", text: "MyText".to_s, count: 2
-    assert_select "tr>td", text: "MyText".to_s, count: 2
-    assert_select "tr>td", text: "MyText".to_s, count: 2
+    assert_select "tr>td", text: "Toyota".to_s
+    assert_select "tr>td", text: "Dodge".to_s
   end
 end

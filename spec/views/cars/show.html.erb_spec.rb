@@ -6,7 +6,8 @@ RSpec.describe "cars/show", type: :view do
       make: "MyText",
       model: "MyText",
       color: "MyText",
-      plate_number: "MyText"
+      plate_number: "MyText",
+      registration_expiry: '2023-01-01'
     ))
   end
 
