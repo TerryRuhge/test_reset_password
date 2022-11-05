@@ -7,11 +7,13 @@
     <%= link_to 'Request a Ride', new_request_path, :class => "green button large" %>
 </div>
 
+<div class="top-margins">
+    <p> Type in Rider information below to view progress of your request </p>
+    <%= render 'assignments/form_rider', request: @request %>
+</div>
+
 <% if current_member %>
     <div class="horiz-container">
-        <%= link_to "Riders", member_rider_info_path, :class => "grey button small-margins" %>
-        <%= link_to "Requests", requests_path, :class => "grey button small-margins" %>
-		<%= link_to "Assignments", assignments_path, :class => "grey button small-margins" %>
         <%= link_to "Drivers", drivers_path, :class => "grey button small-margins" %>
         <%= link_to "Cars", cars_path, :class => "grey button small-margins" %>
     </div>
@@ -24,6 +26,5 @@
         <div>
             <p> Don't have an account yet? <%= link_to "Sign Up", new_member_registration_path, class: "link" %> </p>
         </div>
-
     </div>
 <% end %>

@@ -1,4 +1,4 @@
-<%= form_with(model: assignment) do |form| %>
+<%= form_for assignment, url: request_create_assignment_path(@request) do |form| %>
   <% if assignment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
@@ -10,14 +10,15 @@
       </ul>
     </div>
   <% end %>
-
+  
   <div class="field">
-    <%= form.label :request_id %>
-    <%= form.select :request_id, @valid_requests.map { |request| [request.request_id] }, include_blank: true, id:"id_of_the_request_id_select_box" %>
+    <%= form.label :request_id, 'Requester Name:' %>
+    <%= form.hidden_field :request_id, value: @request.request_id %>
+	<%= @request.name %>
   </div>
 
   <div class="field">
-    <%= form.label :car_id %>
+    <%= form.label :car_id, 'Car:' %>
     <%= form.text_field :car_id %>
   </div>
 
