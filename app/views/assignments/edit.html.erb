@@ -1,3 +1,5 @@
+<h1 class="title">Editing Assignment</h1>
+
 <div class="horiz-container">
   <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
   <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
@@ -5,7 +7,7 @@
   <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "grey wide button small-margins" %>
 </div>
 
-<h1>Editing Assignment</h1>
+
 
 <%= form_with(model: @assignment) do |form| %>
   <% if @assignment.errors.any? %>

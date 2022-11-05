@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :cars
+  resources :whitelists
+  resources :drivers
+  
   root 'home#index'
 
   get 'history', to: 'history#index'

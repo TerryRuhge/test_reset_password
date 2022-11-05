@@ -1,3 +1,5 @@
+<h1 class="title">Phone Room</h1>
+
 <p id="notice"><%= notice %></p>
 
 <div class="horiz-container">
@@ -25,9 +27,9 @@
     <tbody>
       <% @requests.each do |request| %>
         <tr>
-          <td><%= link_to 'Assign', request_assign_path(request), :class => "black table button" %></td>
-          <td><%= link_to 'Edit', edit_request_path(request), :class => "grey table button" %></td>
-          <td><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
+          <td class="b-cell"><%= link_to 'Assign', request_assign_path(request), :class => "black table button" %></td>
+          <td class="b-cell"><%= link_to 'Edit', edit_request_path(request), :class => "grey table button" %></td>
+          <td class="b-cell"><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
           <td><%= request.name %></td>
           <td><%= request.phone_number %></td>
           <td><%= request.pick_up_loc %></td>
