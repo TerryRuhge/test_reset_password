@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date time:</strong>
+  <%= @ndr.start_date_time %>
+</p>
+
+<p>
+  <strong>End date time:</strong>
+  <%= @ndr.end_date_time %>
+</p>
+
+<p>
+  <strong>Ndr:</strong>
+  <%= @ndr.ndr_id %>
+</p>
+
+<%= link_to 'Edit', edit_ndr_path(@ndr) %> |
+<%= link_to 'Back', ndrs_path %>

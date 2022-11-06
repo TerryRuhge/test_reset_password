@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>NDR</h1>
+
+<%= button_to 'New NDR', new_ndr_path, :method => :get %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Started</th>
+      <th>Ended</th>
+      <th>Actions</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ndrs.each do |ndr| %>
+      <tr>
+        <td><%= ndr.ndr_id %></td>
+        <td><%= ndr.start_date_time %></td>
+        <td><%= ndr.end_date_time %></td>
+        <td><%= button_to 'View', ndr, :method => :get %>
+        <%= button_to 'Edit', edit_ndr_path(ndr), :method => :get %>
+        <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

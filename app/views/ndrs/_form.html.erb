@@ -1,0 +1,32 @@
+<%= form_with(model: ndr) do |form| %>
+  <% if ndr.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ndr.errors.count, "error") %> prohibited this ndr from being saved:</h2>
+
+      <ul>
+        <% ndr.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :start_date_time %>
+    <%= form.datetime_select :start_date_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date_time %>
+    <%= form.datetime_select :end_date_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ndr_id %>
+    <%= form.number_field :ndr_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
