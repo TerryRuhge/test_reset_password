@@ -30,10 +30,10 @@
       <% @assignments.each do |assignment| %>
         <% request = Request.find_by_request_id(assignment.request_id) %>
         <tr>
-          <td><%= button_to 'Done', request_done_path(request), :class => "grey table button" %></td>
-          <td><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
-		  <td><%= link_to 'Edit Car', edit_assignment_path(assignment), :class => "grey table button" %></td>
-          <td><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
+          <td class="b-cell"><%= button_to 'Done', request_done_path(request), :class => "grey table button" %></td>
+          <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
+		      <td class="b-cell"><%= link_to 'Edit Car', edit_assignment_path(assignment), :class => "grey table button" %></td>
+          <td class="b-cell"><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
           <td><%= assignment.car_id %></td>
           <td><%= assignment.notes %></td>
           <td><%= request.name %></td>
