@@ -1,4 +1,6 @@
 class CreateCars < ActiveRecord::Migration[6.1]
+
+  
   def change
     create_table :cars, id: false do |t|
       t.primary_key :car_id

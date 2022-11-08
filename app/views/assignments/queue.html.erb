@@ -13,8 +13,29 @@
   </div>
 
 <% else %>
-
   <br><br>
+
+  <div class="horiz card">
+
+    <div>
+    
+      <h2 class="green-text centered">Your Ride</h2>
+
+      <p>
+        Look for a 
+        <%= @current_car.color %>
+        <%= @current_car.make %> 
+        <%= @current_car.model %>
+      </p>
+    </div>
+
+  </div>
+
+  <br>
+  <p id="notice"><%= notice %></p>
+  <br>
+
+  
 
   <h2 class="grey-text">All your ride statuses are listed below. To see the most up-to-date information, refresh the page.</h2>
 

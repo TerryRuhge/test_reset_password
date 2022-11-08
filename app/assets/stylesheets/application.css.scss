@@ -471,6 +471,7 @@ a:visited:not(.link) {color: white !important;}
   &.horiz {
     width: 60vw;
     flex-direction: row;
+    border-radius: .5vh;
 
     .left, .right {
       display: flex;

@@ -1,4 +1,6 @@
 class Car < ApplicationRecord
+    has_one :assignment
+    has_and_belongs_to_many :drivers
 
     validates :make, presence: true
     validates :model, presence: true
