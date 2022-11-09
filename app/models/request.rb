@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Request < ApplicationRecord
-  has_many :assignment
+  has_one :assignment
 
   validates :name, :phone_number, :pick_up_loc, :drop_off_loc, :num_passengers, presence: true
 

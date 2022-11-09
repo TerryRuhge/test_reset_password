@@ -2,7 +2,8 @@
 
 class Driver < ApplicationRecord
     belongs_to :member
-    
-    validates :member_id, :car_id, presence: true
 
+    has_one :cars, foreign_key: "car_id"
+
+    validates :member_id, :car_id, presence: true
 end

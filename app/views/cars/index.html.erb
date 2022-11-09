@@ -2,33 +2,42 @@
 
 <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Make</th>
-      <th>Model</th>
-      <th>Color</th>
-      <th>Plate Number</th>
-      <th>Registration Expiry</th>
-    </tr>
-  </thead>
+<br><br>
 
-  <tbody>
-    <% @cars.each do |car| %>
+<div class="view-table">
+  <table>
+    <thead>
       <tr>
-        <td><%= car.make %></td>
-        <td><%= car.model %></td>
-        <td><%= car.color %></td>
-        <td><%= car.plate_number %></td>
-        <td><%= car.registration_expiry %></td>
-        <td><%= link_to 'Show', car %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th colspan="2">Actions</th>
+        <th>Color</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Plate Number</th>
+        <th>Registration Expiry</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    
+    <tbody>
+      <% @cars.each do |car| %>
+        <tr>
+          <td class="b-cell"><%= link_to 'Edit', edit_car_path(car), class: "orange table button" %></td>
+          <td class="b-cell"><%= link_to 'Delete', car, method: :delete, data: { confirm: 'Are you sure?' }, class: "dark-red table button" %></td>
+          <td><%= car.color %></td>
+          <td><%= car.make %></td>
+          <td><%= car.model %></td>
+          <td><%= car.plate_number %></td>
+          <td><%= car.registration_expiry %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br><br><br>
+
+<%= link_to 'New Car', new_car_path, class: "green button" %>
 
 <br>
 
-<%= link_to 'New Car', new_car_path, class: "green button" %>
+<%= link_to 'Back', :back, class: "grey button" %>
