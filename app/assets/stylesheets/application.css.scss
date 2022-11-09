@@ -23,6 +23,8 @@ input {
   border-radius: 0;
 }
 
+#error_explanation {width: 90vw !important;}
+
 td {
   padding-left: 0;
   padding-right: 0;
@@ -45,6 +47,7 @@ body {
   p {
     margin-block-start: 5px;
     margin-block-end: 5px;
+    line-height: 24px;
   }
 }
 
@@ -137,7 +140,7 @@ hr {
 
 
 // fix links on buttons since scaffolds makes them all grey
-a:visited:not(.link) {color: white !important;}
+a:visited:not(.link) {color: #565656;}
 
 /* -------------------------------------------------------------------------- */
 /*                                HEADER/NAVBAR                               */
@@ -557,7 +560,7 @@ a:visited:not(.link) {color: white !important;}
   
   font-family: "Helvetica", sans-serif;
   font-size: 1.5vh;
-  color: rgb(255, 255, 255);
+  color: white !important;
   text-decoration: none;
   text-align: center;
 
@@ -615,6 +618,12 @@ a:visited:not(.link) {color: white !important;}
   background-color: rgb(220, 20, 60);
   input {background-color: rgb(220, 20, 60);}
   &:hover {background-color: rgb(160, 0, 32);}
+}
+
+.orange {
+  background-color: rgb(255, 142, 28);
+  input {background-color: rgb(255, 142, 28);}
+  &:hover {background-color: rgb(211, 106, 0);}
 }
 
 .google {
@@ -717,12 +726,20 @@ a:visited:not(.link) {color: white !important;}
         padding-left: 3vw;
       }
     }
+
+    &.horiz {
+      width: 90vw;
+    }
   }
 
   .card-item {
     height: fit-content;
     padding-top: 3vh;
     padding-bottom: 3vh;
+  }
+
+  .green-text {
+    font-size: x-large;
   }
 
   .header-bar {

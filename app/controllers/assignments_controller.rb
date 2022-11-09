@@ -26,8 +26,21 @@ class AssignmentsController < ApplicationController
     @requests_waiting = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: 'Unassigned').order('created_at ASC')
     @requests_riding = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: 'Assigned Driver').order('created_at ASC')
     @requests_done = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: %w[Done Cancelled Missed]).order('updated_at DESC')
-    @current_assignment = Assignment.find_by(request_id: @requests_riding.first)
-    @current_car = Car.find_by(car_id: @current_assignment.car_id)
+
+    # Check spot in line
+    @all_requests_waiting = Request.where(request_status: 'Unassigned').order('created_at ASC')
+    logger.debug "\nRequests Waiting: #{@requests_waiting.inspect}"
+    if !@requests_waiting.empty?
+      @spot_in_line = @all_requests_waiting.index(@requests_waiting.first) + 1
+    end
+
+    # Get car information for request
+    @current_riding_assignment = Assignment.find_by(request_id: @requests_riding.first)
+    if @current_riding_assignment
+      @current_car = Car.find_by(car_id: @current_riding_assignment.car_id)
+    else
+      @current_car = nil
+    end
   end
 
   # GET /assignments/1 or /assignments/1.json
