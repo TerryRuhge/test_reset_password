@@ -1,0 +1,50 @@
+<h1 class="title">Phone Room</h1>
+
+<p id="notice"><%= notice %></p>
+
+<div class="horiz-container">
+  <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
+  <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
+  <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "green button small-margins" %>
+  <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "grey wide button small-margins" %>
+</div>
+
+<div class="view-table">
+  <table>
+    <thead>
+      <tr>
+        <th colspan="4">Actions</th>
+        <th>Car</th>
+        <th>Notes</th>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Pick Up Location</th>
+        <th>Drop Off Location</th>
+        <th>Num of Passengers</th>
+        <th>Additional Info</th>
+        <th>Time Waited</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @assignments.each do |assignment| %>
+        <% request = Request.find_by_request_id(assignment.request_id) %>
+        <tr>
+          <td><%= button_to 'Done', request_done_path(request), :class => "grey table button" %></td>
+          <td><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
+		  <td><%= link_to 'Edit Car', edit_assignment_path(assignment), :class => "grey table button" %></td>
+          <td><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
+          <td><%= assignment.car_id %></td>
+          <td><%= assignment.notes %></td>
+          <td><%= request.name %></td>
+          <td><%= request.phone_number %></td>
+          <td><%= request.pick_up_loc %></td>
+          <td><%= request.drop_off_loc %></td>
+          <td><%= request.num_passengers %></td>
+          <td><%= request.additional_info %></td>
+          <td><%= time_waiting(assignment) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
