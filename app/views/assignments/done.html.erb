@@ -32,8 +32,8 @@
 	    <% assignment = Assignment.find_by_request_id(request.request_id) %>
         <% if assignment %>
           <tr>
-            <td><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
-		    <td><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
+		        <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
             <td><%= request.request_status %></td>
             <td><%= assignment.car_id %></td>
             <td><%= assignment.notes %></td>
@@ -47,8 +47,8 @@
           </tr>
         <% else %>
            <tr>
-            <td><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
-		    <td><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
+		        <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
             <td><%= request.request_status %></td>
             <td></td>
             <td></td>
