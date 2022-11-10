@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   
   root 'home#index'
 
+  get 'ndrs', to: 'ndrs#index'
+
   get 'history', to: 'history#index'
   get '/member/rider_info', to: 'member#rider_info'
   get '/member/all_statuses', to: 'member#all_statuses'

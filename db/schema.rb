@@ -72,10 +72,15 @@ ActiveRecord::Schema.define(version: 2022_11_04_220351) do
   end
 
   create_table "ndrs", force: :cascade do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
     t.boolean "is_active"
     t.integer "ndr_id"
+    t.integer "member_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "num_members"
+    t.boolean "dues_restrict", default: true
+    t.boolean "training_restrict", default: true
+
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

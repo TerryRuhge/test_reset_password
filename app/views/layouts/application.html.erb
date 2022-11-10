@@ -24,6 +24,7 @@
                 <%= link_to "Driver Statuses", member_all_statuses_path %>
                 <%= link_to "Phone Room", requests_incoming_path %>
                 <%= link_to "Assigned Rider", member_rider_info_path %>
+                <%= link_to "NDR", ndrs_path%>
               <% end %>
               <% if current_member and !current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>

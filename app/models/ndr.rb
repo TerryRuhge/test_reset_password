@@ -1,2 +1,3 @@
 class Ndr < ApplicationRecord
+    
 end

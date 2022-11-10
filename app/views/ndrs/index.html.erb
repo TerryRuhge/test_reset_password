@@ -1,32 +1,37 @@
+<h1 class="title">NDR</h1>
+
 <p id="notice"><%= notice %></p>
 
-<h1>NDR</h1>
+<div class="horiz-container">
+  <%= link_to 'Create', new_ndr_path, :class => "grey button small-margins" %>
+</div>
 
-<%= button_to 'New NDR', new_ndr_path, :method => :get %>
-
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Started</th>
-      <th>Ended</th>
-      <th>Actions</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @ndrs.each do |ndr| %>
+<div class="view-table">
+  <table>
+    <thead>
       <tr>
-        <td><%= ndr.ndr_id %></td>
-        <td><%= ndr.start_date_time %></td>
-        <td><%= ndr.end_date_time %></td>
-        <td><%= button_to 'View', ndr, :method => :get %>
-        <%= button_to 'Edit', edit_ndr_path(ndr), :method => :get %>
-        <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>ID</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Currently Active?</th>
+        <th colspan="3"> Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @ndrs.each do |ndr| %>
+        <tr>
+          <td><%= ndr.ndr_id %></td>
+          <td><%= ndr.start_time %></td>
+          <td><%= ndr.end_time %></td>
+          <td><%= ndr.is_active %></td>
+          <td class="b-cell"><%= link_to 'Show', ndr, :class => "black table button" %>
+          <td class="b-cell"><%= link_to 'Edit', edit_ndr_path(ndr), :class => "black table button" %>
+          <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
