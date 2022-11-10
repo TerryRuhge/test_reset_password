@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_02_001807) do
+ActiveRecord::Schema.define(version: 2022_11_04_220351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +31,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_001807) do
     t.string "color"
     t.string "plate_number"
     t.date "registration_expiry"
+    t.integer "ndr_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -70,9 +69,12 @@ ActiveRecord::Schema.define(version: 2022_11_02_001807) do
     t.datetime "remember_created_at"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
   create_table "ndrs", force: :cascade do |t|
-    t.datetime "start_date_time"
-    t.datetime "end_date_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.boolean "is_active"
     t.integer "ndr_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -96,4 +98,5 @@ ActiveRecord::Schema.define(version: 2022_11_02_001807) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
+
 end
