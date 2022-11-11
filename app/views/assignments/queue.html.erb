@@ -38,12 +38,19 @@
         <br>
         <p class="grey-text centered"> 
           Refresh this page in a few minutes to<br>
-          see any new updates on your ride.
+          see any new updates on your ride. <br>
+
+          Or cancel your ride below.
         </p>
+        <%= button_to 'Cancel', request_cancel_path(@requests_waiting.first), data: { confirm: 'Are you sure?' }, :class => "dark-red button" %>
       
       <%# If the ride is finished, show that the ride is done %>
       <% else %>
-        <h2 class="green-text centered">Your ride is completed.</h2>
+        <% if @requests_done.first.request_status == 'Done'  %>
+          <h2 class="green-text centered">Your ride is completed.</h2>
+        <% else %>
+          <h2 class="green-text centered">Your ride has been cancelled.</h2>
+        <% end %>
         <p class="centered"> 
           Thanks for using CARPOOL!
         </p>
@@ -52,145 +59,6 @@
 
   </div>
 
-  <p id="notice"><%= notice %></p>
-
   <br><br><br>
   <%= link_to 'Home', root_path, class: "green button" %>
-
-  <div style="display: none;">
-
-    <h2 class="grey-text">All your ride statuses are listed below. To see the most up-to-date information, refresh the page.</h2>
-
-    <br><br>
-    <div class="centered">
-      <h2>Waiting for a Driver</h2>
-      <div class="view-table">
-        <table>
-          <thead>
-            <tr>
-              <th colspan="2">Actions</th>
-              <th>Name</th>
-              <th>Phone Number</th>
-              <th>Pick Up Location</th>
-              <th>Drop Off Location</th>
-              <th>Num of Passengers</th>
-              <th>Additional Info</th>
-              <th>Time Waited</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @requests_waiting.each do |request| %>
-              <tr>
-                <td class="b-cell"><%= link_to 'Edit', edit_request_path(request), :class => "grey table button" %></td>
-                <td class="b-cell"><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
-                <td><%= request.name %></td>
-                <td><%= request.phone_number %></td>
-                <td><%= request.pick_up_loc %></td>
-                <td><%= request.drop_off_loc %></td>
-                <td><%= request.num_passengers %></td>
-                <td><%= request.additional_info %></td>
-                <td><%= time_waiting(request) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-
-      <br><br>
-
-      <h2>Riding</h2>
-      <div class="view-table">
-        <table>
-          <thead>
-            <tr>
-              <th colspan="1">Actions</th>
-              <th>Car</th>
-              <th>Notes</th>
-              <th>Name</th>
-              <th>Phone Number</th>
-              <th>Pick Up Location</th>
-              <th>Drop Off Location</th>
-              <th>Num of Passengers</th>
-              <th>Additional Info</th>
-              <th>Time Waited</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @requests_riding.each do |request| %>
-              <% assignment = Assignment.find_by_request_id(request.request_id) %>
-              <tr>
-                <td class="b-cell"><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
-                <td><%= assignment.car_id %></td>
-                <td><%= assignment.notes %></td>
-                <td><%= request.name %></td>
-                <td><%= request.phone_number %></td>
-                <td><%= request.pick_up_loc %></td>
-                <td><%= request.drop_off_loc %></td>
-                <td><%= request.num_passengers %></td>
-                <td><%= request.additional_info %></td>
-                <td><%= time_waiting(assignment) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-
-      <br><br>
-
-      <h2>Dropped Off/Canceled</h2>
-      <div class="view-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Status</th>
-              <th>Car</th>
-              <th>Notes</th>
-              <th>Name</th>
-              <th>Phone Number</th>
-              <th>Pick Up Location</th>
-              <th>Drop Off Location</th>
-              <th>Time Waited</th>
-              <th>Time Rode</th>
-              <th>Home At</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @requests_done.each do |request| %>
-            <% assignment = Assignment.find_by_request_id(request.request_id) %>
-              <% if assignment %>
-                <tr>
-                  <td><%= request.request_status %></td>
-                  <td><%= assignment.car_id %></td>
-                  <td><%= assignment.notes %></td>
-                  <td><%= request.name %></td>
-                  <td><%= request.phone_number %></td>
-                  <td><%= request.pick_up_loc %></td>
-                  <td><%= request.drop_off_loc %></td>
-                  <td><%= time_diff(request, assignment) %></td>
-                  <td><%= time_rode(assignment) %></td>
-                  <td><%= time_home(assignment) %></td>
-                </tr>
-              <% else %>
-                <tr>
-                  <td><%= request.request_status %></td>
-                  <td></td>
-                  <td></td>
-                  <td><%= request.name %></td>
-                  <td><%= request.phone_number %></td>
-                  <td><%= request.pick_up_loc %></td>
-                  <td><%= request.drop_off_loc %></td>
-                  <td><%= time_cancelled(request) %></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-          <% end %>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 <% end %>

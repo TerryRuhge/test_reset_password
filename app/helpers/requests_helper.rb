@@ -20,8 +20,7 @@ module RequestsHelper
   end
 
   # finds the time between creation of request and cancellation (in minutes)
-  # this needs to be updated with a new request attribute to store time cancelled
   def time_cancelled(request)
-    "#{((request.updated_at.to_datetime - request.created_at.to_datetime) * 24 * 60).to_i}m"
+    "#{((request.time_cancelled.to_datetime - request.created_at.to_datetime) * 24 * 60).to_i}m"
   end
 end

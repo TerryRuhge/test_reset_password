@@ -28,9 +28,7 @@
         <td><%= link_to 'Show', assignment %></td>
         <td><%= link_to 'Edit Car', edit_assignment_path(assignment) %></td>
         <td><%= link_to 'Change Status', request_status_path(Request.find_by_request_id(assignment.request_id)) %></td>
-        <td><%= button_to 'Picked Up', assignment_picked_up_path(assignment) %></td>
         <td><%= button_to 'Dropped Off', assignment_dropped_off_path(assignment) %></td>
-        <td><%= link_to 'Notes', assignment_notes_path(assignment) %></td>
         <td><%= button_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

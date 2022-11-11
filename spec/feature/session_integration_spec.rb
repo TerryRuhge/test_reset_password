@@ -23,7 +23,6 @@ RSpec.describe 'Signing up with Form', type: :system do
   # end
 end
 
-
 RSpec.describe 'Signing in with Form', type: :system do
   before do
     @member1 = create :member

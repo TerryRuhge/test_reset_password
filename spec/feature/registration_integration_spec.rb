@@ -68,4 +68,3 @@ RSpec.describe 'Signing up with Form', type: :system do
 #     @member2.reload
 #     expect(@member2.first_name).to eq('Terri')
 #   end
-end
