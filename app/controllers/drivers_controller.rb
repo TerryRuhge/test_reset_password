@@ -57,6 +57,11 @@ class DriversController < ApplicationController
     end
   end
 
+  # # GET /driver/:member_id/:ndr_id/checkin
+  # def checkin
+
+  # end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   resources :cars
   resources :whitelists
   resources :drivers
+  resources :signs
 
   root 'home#index'
 
-  resources :signs
+  
   get 'history', to: 'history#index'
   get '/member/rider_info', to: 'member#rider_info'
   get '/member/all_statuses', to: 'member#all_statuses'
@@ -19,14 +20,13 @@ Rails.application.routes.draw do
   get '/done', to: 'assignments#done', as: 'assignments_done'
   get '/queue', to: 'assignments#queue', as: 'search'
 
+  get '/drivers/check_in', to: 'drivers#checkin'
+
   devise_for :members, controllers: {
     registrations: 'members/registrations',
     sessions: 'members/sessions',
     omniauth_callbacks: 'members/omniauth_callbacks'
   }
-
-  resources :whitelists
-  resources :drivers
 
   # for end product, index and show not being used (so disable later on)
   resources :requests do

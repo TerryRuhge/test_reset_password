@@ -1,0 +1,17 @@
+<%= form_for @driver do |f| %>
+    Enter the time: <%= f.datetime_field :updatetime %><br />
+    Enter your status: <%= f.select :status, ['Driving to location', 'Picked up rider', 'In route to the drop-off location', 'other()'] %>
+    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+        Submit
+    <% end %>
+<% end %>
+
+<h1>
+All of your previous check ins
+</h1>
+<div>
+    <% @signs.each do |x| %> <!-- Or whatever variable you would like to pass -->
+        <%= x[:updatetime] %>
+        <%= x[:status] %> <br /> <!-- You can do this however many times you would like -->
+    <% end %>
+</div>
