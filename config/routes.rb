@@ -2,9 +2,9 @@
 
 Rails.application.routes.draw do
   resources :cars
-  resources :ndrs
   resources :whitelists
   resources :drivers
+  resources :ndrs
   
   root 'home#index'
 
@@ -30,6 +30,10 @@ Rails.application.routes.draw do
   resources :whitelists
   resources :drivers
 
+  resources :drivers do
+    post 'join', to: 'drivers#join_request', as: 'join_request'
+  end
+
   # for end product, index and show not being used (so disable later on)
   resources :requests do
     # pages handling buttons or actions (at the moment, status isn't used)
@@ -48,6 +52,10 @@ Rails.application.routes.draw do
     post 'picked_up'
     post 'dropped_off'
     get 'notes'
+  end
+
+  resources :ndrs do
+    post 'join', to: 'drivers#create', as: 'create_assignment'
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

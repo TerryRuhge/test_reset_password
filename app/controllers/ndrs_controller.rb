@@ -22,7 +22,7 @@ class NdrsController < ApplicationController
   # POST /ndrs or /ndrs.json
   def create
     @ndr = Ndr.new(ndr_params)
-
+    @ndr.member_id = current_member
     respond_to do |format|
       if @ndr.save
         format.html { redirect_to ndr_url(@ndr), notice: "Ndr was successfully created." }
@@ -57,12 +57,15 @@ class NdrsController < ApplicationController
     end
   end
 
-  def get_join_status(test_ndr)
-    puts "---------------------------------------"
-    puts Driver.find_by ndr_id: test_ndr.ndr_id
-    puts test_ndr.ndr_id
-    puts "---------------------------------------"
-    return Driver.find_by test_ndr.ndr_id.nil?
+  def join_ndr(test_ndr, test_member)
+    test_ndr.num_members_signed_up = test_ndr.num_members_signed_up + 1
+    create_driver!(test_ndr, test_member)
+    redirect_to ndrs_path
+  end
+
+  #Detect if member has already signed up for ndr
+  def get_join_status(test_ndr, test_member)
+    return (Driver.find_by(ndr_id: test_ndr.ndr_id, member_id: test_member.member_id)).nil?
   end
 
   private

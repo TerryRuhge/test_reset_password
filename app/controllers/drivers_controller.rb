@@ -57,6 +57,12 @@ class DriversController < ApplicationController
     end
   end
 
+  #Create Driver from ndr
+  def join_request(ndr_id)
+    @driver = Driver.new(member_id: current_member.member_id, ndr_id: ndr_id)
+    @driver.save
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2022_11_04_220351) do
     t.integer "car_id"
     t.datetime "check_in_time"
     t.string "driver_status"
+    t.integer "ndr_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -76,8 +77,9 @@ ActiveRecord::Schema.define(version: 2022_11_04_220351) do
     t.integer "member_id"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer "num_members_desired"
-    t.integer "num_members_signed_up"
+    t.boolean "members_needed", default: true
+    t.integer "num_members_desired", default: 5
+    t.integer "num_members_signed_up", default: 0
     t.boolean "dues_restrict", default: true
     t.boolean "training_restrict", default: true
     t.datetime "created_at", precision: 6, null: false

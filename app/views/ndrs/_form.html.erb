@@ -15,24 +15,24 @@
     <div class="horiz-container">
       <div class="field">
         <%= form.label :start_time, "Start Date" %>
-        <%= form.date_select :start_time, ampm: true, order: [:day, :month, :year], start_year: Date.today.year, end_year: Date.today.year + 4 %>
+        <%= form.date_select :start_time, ignore_time: true, order: [:day, :month, :year], start_year: Date.today.year, end_year: Date.today.year + 4 %>
       </div>
 
       <div class="field">
         <%= form.label :start_time, "End Time"  %>
-        <%= form.time_select :start_time, ampm: true, time_seperator: ""  %>
+        <%= form.time_select :start_time, ignore_date: true, ampm: true, time_seperator: ""  %>
       </div>
     </div>
     
     <div class="horiz-container">
       <div class="field">
         <%= form.label :end_time, "End Date"  %>
-        <%= form.date_select :end_time, ampm: true, order: [:day, :month, :year], start_year: Date.today.year, end_year: Date.today.year + 4  %>
+        <%= form.date_select :end_time, ignore_time: true, order: [:day, :month, :year], start_year: Date.today.year, end_year: Date.today.year + 4  %>
       </div>
 
       <div class="field">
         <%= form.label :end_time, "End Time"  %>
-        <%= form.time_select :end_time, ampm: true, time_seperator: ''%>
+        <%= form.time_select :end_time, ignore_date: true, ampm: true, time_seperator: ''%>
       </div>
     </div>
 
