@@ -1,27 +1,64 @@
 <%= form_with(model: ndr) do |form| %>
-  <% if ndr.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(ndr.errors.count, "error") %> prohibited this ndr from being saved:</h2>
+    <% if ndr.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(ndr.errors.count, "error") %> prohibited this ndr from being saved:</h2>
 
-      <ul>
-        <% ndr.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% ndr.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+
+    <div class="horiz-container">
+      <div class="field">
+        <%= form.label :start_time, "Start Date" %>
+        <%= form.date_select :start_time, ampm: true, order: [:day, :month, :year], start_year: Date.today.year, end_year: Date.today.year + 4 %>
+      </div>
+
+      <div class="field">
+        <%= form.label :start_time, "End Time"  %>
+        <%= form.time_select :start_time, ampm: true, time_seperator: ""  %>
+      </div>
     </div>
-  <% end %>
+    
+    <div class="horiz-container">
+      <div class="field">
+        <%= form.label :end_time, "End Date"  %>
+        <%= form.date_select :end_time, ampm: true, order: [:day, :month, :year], start_year: Date.today.year, end_year: Date.today.year + 4  %>
+      </div>
 
-  <div class="field">
-    <%= form.label :start_date_time %>
-    <%= form.datetime_select :start_date_time %>
-  </div>
+      <div class="field">
+        <%= form.label :end_time, "End Time"  %>
+        <%= form.time_select :end_time, ampm: true, time_seperator: ''%>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :end_date_time %>
-    <%= form.datetime_select :end_date_time %>
-  </div>
+    <div class="field">
+      <%= form.label :is_active, "Start Now?"  %>
+      <%= form.check_box :is_active %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="field">
+      <%= form.label :num_members_desired, "How many members do you need to attend?"  %>
+      <%= form.text_field :num_members_desired %>
+    </div>
+
+    <div class="field">
+      <%= form.label :dues_restrict, "Restrict Members' with active dues?"  %>
+      <%= form.check_box :dues_restrict %>
+    </div>
+
+    <div class="field">
+      <%= form.label :training_restrict, "Restrict Members' without training?"  %>
+      <%= form.check_box :training_restrict %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "green button" %>
+    </div>
+    
+
 <% end %>

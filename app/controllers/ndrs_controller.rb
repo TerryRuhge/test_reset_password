@@ -1,6 +1,6 @@
 class NdrsController < ApplicationController
   before_action :set_ndr, only: %i[ show edit update destroy ]
-
+  helper_method :get_join_status
   # GET /ndrs or /ndrs.json
   def index
     @ndrs = Ndr.all
@@ -57,6 +57,14 @@ class NdrsController < ApplicationController
     end
   end
 
+  def get_join_status(test_ndr)
+    puts "---------------------------------------"
+    puts Driver.find_by ndr_id: test_ndr.ndr_id
+    puts test_ndr.ndr_id
+    puts "---------------------------------------"
+    return Driver.find_by test_ndr.ndr_id.nil?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ndr
@@ -65,6 +73,6 @@ class NdrsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ndr_params
-      params.require(:ndr).permit(:start_date_time, :end_date_time, :ndr_id)
+      params.require(:ndr).permit(:start_time, :end_time, :ndr_id, :is_active, :num_members_desired, :training_restrict, :dues_restrict)
     end
 end

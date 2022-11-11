@@ -71,16 +71,15 @@ ActiveRecord::Schema.define(version: 2022_11_04_220351) do
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
-  create_table "ndrs", force: :cascade do |t|
+  create_table "ndrs", primary_key: "ndr_id", force: :cascade do |t|
     t.boolean "is_active"
-    t.integer "ndr_id"
     t.integer "member_id"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer "num_members"
+    t.integer "num_members_desired"
+    t.integer "num_members_signed_up"
     t.boolean "dues_restrict", default: true
     t.boolean "training_restrict", default: true
-
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
