@@ -44,7 +44,7 @@
             <td class="b-cell"> <%= link_to 'Start', :class => "dark-red table button"%>
           <% else %>
             <% if get_join_status(ndr, current_member) %>
-              <td class="b-cell"><%= link_to 'Join', join_request_path(ndr_id: ndr.ndr_id), remote: true, :class => "green table button" %>
+              <td class="b-cell"><%= link_to 'Join', ndr, remote: true, :class => "green table button" %>
             <% else %>
               <td class="b-cell"><%= link_to 'Leave', ndr, :class => "green table button" %>
             <% end %>
