@@ -8,21 +8,21 @@ RSpec.describe Members::OmniauthCallbacksController, type: :controller do
     request.env['devise.mapping'] = Devise.mappings[:member]
   end
 
-  describe 'Google Valid Sign ins' do
-    before(:each) do
-      # generates google_oauth account with correct information
-      request.env['omniauth.auth'] = FactoryBot.create(:auth_hash, :google_oauth2)
-      get :google_oauth2
-    end
+  # describe 'Google Valid Sign ins' do
+  #   before(:each) do
+  #     # generates google_oauth account with correct information
+  #     request.env['omniauth.auth'] = FactoryBot.create(:auth_hash, :google_oauth2)
+  #     get :google_oauth2
+  #   end
 
-    context 'Success handling' do
-      # user signs in using google's oauth sign in
-      let(:member) { Member.find_by(email: 'testuser@gmail.com') }
-      it 'should set current_member to proper member' do
-        expect(subject.current_member).to eq(member)
-      end
-    end
-  end
+  #   context 'Success handling' do
+  #     # user signs in using google's oauth sign in
+  #     let(:member) { Member.find_by(email: 'testuser@gmail.com') }
+  #     it 'should set current_member to proper member' do
+  #       expect(subject.current_member).to eq(member)
+  #     end
+  #   end
+  # end
 
   # describe 'Google In-valid sign in' do
   #   before(:each) do
