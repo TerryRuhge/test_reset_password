@@ -10,5 +10,24 @@ class MemberController < ApplicationController
   end
 
   def all_statuses; end
-  helper_method :rider_info
+
+  def overview
+    @members = Member.order('last_name ASC')
+  end 
+
+  #from member overview page
+   #POST /member/update
+   def update_supervisor 
+    @member = Member.find(params[:id])
+    @member.update(is_supervisor: !@member.is_supervisor)
+    redirect_to member_overview_path
+   end
+
+   def update_admin 
+    @member = Member.find(params[:id])
+    @member.update(is_admin: !@member.is_admin)
+    redirect_to member_overview_path
+   end
+  
+ 
 end

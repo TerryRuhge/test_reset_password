@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'history', to: 'history#index'
   get '/member/rider_info', to: 'member#rider_info'
   get '/member/all_statuses', to: 'member#all_statuses'
-
+  get '/member/overview', to: 'member#overview'
   get '/incoming', to: 'requests#incoming', as: 'requests_incoming'
   get '/waiting', to: 'requests#waiting', as: 'requests_waiting'
 
@@ -24,8 +24,16 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'members/omniauth_callbacks'
   }
 
-  resources :whitelists
-  resources :drivers
+  resources :whitelists do
+    post :remove_supervisor, on: :member
+    get 'supervisor', to: 'whitelists#supervisor'
+  end
+
+  resources :member do
+    post :update_supervisor, on: :member
+    post :update_admin, on: :member
+
+  end
 
   # for end product, index and show not being used (so disable later on)
   resources :requests do
@@ -44,6 +52,9 @@ Rails.application.routes.draw do
     # pages handling buttons or actions
     post 'dropped_off'
   end
+
+
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -27,6 +27,7 @@
               <% end %>
               <% if current_member and !current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
+                <%= link_to "Member Overview", member_overview_path%>
 				<!---TODO: Ask teammates about point of this button-->
                 <%= link_to "Queue and Requests", root_path %>
               <% end %>

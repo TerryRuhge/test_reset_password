@@ -1,0 +1,30 @@
+<div class="view-table">
+<table>
+    <thead>
+      <tr>
+        
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Supervisor Status</th>
+        <th>Admin Status</th>
+        <th colspan="3">Actions</th>
+
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @members.each do |member| %>
+        <tr>
+          <td><%= member.last_name %></td>
+          <td><%= member.first_name %></td>
+          <td><%= member.is_supervisor %></td>
+          <td><%= member.is_admin %></td>
+          <td><%= button_to 'supervisor change', update_supervisor_member_path(member.id)%></td>
+          <td><%= button_to 'admin change', update_admin_member_path(member.id)%></td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
