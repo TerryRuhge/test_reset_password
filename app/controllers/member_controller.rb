@@ -6,13 +6,13 @@ class MemberController < ApplicationController
   def index; end
 
   def rider_info
-    @assigned_rides = Assignment.where(driver_id: @driver).where.not(queue_pos: '0').order('request_id ASC')
   end
 
   def all_statuses; end
 
   def overview
-    @members = Member.order('last_name ASC')
+    @members = Member.where.not(member_id: current_member.member_id).order('last_name ASC')
+    @yourself = Member.where(member_id: current_member.member_id)
   end 
 
   #from member overview page

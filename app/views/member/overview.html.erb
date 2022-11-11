@@ -1,3 +1,5 @@
+<h1 class="title">Member Overview</h1>
+
 <div class="view-table">
 <table>
     <thead>
@@ -14,6 +16,15 @@
     </thead>
 
     <tbody>
+        <% @yourself.each do |member| %>
+        <tr>
+          <td><%= member.last_name %></td>
+          <td><%= member.first_name %></td>
+          <td><%= member.is_supervisor %></td>
+          <td><%= member.is_admin %></td>
+        </tr>
+      <% end %>
+
       <% @members.each do |member| %>
         <tr>
           <td><%= member.last_name %></td>
@@ -22,7 +33,6 @@
           <td><%= member.is_admin %></td>
           <td><%= button_to 'supervisor change', update_supervisor_member_path(member.id)%></td>
           <td><%= button_to 'admin change', update_admin_member_path(member.id)%></td>
-
         </tr>
       <% end %>
     </tbody>
