@@ -19,7 +19,7 @@
 
   <div class="field">
     <%= form.label :car_id, 'Car:' %>
-    <%= form.text_field :car_id %>
+    <%= form.select :car_id, @cars.map { |car| [(car.make + ' ' + car.model + ' ' + car.color), car.car_id] }, include_blank: true, id:"car_select_box" %>
   </div>
 
   <div class="actions">
