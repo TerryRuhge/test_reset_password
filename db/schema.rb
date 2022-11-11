@@ -16,10 +16,9 @@ ActiveRecord::Schema.define(version: 2022_11_02_001807) do
   enable_extension "plpgsql"
 
   create_table "assignments", primary_key: "assignment_id", force: :cascade do |t|
+    t.integer "member_id"
     t.integer "request_id"
     t.integer "car_id"
-    t.string "notes"
-    t.datetime "pick_up_time"
     t.datetime "drop_off_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -79,6 +78,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_001807) do
     t.integer "num_passengers"
     t.string "additional_info"
     t.integer "queue_pos"
+    t.datetime "time_cancelled"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

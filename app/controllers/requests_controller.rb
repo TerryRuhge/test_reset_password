@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'date'
+
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
   before_action :set_request_id, only: %i[status done cancel]
@@ -46,7 +48,7 @@ class RequestsController < ApplicationController
           format.json { head :no_content }
         end
 
-        search_query_path = "/assignments/queue/?search_name=#{@request.name}&search_phone_number=#{@request.phone_number}"
+        search_query_path = "/queue/?search_name=#{@request.name}&search_phone_number=#{@request.phone_number}"
         format.html { redirect_to search_query_path, notice: 'Request was successfully created.' }
         format.json { head :no_content }
       else
@@ -73,7 +75,7 @@ class RequestsController < ApplicationController
           format.json { head :no_content }
         end
 
-        search_query_path = "/assignments/queue/?search_name=#{@request.name}&search_phone_number=#{@request.phone_number}"
+        search_query_path = "/queue/?search_name=#{@request.name}&search_phone_number=#{@request.phone_number}"
         format.html { redirect_to search_query_path, notice: 'Request was successfully updated.' }
         format.json { head :no_content }
       else
@@ -89,6 +91,12 @@ class RequestsController < ApplicationController
   # POST /requests/1/done
   def done
     @request.update_attribute(:request_status, 'Done')
+    
+    # if the time dropped off wasn't declared by driver, save current time
+    @assignment = Assignment.find_by(request_id: @request.request_id)
+    if !@assignment.drop_off_time
+      @assignment.update_attribute(:drop_off_time, DateTime.now.strftime('%d/%m/%Y %H:%M'))
+    end
 
     respond_to do |format|
       format.html { redirect_to assignments_done_path, notice: 'Request was successfully finished.' }
@@ -112,6 +120,7 @@ class RequestsController < ApplicationController
     else
       @request.update_attribute(:request_status, 'Cancelled')
     end
+    @request.update_attribute(:time_cancelled, DateTime.now.strftime('%d/%m/%Y %H:%M'))
 
     respond_to do |format|
       if current_member
@@ -119,7 +128,7 @@ class RequestsController < ApplicationController
         format.json { head :no_content }
       end
 
-      search_query_path = "/assignments/queue/?search_name=#{@request.name}&search_phone_number=#{@request.phone_number}"
+      search_query_path = "/queue/?search_name=#{@request.name}&search_phone_number=#{@request.phone_number}"
       format.html { redirect_to search_query_path, notice: 'Request was successfully cancelled.' }
       format.json { head :no_content }
     end

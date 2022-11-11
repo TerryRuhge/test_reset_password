@@ -13,6 +13,7 @@ class CreateRequests < ActiveRecord::Migration[6.1]
       t.integer :num_passengers
       t.string :additional_info
       t.integer :queue_pos
+      t.datetime :time_cancelled
 
       t.timestamps
     end
