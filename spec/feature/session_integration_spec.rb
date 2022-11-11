@@ -17,12 +17,11 @@ RSpec.describe 'Signing up with Form', type: :system do
 
   scenario 'Logging out', type: :system do
     visit root_path
-    click_button "Logout"
-    #Should redirect to login page
+    click_button 'Logout'
+    # Should redirect to login page
     expect(page).to have_current_path(new_member_session_path)
   end
 end
-
 
 RSpec.describe 'Signing in with Form', type: :system do
   before do

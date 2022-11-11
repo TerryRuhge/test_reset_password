@@ -37,7 +37,7 @@ Metrics/BlockLength:
 # Offense count: 1
 # Configuration parameters: ? (Miguel Urbina set this here).
 Metrics/ClassLength:
-  Max: 110
+  Max: 115
 
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.

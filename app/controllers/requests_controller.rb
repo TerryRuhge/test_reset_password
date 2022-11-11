@@ -91,12 +91,10 @@ class RequestsController < ApplicationController
   # POST /requests/1/done
   def done
     @request.update_attribute(:request_status, 'Done')
-    
+
     # if the time dropped off wasn't declared by driver, save current time
     @assignment = Assignment.find_by(request_id: @request.request_id)
-    if !@assignment.drop_off_time
-      @assignment.update_attribute(:drop_off_time, DateTime.now.strftime('%d/%m/%Y %H:%M'))
-    end
+    @assignment.update_attribute(:drop_off_time, DateTime.now.strftime('%d/%m/%Y %H:%M')) unless @assignment.drop_off_time
 
     respond_to do |format|
       format.html { redirect_to assignments_done_path, notice: 'Request was successfully finished.' }

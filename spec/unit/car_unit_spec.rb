@@ -28,10 +28,10 @@ RSpec.describe Car, type: :model do
   end
 
   # has issues with the upcase thing in model
-  #it 'is not valid without a plate number' do
+  # it 'is not valid without a plate number' do
   #  subject.plate_number = nil
   #  expect(subject).not_to be_valid
-  #end
+  # end
 
   it 'is not valid without a registration expiration date' do
     subject.registration_expiry = nil

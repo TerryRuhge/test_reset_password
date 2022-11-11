@@ -29,7 +29,7 @@ RSpec.describe 'Creating an assignment', type: :feature do
     fill_in 'Address', with: '<address>'
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
-	click_on 'Sign up'
+    click_on 'Sign up'
     visit requests_waiting_path
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')
@@ -76,7 +76,7 @@ RSpec.describe 'Updating an assignment', type: :feature do
     fill_in 'Address', with: '<address>'
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
-	click_on 'Sign up'
+    click_on 'Sign up'
     visit requests_waiting_path
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')
@@ -120,7 +120,7 @@ RSpec.describe 'Marking an assignment as Done', type: :feature do
     fill_in 'Address', with: '<address>'
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
-	click_on 'Sign up'
+    click_on 'Sign up'
     visit requests_waiting_path
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')
@@ -163,7 +163,7 @@ RSpec.describe 'Deleting an assignment', type: :feature do
     fill_in 'Address', with: '<address>'
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
-	click_on 'Sign up'
+    click_on 'Sign up'
     visit requests_waiting_path
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')

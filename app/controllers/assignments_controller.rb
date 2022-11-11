@@ -28,18 +28,12 @@ class AssignmentsController < ApplicationController
     @requests_done = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: %w[Done Cancelled Missed]).order('updated_at DESC')
 
     # Check spot in line
-    #logger.debug "\nRequests Waiting: #{@requests_waiting.inspect}"
-    if !@requests_waiting.empty?
-      @spot_in_line = @requests_waiting.first.queue_pos
-    end
+    # logger.debug "\nRequests Waiting: #{@requests_waiting.inspect}"
+    @spot_in_line = @requests_waiting.first.queue_pos unless @requests_waiting.empty?
 
     # Get car information for request
     @current_riding_assignment = Assignment.find_by(request_id: @requests_riding.first)
-    if @current_riding_assignment
-      @current_car = Car.find_by(car_id: @current_riding_assignment.car_id)
-    else
-      @current_car = nil
-    end
+    @current_car = (Car.find_by(car_id: @current_riding_assignment.car_id) if @current_riding_assignment)
   end
 
   # GET /assignments/1 or /assignments/1.json
@@ -59,9 +53,9 @@ class AssignmentsController < ApplicationController
   def assign
     @assignment = Assignment.new
     @request = Request.find(params[:request_id])
-	
-	# for the select field of cars
-	@cars = Car.order('make ASC').order('model ASC').order('color ASC')
+
+    # for the select field of cars
+    @cars = Car.order('make ASC').order('model ASC').order('color ASC')
   end
 
   # GET /assignments/1/edit
@@ -84,7 +78,7 @@ class AssignmentsController < ApplicationController
         end
         @request.update_attribute(:queue_pos, 0)
         @request.update_attribute(:request_status, 'Assigned Driver')
-		
+
         # recording which member made the assignment
         @assignment.update_attribute(:member_id, current_member.member_id)
 
@@ -94,7 +88,7 @@ class AssignmentsController < ApplicationController
         # this line was necessary to prevent website from erroring out upon rerouting
         @cars = Car.order('make ASC').order('model ASC').order('color ASC')
 
-		format.html { render :assign, status: :unprocessable_entity }
+        format.html { render :assign, status: :unprocessable_entity }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
       end
     end
@@ -111,7 +105,7 @@ class AssignmentsController < ApplicationController
         @request = Request.find_by_request_id(@assignment.request_id)
         @cars = Car.order('make ASC').order('model ASC').order('color ASC')
 
-		format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
       end
     end

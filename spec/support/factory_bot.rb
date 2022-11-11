@@ -26,7 +26,7 @@ FactoryBot.define do
 
     trait :google_oauth2_fail do
       provider { 'twitter' }
-      uid { "test" }
+      uid { 'test' }
       email { 'dadfasd@twitter' }
     end
   end
