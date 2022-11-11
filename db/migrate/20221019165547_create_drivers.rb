@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CreateDrivers < ActiveRecord::Migration[6.1]
-
   def change
     create_table :drivers, id: false do |t|
       t.primary_key :driver_id
