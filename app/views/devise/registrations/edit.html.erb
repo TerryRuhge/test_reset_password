@@ -1,4 +1,4 @@
-<h2>Edit Profile</h2>
+<h2 class="header">Edit Profile</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -7,43 +7,43 @@
   <h3> Personal Information </h3>
 
   <div class="field">
-    <%= f.label :first_name %> <br />
+    <%= f.label :first_name %>
     <%= f.text_field :first_name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :last_name %> <br />
+    <%= f.label :last_name %>
     <%= f.text_field :last_name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :phone %> <br />
+    <%= f.label :phone %>
     <%= f.text_field :phone %>
   </div>
 
-  <h3> Address </h3>
-
   <div class="Address Field">
     <div class="field">
-      <%= f.label :address %> <br />
+      <%= f.label :address %>
       <%= f.text_field :address %>
     </div>
   </div>
+
+  <hr>
 
   <h3> Emergency Contact </h3>
 
   <div class="Emergency Contact Field">
     <div class="field">
-      <%= f.label :emergency_full_name %> <br />
+      <%= f.label :emergency_full_name %>
       <%= f.text_field :emergency_full_name %>
     </div>
     <div class="field">
-      <%= f.label :emergency_phone_number %> <br />
+      <%= f.label :emergency_phone_number %>
       <%= f.text_field :emergency_phone_number %>
     </div>
   </div>
@@ -52,6 +52,8 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+  <hr>
+
   <% if @current_member.created_password %>
     <h3> Update Password </h3>
   <% else %>
@@ -59,25 +61,23 @@
   <% end %>
   
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.label :password %> <i class="centered">(leave blank if you don't want to change it)</i>
     <% if @minimum_password_length %>
-      <br />
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
-  <h3> Save Changes </h3>
 
   <!-- Check if member has already created a password -->
   <% if @current_member.created_password %>
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
       <%= f.password_field :current_password, autocomplete: "current-password" %>
     </div>
     <% end %>

@@ -56,12 +56,12 @@ module Members
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name is_male address phone emergency_full_name emergency_phone_number])
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name address phone emergency_full_name emergency_phone_number])
     end
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_account_update_params
-      devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name is_male address phone emergency_full_name emergency_phone_number])
+      devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name address phone emergency_full_name emergency_phone_number])
     end
 
     # The path used after sign up.

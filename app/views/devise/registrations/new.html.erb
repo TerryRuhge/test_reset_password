@@ -1,6 +1,28 @@
 <div>
+  <h1 class="title">Sign up</h1>
+
   <br><br>
-  <h2 class="centered">Sign up</h2>
+
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= form_for "Login",
+        url: omniauth_authorize_path(resource_name, provider),
+        method: :post,
+        data: {turbo: "false"} do |f| %>
+          <div class="google button">
+            <div class="g-oath-button-logo"></div>
+            <%= f.submit "Sign in with Google", :class => "g-oath-button-text" %>
+          </div>
+      <% end %>
+    <% end %>
+  <% end %>
+  <br>
+
+  <div class="horiz-container2">
+    <span class="inline-hr"></span>
+    <h3 class="centered">OR</h3>
+    <span class="inline-hr"></span>
+  </div>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -72,24 +94,10 @@
     <div class="actions">
       <%= f.submit "Sign up", class: "green button" %>
     </div>
+
+    <br>
+
+    <%= link_to "Back", new_member_session_path, :class => "grey button" %>
   <% end %>
 
-  <br>
-  <hr>
-
-  <h3 class="centered">or</h3>
-
-  <%- if devise_mapping.omniauthable? %>
-    <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= form_for "Login",
-        url: omniauth_authorize_path(resource_name, provider),
-        method: :post,
-        data: {turbo: "false"} do |f| %>
-          <div class="google button">
-            <div class="g-oath-button-logo"></div>
-            <%= f.submit "Sign in with Google", :class => "g-oath-button-text" %>
-          </div>
-      <% end %>
-    <% end %>
-  <% end %>
 </div>

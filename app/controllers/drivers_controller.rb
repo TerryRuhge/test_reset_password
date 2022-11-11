@@ -5,27 +5,27 @@ class DriversController < ApplicationController
 
   # GET /drivers or /drivers.json
   def index
-    @drivers = Drivers.all
+    @drivers = Driver.all
   end
 
-  # GET /drivers/1 or /drivers/1.json
+  # GET /driver/1 or /driver/1.json
   def show; end
 
-  # GET /drivers/new
+  # GET /driver/new
   def new
-    @driver = Drivers.new
+    @driver = Driver.new
   end
 
-  # GET /drivers/1/edit
+  # GET /driver/1/edit
   def edit; end
 
-  # POST /drivers or /drivers.json
+  # POST /driver or /driver.json
   def create
-    @driver = Drivers.new(driver_params)
+    @driver = Driver.new(driver_params)
 
     respond_to do |format|
       if @driver.save
-        format.html { redirect_to driver_url(@driver), notice: 'Drivers was successfully created.' }
+        format.html { redirect_to driver_url(@driver), notice: 'Driver was successfully created.' }
         format.json { render :show, status: :created, location: @driver }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -34,11 +34,11 @@ class DriversController < ApplicationController
     end
   end
 
-  # PATCH/PUT /drivers/1 or /drivers/1.json
+  # PATCH/PUT /driver/1 or /driver/1.json
   def update
     respond_to do |format|
       if @driver.update(driver_params)
-        format.html { redirect_to driver_url(@driver), notice: 'Drivers was successfully updated.' }
+        format.html { redirect_to driver_url(@driver), notice: 'Driver was successfully updated.' }
         format.json { render :show, status: :ok, location: @driver }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -47,12 +47,12 @@ class DriversController < ApplicationController
     end
   end
 
-  # DELETE /drivers/1 or /drivers/1.json
+  # DELETE /driver/1 or /driver/1.json
   def destroy
     @driver.destroy
 
     respond_to do |format|
-      format.html { redirect_to drivers_index_url, notice: 'Drivers was successfully destroyed.' }
+      format.html { redirect_to driver_url, notice: 'Driver was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -61,7 +61,7 @@ class DriversController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_driver
-    @driver = Drivers.find(params[:id])
+    @driver = Driver.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

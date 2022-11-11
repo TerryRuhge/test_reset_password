@@ -1,6 +1,6 @@
-<h1>Login</h1>
+<h1 class="title">Login</h1>
 
-<br>
+<br><br><br>
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
@@ -16,7 +16,15 @@
   <% end %>
 <% end %>
 
-<h4>OR</h4>
+<br><br>
+
+<div class="horiz-container2 full-width">
+  <span class="inline-hr"></span>
+  <h3 class="centered">OR</h3>
+  <span class="inline-hr"></span>
+</div>
+
+<br><br>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -30,7 +38,7 @@
   <% if devise_mapping.rememberable? %>
     <div class="field" style="display: flex; flex-direction: row;">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :remember_me, :class => "no-margins" %>
     </div>
   <% end %>
 
