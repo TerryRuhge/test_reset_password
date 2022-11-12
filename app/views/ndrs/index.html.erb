@@ -1,0 +1,56 @@
+<h1 class="title">NDR</h1>
+
+<p id="notice"><%= notice %></p>
+
+<div class="horiz-container">
+  <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
+</div>
+
+<div class="view-table">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Registered</th>
+        <th>Status</th>
+        <% if current_member.is_supervisor%>
+          <th colspan="3"> Actions</th>
+        <% else %>
+          <th colspan="1"> Join</th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @ndrs.each do |ndr| %>
+        <tr>
+          <td><%= ndr.ndr_id %></td>
+          <td><%= ndr.start_time&.strftime("%D - %I:%M%p") %></td>
+          <td><%= ndr.end_time&.strftime("%D - %I:%M%p") %></td>
+          <td><%= ndr.num_members_signed_up.to_s + " / " + ndr.num_members_desired.to_s%>
+          <% if ndr.is_active %>
+            <td>Active</td>
+          <% elsif Date.today < ndr.start_time %>
+            <td>Scheduled</td>
+          <% else %>
+            <td>Done</td>
+          <% end %>
+          <% if current_member.is_supervisor %>
+            <td class="b-cell"><%= link_to 'Show', ndr, :class => "black table button" %>
+            <td class="b-cell"><%= link_to 'Edit', edit_ndr_path(ndr), :class => "grey table button" %>
+            <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
+            <td class="b-cell"> <%= link_to 'Start', :class => "green table button"%>
+          <% else %>
+            <% if get_join_status(ndr, current_member) %>
+              <td class="b-cell"><%= link_to 'Join', ndr, remote: true, :class => "green table button" %>
+            <% else %>
+              <td class="b-cell"><%= link_to 'Leave', ndr, :class => "orange table button" %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -64,6 +64,12 @@ class DriversController < ApplicationController
     redirect_to drivers_checkin_path
   end
 
+  #Create Driver from ndr
+  def join_request(ndr_id)
+    @driver = Driver.new(member_id: current_member.member_id, ndr_id: ndr_id)
+    @driver.save
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -73,7 +79,12 @@ class DriversController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def driver_params
-    params.fetch(:driver, {})
+    params.require(:driver).permit(:member_id, :car_id, :check_in_time, :driver_status, :ndr_id)
+  end
+
+  #Makes sure an NDR is active and the current member is signed up as a driver
+  def authenticate_driver!
+    redirect_to ndrs_path, notice: "Please Sign up for the ndr to view your check-in" if !Driver.where(:member_id => current_member.member_id).where(:ndr_id => Ndr.find_by(:is_active => true).ndr_id).nil?
   end
 
   #Makes sure an NDR is active and the current member is signed up as a driver

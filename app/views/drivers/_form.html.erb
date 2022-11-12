@@ -10,8 +10,35 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="field">
+    <%= form.label :member_id, 'Member ID:' %>
+    <%= form.text_field :member_id %>
+  </div>
   
+  <div class="field">
+    <%= form.label :car_id, 'Car ID:' %>
+    <%= form.text_field :car_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :check_in_time, 'Check In Time:' %>
+    <%= form.date_select :check_in_time %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :driver_status, 'Driver Status:' %>
+    <%= form.text_field :driver_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ndr_id, 'NDR ID:' %>
+    <%= form.text_field :ndr_id %>
+  </div>
+
+  <br>
+
   <div class="actions">
-    <%= form.submit %>
+      <%= form.submit class: "green button" %>
   </div>
 <% end %>

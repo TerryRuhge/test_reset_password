@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_11_04_220351) do
 
+ActiveRecord::Schema.define(version: 20_221_102_001_807) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,11 +100,18 @@ ActiveRecord::Schema.define(version: 2022_11_04_220351) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "signs", force: :cascade do |t|
-    t.string "updatetime"
-    t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'requests', primary_key: 'request_id', force: :cascade do |t|
+    t.string 'name'
+    t.string 'phone_number'
+    t.string 'request_status'
+    t.string 'pick_up_loc'
+    t.string 'drop_off_loc'
+    t.integer 'num_passengers'
+    t.string 'additional_info'
+    t.integer 'queue_pos'
+    t.datetime 'time_cancelled'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
   create_table "whitelists", primary_key: "whitelist_id", force: :cascade do |t|

@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   resources :cars
   resources :whitelists
   resources :drivers
-  resources :signs
+  resources :ndrs
 
   root 'home#index'
 
-  
+  get 'ndrs', to: 'ndrs#index'
+
   get 'history', to: 'history#index'
   get '/member/rider_info', to: 'member#rider_info'
   get '/member/all_statuses', to: 'member#all_statuses'
@@ -28,6 +29,13 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'members/omniauth_callbacks'
   }
 
+  resources :whitelists
+  resources :drivers
+
+  resources :drivers do
+    post 'join', to: 'drivers#join_request', as: 'join_request'
+  end
+
   # for end product, index and show not being used (so disable later on)
   resources :requests do
     # pages handling buttons or actions (at the moment, status isn't used)
@@ -44,6 +52,14 @@ Rails.application.routes.draw do
   resources :assignments do
     # pages handling buttons or actions
     post 'dropped_off'
+  end
+
+  resources :ndrs do
+    post 'join', to: 'drivers#create', as: 'create_assignment'
+  end
+
+  resources :ndrs do
+    post 'join', to: 'drivers#create', as: 'create_assignment'
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
