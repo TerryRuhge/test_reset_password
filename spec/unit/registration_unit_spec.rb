@@ -13,14 +13,14 @@ RSpec.describe Member, type: :model do
   #     #described_class.create(request_id: 1, driver_id: 1)
   #   end
 
-  it 'is valid with valid attributes' do
-    expect(member).to be_valid
-  end
+  # it 'is valid with valid attributes' do
+  #   expect(member).to be_valid
+  # end
 
-  it 'is not valid without a first_name' do
-    member.first_name = nil
-    expect(member).not_to be_valid
-  end
+  # it 'is not valid without a first_name' do
+  #   member.first_name = nil
+  #   expect(member).not_to be_valid
+  # end
 
   it 'is not valid without a driver' do
     subject.last_name = nil

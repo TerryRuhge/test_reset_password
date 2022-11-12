@@ -1,3 +1,5 @@
+<h1 class="title">Assign Request with Driver</h1>
+
 <p id="notice"><%= notice %></p>
 
 <div class="horiz-container">
@@ -6,8 +8,6 @@
   <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "grey button small-margins" %>
   <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "grey wide button small-margins" %>
 </div>
-
-<h1 class="title">Assign Request with Driver</h1>
 
 <%= render 'form_assign', assignment: @assignment %>
 

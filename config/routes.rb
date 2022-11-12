@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :whitelists
   resources :drivers
   resources :ndrs
-  
+
   root 'home#index'
 
   get 'ndrs', to: 'ndrs#index'
@@ -14,12 +14,12 @@ Rails.application.routes.draw do
   get '/member/rider_info', to: 'member#rider_info'
   get '/member/all_statuses', to: 'member#all_statuses'
 
-  get '/requests/incoming', to: 'requests#incoming'
-  get '/requests/waiting', to: 'requests#waiting'
+  get '/incoming', to: 'requests#incoming', as: 'requests_incoming'
+  get '/waiting', to: 'requests#waiting', as: 'requests_waiting'
 
-  get '/assignments/riding', to: 'assignments#riding'
-  get '/assignments/done', to: 'assignments#done'
-  get '/assignments/queue', to: 'assignments#queue', as: 'search'
+  get '/riding', to: 'assignments#riding', as: 'assignments_riding'
+  get '/done', to: 'assignments#done', as: 'assignments_done'
+  get '/queue', to: 'assignments#queue', as: 'search'
 
   devise_for :members, controllers: {
     registrations: 'members/registrations',
@@ -49,9 +49,11 @@ Rails.application.routes.draw do
   # for end product, index and show not being used (so disable later on)
   resources :assignments do
     # pages handling buttons or actions
-    post 'picked_up'
     post 'dropped_off'
-    get 'notes'
+  end
+
+  resources :ndrs do
+    post 'join', to: 'drivers#create', as: 'create_assignment'
   end
 
   resources :ndrs do
