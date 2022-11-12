@@ -63,7 +63,7 @@ class NdrsController < ApplicationController
     redirect_to ndrs_path
   end
 
-  #Detect if member has already signed up for ndr
+  # Detect if member has already signed up for ndr
   def get_join_status(test_ndr, test_member)
     return (Driver.find_by(ndr_id: test_ndr.ndr_id, member_id: test_member.member_id)).nil?
   end
