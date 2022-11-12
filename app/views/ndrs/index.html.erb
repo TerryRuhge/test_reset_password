@@ -15,8 +15,9 @@
         <th>End Time</th>
         <th>Registered</th>
         <th>Status</th>
-        <% if current_member.is_supervisor%>
-          <th colspan="3"> Actions</th>
+        <% if !current_member.is_supervisor%>
+          <th colspan="4"> Actions</th>
+          <th> Join </th>
         <% else %>
           <th colspan="1"> Join</th>
         <% end %>
@@ -37,18 +38,23 @@
           <% else %>
             <td>Done</td>
           <% end %>
-          <% if current_member.is_supervisor %>
+          <% if !current_member.is_supervisor %>
             <td class="b-cell"><%= link_to 'Show', ndr, :class => "black table button" %>
             <td class="b-cell"><%= link_to 'Edit', edit_ndr_path(ndr), :class => "grey table button" %>
             <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
-            <td class="b-cell"> <%= link_to 'Start', :class => "green table button"%>
-          <% else %>
-            <% if get_join_status(ndr, current_member) %>
-              <td class="b-cell"><%= link_to 'Join', ndr, remote: true, :class => "green table button" %>
+            <% if !ndr.is_active %>
+              <td class="b-cell"> <%= button_to 'Start', :class => "green table button" %>
             <% else %>
-              <td class="b-cell"><%= link_to 'Leave', ndr, :class => "orange table button" %>
+              <td class="b-cell"> <%= button_to 'Stop', :class => "orange table button" %>
             <% end %>
           <% end %>
+          <% if get_join_status(ndr, current_member) %>
+            <td class="b-cell"><%= link_to 'Join', ndr_drivers_join_path(ndr), :class => "green table button" %>
+          <% else %>
+            <% driver = Driver.find_by(ndr_id: ndr.ndr_id, member_id: current_member.member_id) %>
+            <td class="b-cell"><%= button_to 'Leave', driver_leave_path(driver), data: { confirm: 'Are you sure?' }, :class => "orange table button" %>
+          <% end %>
+
         </tr>
       <% end %>
     </tbody>

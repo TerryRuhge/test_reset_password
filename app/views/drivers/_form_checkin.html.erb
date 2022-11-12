@@ -1,7 +1,7 @@
 <%= form_with(model: driver) do |form| %>
   
   <div class=field>
-    <%= form.label :driver_statuss, "Current Status" %>
+    <%= form.label :driver_status, "Current Status" %>
     <%= form.select :driver_status, ['On-Route to Pick-up Location', 'On-Route to Drop-off Location', 'Picked up rider', 'Dropped Off Rider', 'Other'] %>
   </div>
   

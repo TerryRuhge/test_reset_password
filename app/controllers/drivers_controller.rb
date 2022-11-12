@@ -57,18 +57,60 @@ class DriversController < ApplicationController
     end
   end
 
-  # GET /driver/checkin
-  def checkin
-    @driver1 = Driver.find(Member.find(params[:id]).member_id)
-    @driver1.update(driver_status: :driver_status, check_in_time: DateTime.now)
-    redirect_to drivers_checkin_path
+  # POST /driver/checkin_update
+  def checkin_update
+    
+    @driver = Driver.find_by(member_id: current_member.member_id, ndr_id: Ndr.find_by(is_active: true))
+    @driver.update(driver_update_params)
+    #@driver.update_attribute(:driver_status, :driver_status)
+    @driver.update_attribute(:check_in_time, DateTime.now)
+    p @driver
+    redirect_to root_path
   end
 
-  #Create Driver from ndr
-  def join_request(ndr_id)
-    @driver = Driver.new(member_id: current_member.member_id, ndr_id: ndr_id)
-    @driver.save
+  # GET /driver/join
+  def join
+    @driver = Driver.new
+    @ndr = Ndr.find(params[:ndr_id])
+    @member = Member.find_by(member_id: current_member.member_id)
   end
+
+  #POST /driver/join
+  def join_confirm
+    @driver = Driver.new(driver_params)
+    @ndr = Ndr.find(params[:ndr_id])
+    @member = Member.find_by(member_id: current_member.member_id)
+
+    respond_to do |format|
+      if @driver.save
+        @ndr = Ndr.find_by(:ndr_id => @driver.ndr_id)
+        @ndr.update_attribute(:num_members_signed_up, @ndr.num_members_signed_up + 1)
+
+        format.html { redirect_to ndrs_path, notice: 'Driver was successfully created.' }
+        format.json { head :no_content }
+      else
+
+        format.html { render :join, status: :unprocessable_entity }
+        format.json { render json: @driver.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+# POST /drivers/1/leave
+def leave()
+  @driver = Driver.find(params[:driver_id])
+  @driver.destroy
+  @ndr = Ndr.find_by(ndr_id: @driver.ndr_id)
+  @ndr.update_attribute(:num_members_signed_up, @ndr.num_members_signed_up - 1)
+
+  respond_to do |format|
+    if current_member
+      format.html { redirect_back fallback_location: ndrs_path, notice: 'Driver was successfully Deleted.' }
+      format.json { head :no_content }
+    end
+  end
+end
+
 
   private
 
@@ -77,18 +119,23 @@ class DriversController < ApplicationController
     @driver = Driver.find(params[:id])
   end
 
+  def set_driver_id
+    @driver = Driver.find(params[:driver_id])
+  end
+
   # Only allow a list of trusted parameters through.
   def driver_params
     params.require(:driver).permit(:member_id, :car_id, :check_in_time, :driver_status, :ndr_id)
   end
 
-  #Makes sure an NDR is active and the current member is signed up as a driver
-  def authenticate_driver!
-    redirect_to ndrs_path, notice: "Please Sign up for the ndr to view your check-in" if !Driver.where(:member_id => current_member.member_id).where(:ndr_id => Ndr.find_by(:is_active => true).ndr_id).nil?
+  def driver_update_params
+    params.permit(:driver_status)
   end
 
   #Makes sure an NDR is active and the current member is signed up as a driver
   def authenticate_driver!
-    redirect_to ndrs_path, notice: "Please Sign up for the ndr to view your check-in" if !Driver.where(:member_id => current_member.member_id).where(:ndr_id => Ndr.find_by(:is_active => true).ndr_id).nil?
+    p Driver.where(member_id: current_member.member_id, ndr_id: Ndr.where(is_active: true)).empty?
+    p Driver.where(member_id: current_member.member_id, ndr_id: Ndr.where(is_active: true))
+    redirect_to ndrs_path, notice: "Please join a NDR to view your check-in" if Driver.where(member_id: current_member.member_id, ndr_id: Ndr.where(is_active: true)).empty?
   end
 end

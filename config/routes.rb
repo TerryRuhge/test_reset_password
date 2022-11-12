@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/queue', to: 'assignments#queue', as: 'search'
 
   get '/checkin', to: 'drivers#checkin', as: 'drivers_checkin'
+  post '/checkin', to: 'drivers#checkin_update', as: 'drivers_checkin_update'
 
   devise_for :members, controllers: {
     registrations: 'members/registrations',
@@ -32,8 +33,9 @@ Rails.application.routes.draw do
   resources :whitelists
   resources :drivers
 
-  resources :drivers do
-    post 'join', to: 'drivers#join_request', as: 'join_request'
+  resources :ndrs do 
+    get 'join', to: 'drivers#join', as: 'join'
+    post 'join', to: 'drivers#join_confirm', as: 'join_confirm_path'
   end
 
   # for end product, index and show not being used (so disable later on)
@@ -55,12 +57,11 @@ Rails.application.routes.draw do
   end
 
   resources :ndrs do
-    post 'join', to: 'drivers#create', as: 'create_assignment'
+    post 'join', to: 'drivers#join', as: 'drivers_join'
   end
 
-  resources :ndrs do
-    post 'join', to: 'drivers#create', as: 'create_assignment'
+  resources :drivers do
+    post 'leave'
   end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
