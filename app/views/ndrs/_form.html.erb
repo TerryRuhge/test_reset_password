@@ -11,50 +11,69 @@
       </div>
     <% end %>
     
-
     <div class="horiz-container">
-      <div class="field">
-        <%= form.label :start_time, "Start Date" %>
-        <%= form.date_select :start_time, ignore_time: true, order: [:day, :month, :year], start_year: Date.today.year, end_year: Date.today.year + 4 %>
+      <div class="vert-container centered">
+        <h2>Start</h2>
+        <div class="field centered">
+          <%= form.label :start_time, "Date" %>
+          <div class="field row">
+            <%= form.date_select :start_time, ignore_time: true, order: [:month, :day, :year], start_year: Date.today.year, end_year: Date.today.year + 4 %>
+          </div>
+        </div>
+
+        <div class="field centered">
+          <%= form.label :start_time, "Time"  %>
+          <div class="field row">
+            <%= form.time_select :start_time, ignore_date: true, ampm: true, time_seperator: ""  %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="vert-container centered">
+        <h2>End</h2>
+        <div class="field centered">
+          <%= form.label :end_time, "Date"  %>
+          <div class="field row">
+          <%= form.date_select :end_time, ignore_time: true, order: [:month, :day, :year], start_year: Date.today.year, end_year: Date.today.year + 4  %>
+          </div>
+        </div>
+
+        <div class="field centered">
+          <%= form.label :end_time, "Time"  %>
+          <div class="field row">
+            <%= form.time_select :end_time, ignore_date: true, ampm: true, time_seperator: ''%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div class="vert-container">
+      <div class="field wide">
+        <%= form.label :num_members_desired, "How many members need to attend?"  %>
+        <div class="field row wide left-justified">
+          <%= form.text_field :num_members_desired %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= form.label :start_time, "End Time"  %>
-        <%= form.time_select :start_time, ignore_date: true, ampm: true, time_seperator: ""  %>
-      </div>
-    </div>
-    
-    <div class="horiz-container">
-      <div class="field">
-        <%= form.label :end_time, "End Date"  %>
-        <%= form.date_select :end_time, ignore_time: true, order: [:day, :month, :year], start_year: Date.today.year, end_year: Date.today.year + 4  %>
+      <div class="field horiz-container row wide spaced">
+        <%= form.label :is_active, "Start Now?"  %>
+        <%= form.check_box :is_active %>
       </div>
 
-      <div class="field">
-        <%= form.label :end_time, "End Time"  %>
-        <%= form.time_select :end_time, ignore_date: true, ampm: true, time_seperator: ''%>
+      <div class="field horiz-container row wide spaced">
+        <%= form.label :dues_restrict, "Restrict Members with active dues?"  %>
+        <%= form.check_box :dues_restrict %>
+      </div>
+
+      <div class="field horiz-container row wide spaced">
+        <%= form.label :training_restrict, "Restrict Members without training?"  %>
+        <%= form.check_box :training_restrict %>
       </div>
     </div>
 
-    <div class="field">
-      <%= form.label :is_active, "Start Now?"  %>
-      <%= form.check_box :is_active %>
-    </div>
-
-    <div class="field">
-      <%= form.label :num_members_desired, "How many members do you need to attend?"  %>
-      <%= form.text_field :num_members_desired %>
-    </div>
-
-    <div class="field">
-      <%= form.label :dues_restrict, "Restrict Members' with active dues?"  %>
-      <%= form.check_box :dues_restrict %>
-    </div>
-
-    <div class="field">
-      <%= form.label :training_restrict, "Restrict Members' without training?"  %>
-      <%= form.check_box :training_restrict %>
-    </div>
+    <br><br>
 
     <div class="actions">
       <%= form.submit class: "green button" %>

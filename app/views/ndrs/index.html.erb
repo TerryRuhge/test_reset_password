@@ -3,7 +3,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="horiz-container">
-  <%= link_to 'Create', new_ndr_path, :class => "grey button small-margins" %>
+  <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
 </div>
 
 <div class="view-table">
@@ -41,12 +41,12 @@
             <td class="b-cell"><%= link_to 'Show', ndr, :class => "black table button" %>
             <td class="b-cell"><%= link_to 'Edit', edit_ndr_path(ndr), :class => "grey table button" %>
             <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
-            <td class="b-cell"> <%= link_to 'Start', :class => "dark-red table button"%>
+            <td class="b-cell"> <%= link_to 'Start', :class => "green table button"%>
           <% else %>
             <% if get_join_status(ndr, current_member) %>
               <td class="b-cell"><%= link_to 'Join', ndr, remote: true, :class => "green table button" %>
             <% else %>
-              <td class="b-cell"><%= link_to 'Leave', ndr, :class => "green table button" %>
+              <td class="b-cell"><%= link_to 'Leave', ndr, :class => "orange table button" %>
             <% end %>
           <% end %>
         </tr>
@@ -54,5 +54,3 @@
     </tbody>
   </table>
 </div>
-
-<br>
