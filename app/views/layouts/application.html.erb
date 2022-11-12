@@ -19,10 +19,11 @@
         <div class="left-side">
           <div class="current-member left-side">
             <div class="admin-options">
-              <% if current_member and !current_member.is_supervisor%> 
+              <% if current_member and !current_member.is_supervisor %> 
                 <%= link_to "Phone Room", requests_incoming_path %>
                 <%= link_to "Assigned Rider", member_rider_info_path %>
-                <%= link_to "NDR", ndrs_path%>
+                <%= link_to "NDR", ndrs_path %>
+                <%= link_to "Driver Statuses", drivers_path %>
               <% end %>
               <% if current_member and !current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
@@ -52,10 +53,11 @@
             </div>
 
             <div class="mobile-admin-options">
-              <% if current_member and !current_member.is_supervisor%> 
-                <%= link_to "Phone Room", new_request_path %>
+              <% if current_member and !current_member.is_supervisor %> 
+                <%= link_to "Phone Room", requests_incoming_path %>
                 <%= link_to "Assigned Rider", member_rider_info_path %>
-                <%= link_to "NDR", ndrs_path%>
+                <%= link_to "NDR", ndrs_path %>
+                <%= link_to "Driver Statuses", drivers_path %>
               <% end %>
 
               <% if current_member and !current_member.is_admin%>

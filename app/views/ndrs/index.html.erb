@@ -42,6 +42,8 @@
             <td class="b-cell"><%= link_to 'Show', ndr, :class => "black table button" %>
             <td class="b-cell"><%= link_to 'Edit', edit_ndr_path(ndr), :class => "grey table button" %>
             <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
+            
+            <%# Start the NDR, setting start_time to the current time %>
             <% if !ndr.is_active %>
               <td class="b-cell"> <%= button_to 'Start', ndr, method: :put, 
                 params: {:ndr => {
@@ -57,6 +59,8 @@
                   :training_restrict => ndr.training_restrict
                 }}, class: "green table button"
               %>
+
+            <%# Stop the NDR, setting end_time to the current time %>
             <% else %>
               <td class="b-cell"> <%= button_to 'Stop', ndr, method: :put,
                 params: {:ndr => {
@@ -74,6 +78,8 @@
               %>
             <% end %>
           <% end %>
+
+          <%# Join the NDR and create a driver for the NDR %>
           <% if get_join_status(ndr, current_member) %>
             <td class="b-cell"><%= link_to 'Join', ndr_drivers_join_path(ndr), :class => "blue table button" %>
           <% else %>
