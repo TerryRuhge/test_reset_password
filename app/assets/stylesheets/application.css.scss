@@ -638,6 +638,12 @@ a:visited:not(.link) {color: #565656;}
   &:hover {background-color: rgb(211, 106, 0);}
 }
 
+.blue {
+  background-color: #006075;
+  input {background-color: #006075;}
+  &:hover {background-color: #002f43;}
+}
+
 .google {
   background-color: rgb(255, 255, 255);
   justify-content: space-between;

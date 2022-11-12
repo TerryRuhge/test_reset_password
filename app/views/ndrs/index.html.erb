@@ -43,13 +43,39 @@
             <td class="b-cell"><%= link_to 'Edit', edit_ndr_path(ndr), :class => "grey table button" %>
             <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
             <% if !ndr.is_active %>
-              <td class="b-cell"> <%= button_to 'Start', :class => "green table button" %>
+              <td class="b-cell"> <%= button_to 'Start', ndr, method: :put, 
+                params: {:ndr => {
+                  :ndr_id => ndr.id,
+                  :is_active => true,
+                  :member_id => ndr.member_id,
+                  :start_time => Time.now,
+                  :end_time => ndr.end_time,
+                  :members_needed => ndr.members_needed,
+                  :num_members_desired => ndr.num_members_desired,
+                  :num_members_signed_up => ndr.num_members_signed_up,
+                  :dues_restrict => ndr.dues_restrict,
+                  :training_restrict => ndr.training_restrict
+                }}, class: "green table button"
+              %>
             <% else %>
-              <td class="b-cell"> <%= button_to 'Stop', :class => "orange table button" %>
+              <td class="b-cell"> <%= button_to 'Stop', ndr, method: :put,
+                params: {:ndr => {
+                  :ndr_id => ndr.id,
+                  :is_active => false,
+                  :member_id => ndr.member_id,
+                  :start_time => ndr.start_time,
+                  :end_time => Time.now,
+                  :members_needed => ndr.members_needed,
+                  :num_members_desired => ndr.num_members_desired,
+                  :num_members_signed_up => ndr.num_members_signed_up,
+                  :dues_restrict => ndr.dues_restrict,
+                  :training_restrict => ndr.training_restrict
+                }}, class: "orange table button"
+              %>
             <% end %>
           <% end %>
           <% if get_join_status(ndr, current_member) %>
-            <td class="b-cell"><%= link_to 'Join', ndr_drivers_join_path(ndr), :class => "green table button" %>
+            <td class="b-cell"><%= link_to 'Join', ndr_drivers_join_path(ndr), :class => "blue table button" %>
           <% else %>
             <% driver = Driver.find_by(ndr_id: ndr.ndr_id, member_id: current_member.member_id) %>
             <td class="b-cell"><%= button_to 'Leave', driver_leave_path(driver), data: { confirm: 'Are you sure?' }, :class => "orange table button" %>
