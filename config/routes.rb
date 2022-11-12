@@ -56,9 +56,5 @@ Rails.application.routes.draw do
     post 'join', to: 'drivers#create', as: 'create_assignment'
   end
 
-  resources :ndrs do
-    post 'join', to: 'drivers#create', as: 'create_assignment'
-  end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

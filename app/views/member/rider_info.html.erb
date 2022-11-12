@@ -1,12 +1,12 @@
 <h1 class="title">Rider Information</h1>
 
-<%= rider_info %>
+<h2> Assigned Rides:</h2>
 <% @assigned_rides.each do |assignment| %>
       <tr>
-        <td><%= assignment.queue_pos %></td>
         <td><%= Request.find_by(request_id: assignment.request_id).request_status %></td>
         <td><%= assignment.request_id %></td>
         <td><%= assignment.driver_id %></td>
         <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>ASDF</td>
       </tr>
 <% end %>

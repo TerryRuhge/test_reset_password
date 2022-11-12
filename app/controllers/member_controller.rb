@@ -6,7 +6,7 @@ class MemberController < ApplicationController
   def index; end
 
   def rider_info
-    @assigned_rides = Assignment.where(driver_id: @driver).where.not(queue_pos: '0').order('request_id ASC')
+    @assigned_rides = Assignment.where(member_id: @member).order('request_id ASC')
   end
 
   def all_statuses; end
