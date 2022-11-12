@@ -2,7 +2,7 @@
 
 class DriversController < ApplicationController
   before_action :set_driver, only: %i[show edit update destroy]
-
+  before_action :authenticate_driver!, only: :checkin
   # GET /drivers or /drivers.json
   def index
     @drivers = Driver.all
@@ -57,10 +57,12 @@ class DriversController < ApplicationController
     end
   end
 
-  # # GET /driver/:member_id/:ndr_id/checkin
-  # def checkin
-
-  # end
+  # GET /driver/checkin
+  def checkin
+    @driver1 = Driver.find(Member.find(params[:id]).member_id)
+    @driver1.update(driver_status: :driver_status, check_in_time: DateTime.now)
+    redirect_to drivers_checkin_path
+  end
 
   private
 
@@ -72,5 +74,10 @@ class DriversController < ApplicationController
   # Only allow a list of trusted parameters through.
   def driver_params
     params.fetch(:driver, {})
+  end
+
+  #Makes sure an NDR is active and the current member is signed up as a driver
+  def authenticate_driver!
+    redirect_to ndrs_path, notice: "Please Sign up for the ndr to view your check-in" if !Driver.where(:member_id => current_member.member_id).where(:ndr_id => Ndr.find_by(:is_active => true).ndr_id).nil?
   end
 end

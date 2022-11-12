@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/done', to: 'assignments#done', as: 'assignments_done'
   get '/queue', to: 'assignments#queue', as: 'search'
 
-  get '/drivers/check_in', to: 'drivers#checkin'
+  get '/checkin', to: 'drivers#checkin', as: 'drivers_checkin'
 
   devise_for :members, controllers: {
     registrations: 'members/registrations',
