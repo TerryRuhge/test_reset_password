@@ -53,7 +53,7 @@
             </div>
 
             <div class="mobile-admin-options">
-              <% if current_member and !current_member.is_supervisor %> 
+              <% if current_member and !current_member.is_supervisor%> 
                 <%= link_to "Phone Room", requests_incoming_path %>
                 <%= link_to "Assigned Rider", member_rider_info_path %>
                 <%= link_to "NDR", ndrs_path %>

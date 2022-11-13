@@ -378,6 +378,14 @@ a:visited:not(.link) {color: #565656;}
 
 .full-width {width: 99%;}
 
+.hide-on-mobile-only {
+  display: flex;
+}
+
+.show-on-mobile-only {
+  display: none;
+}
+
 
 /* -------------------------------------------------------------------------- */
 /*                               TEXT MODIFIERS                               */
@@ -738,6 +746,14 @@ a:visited:not(.link) {color: #565656;}
 @media only screen and (max-device-width: 480px) {
   body {padding-bottom: 10vh;}
   
+  .show-on-mobile-only {
+    display: flex !important;
+  }
+
+  .hide-on-mobile-only {
+    display: none !important;
+  }
+
   .card {
     width: 100vw;
     min-height: 40vh;
