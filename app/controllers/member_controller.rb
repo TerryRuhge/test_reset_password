@@ -5,10 +5,17 @@ class MemberController < ApplicationController
 
   def index; end
 
+  def no_ride_assigned; end
+  
   def rider_info
-    @assigned_rides = Assignment.where(member_id: @member).order('request_id ASC')
+    @assigned_rides = Assignment.where(member_id: current_member.member_id, drop_off_time: nil)
+    if @assigned_rides.empty?
+      redirect_to no_ride_assigned_path
+    end
+    @assigned_rides.each do |ride|
+      @ride_info = Request.where(request_id:ride.request_id)
+    end
   end
 
   def all_statuses; end
-  helper_method :rider_info
 end
