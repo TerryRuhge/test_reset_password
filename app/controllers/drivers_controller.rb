@@ -16,6 +16,9 @@ class DriversController < ApplicationController
     @driver = Driver.new
   end
 
+  # GET /driver/checkpoints
+  def checkpoints; end
+  
   # GET /driver/1/edit
   def edit; end
 
