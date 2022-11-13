@@ -57,12 +57,6 @@ class NdrsController < ApplicationController
     end
   end
 
-  def join_ndr(test_ndr, test_member)
-    test_ndr.num_members_signed_up = test_ndr.num_members_signed_up + 1
-    create_driver!(test_ndr, test_member)
-    redirect_to ndrs_path
-  end
-
   # Detect if member has already signed up for ndr
   def get_join_status(test_ndr, test_member)
     return (Driver.find_by(ndr_id: test_ndr.ndr_id, member_id: test_member.member_id)).nil?

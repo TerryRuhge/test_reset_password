@@ -285,12 +285,12 @@ a:visited:not(.link) {color: #565656;}
 
     .member-options {
       a {
-        width: 10vh;
+        width: 7vw;
         height: 2vh;
       }
 
       input {
-        width: 12vh;
+        width: 7vw;
         height: 2.5vh;
 
         padding-left: 0;
@@ -523,7 +523,9 @@ a:visited:not(.link) {color: #565656;}
     }
   }
 
-  td {background-color: #dddddd;}
+  td {
+    background-color: #dddddd;
+  }
 
   tr:nth-child(even) {
     td {background-color: white;}
@@ -599,6 +601,10 @@ a:visited:not(.link) {color: #565656;}
     margin-right: 0;
     margin-left: 0;
     border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -612,6 +618,12 @@ a:visited:not(.link) {color: #565656;}
   background-color: rgb(191, 191, 191);
   input {background-color: rgb(191, 191, 191);}
   &:hover{background-color: rgb(133, 133, 133);}
+}
+
+.dark-grey {
+  background-color: #8e8e8e;
+  input {background-color: #8e8e8e;}
+  &:hover{background-color: #484848;}
 }
 
 .black {
@@ -636,6 +648,16 @@ a:visited:not(.link) {color: #565656;}
   background-color: rgb(255, 142, 28);
   input {background-color: rgb(255, 142, 28);}
   &:hover {background-color: rgb(211, 106, 0);}
+}
+
+.blue {
+  background-color: #006075;
+  input {background-color: #006075;}
+  &:hover {background-color: #002f43;}
+}
+
+.fill {
+  width: 11vh !important;
 }
 
 .google {
@@ -836,12 +858,12 @@ a:visited:not(.link) {color: #565656;}
           width: 45vw;
         }
 
-        * {
+        input {
           display: flex;
           justify-content: center;
           text-align: center;
 
-          width: 45vw;
+          width: 33vw;
 
           font-size: 3.5vmin;
         }

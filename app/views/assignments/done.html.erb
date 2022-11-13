@@ -34,8 +34,8 @@
           <% car = Car.find_by_car_id(assignment.car_id) %>
           <% member = Member.find_by_member_id(assignment.member_id) %>
           <tr>
-            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
-            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "dark-grey table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "dark-grey table button" %></td>
             <td><%= request.request_status %></td>
             <td><%= car.color %> <%= car.make %> <%= car.model %></td>
             <td><%= request.name %></td>
@@ -49,8 +49,8 @@
           </tr>
         <% else %>
            <tr>
-            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
-            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "dark-grey table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "dark-grey table button" %></td>
             <td><%= request.request_status %></td>
             <td></td>
             <td><%= request.name %></td>
