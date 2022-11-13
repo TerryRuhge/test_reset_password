@@ -18,7 +18,7 @@ class Member < ApplicationRecord
   # validates :first_name, presence: true
   # validates :last_name, :first_name, :is_male, :phone, :address, :emergency_full_name, :emergency_phone_number, presence: true, on: [:update]
   validates :last_name, :first_name, :phone, :address, :emergency_full_name, :emergency_phone_number, presence: true, if: :valid_non_provider?
-  validate :validate_email_on_whitelist, if: :valid_non_provider?
+  #validate :validate_email_on_whitelist, if: :valid_non_provider?
 
   def validate_email_on_whitelist
     email = self.email 

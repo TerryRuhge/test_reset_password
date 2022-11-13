@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   resources :cars
   resources :whitelists
   resources :drivers
+  resources :ndrs
 
   root 'home#index'
+
+  get 'ndrs', to: 'ndrs#index'
 
   get 'history', to: 'history#index'
   get '/member/rider_info', to: 'member#rider_info'
@@ -19,6 +22,9 @@ Rails.application.routes.draw do
   get '/done', to: 'assignments#done', as: 'assignments_done'
   get '/queue', to: 'assignments#queue', as: 'search'
 
+  get '/checkin', to: 'drivers#checkin', as: 'drivers_checkin'
+  post '/checkin', to: 'drivers#checkin_update', as: 'drivers_checkin_update'
+
   devise_for :members, controllers: {
     registrations: 'members/registrations',
     sessions: 'members/sessions',
@@ -27,6 +33,11 @@ Rails.application.routes.draw do
 
   resources :whitelists
   resources :drivers
+
+  resources :ndrs do 
+    get 'join', to: 'drivers#join', as: 'join'
+    post 'join', to: 'drivers#join_confirm', as: 'join_confirm_path'
+  end
 
   # for end product, index and show not being used (so disable later on)
   resources :requests do
@@ -46,5 +57,12 @@ Rails.application.routes.draw do
     post 'dropped_off'
   end
 
+  resources :ndrs do
+    post 'join', to: 'drivers#join', as: 'drivers_join'
+  end
+
+  resources :drivers do
+    post 'leave'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

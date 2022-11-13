@@ -2,24 +2,43 @@
 
 <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<br><br><br>
 
-  <tbody>
-    <% @drivers.each do |driver| %>
+<div class="view-table">
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to 'Show', driver %></td>
-        <td><%= link_to 'Edit', edit_driver_path(driver) %></td>
-        <td><%= link_to 'Destroy', driver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th colspan="2">Actions</th>
+        <th colspan="2">Name</th>
+        <th>Phone</th>
+        <th>Car ID</th>
+        <th>Last Check In Time</th>
+        <th>Last Check In Date</th>
+        <th>Status</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @drivers.each do |driver| %>
+        <% temp_member = Member.find_by(member_id: driver.member_id) %>
+        <tr>
+          <td class="b-cell"><%= link_to 'Edit', edit_driver_path(driver), class: "orange table button" %></td>
+          <td class="b-cell"><%= link_to 'Remove', driver, method: :delete, data: { confirm: 'Are you sure?' }, class: "red table button" %></td>
+          <td><%= temp_member.first_name %></td>
+          <td><%= temp_member.last_name %></td>
+          <td><%= temp_member.phone %></td>
+          <td><%= driver.car_id %></td>
+          <td><%= driver.check_in_time.strftime("%I:%M %p") %></td>
+          <td><%= driver.check_in_time.strftime("%D") %></td>
+          <td><%= driver.driver_status %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br><br>
+
+<%= link_to 'New Driver', new_driver_path, class: "green button" %>
 <br>
-
-<%= link_to 'New Driver', new_driver_path %>
+<%= link_to 'Back', :back, class: "grey button" %>
