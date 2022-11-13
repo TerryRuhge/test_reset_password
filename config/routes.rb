@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'history', to: 'history#index'
   get '/member/rider_info', to: 'member#rider_info'
+  get 'no_ride_assigned', to: 'member#no_ride_assigned'
   get '/member/all_statuses', to: 'member#all_statuses'
 
   get '/incoming', to: 'requests#incoming', as: 'requests_incoming'
