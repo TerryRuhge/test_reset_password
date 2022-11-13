@@ -5,7 +5,9 @@
     <%= form.select :driver_status, ['On-Route to Pick-up Location', 'On-Route to Drop-off Location', 'Picked up rider', 'Dropped Off Rider', 'Other'] %>
   </div>
   
+  <br><br>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "green button" %>
   </div>
 <% end %>
