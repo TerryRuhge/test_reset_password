@@ -11,7 +11,7 @@
         <th>First Name</th>
         <th>Supervisor Status</th>
         <th>Admin Status</th>
-        <th colspan="3">Actions</th>
+        <th colspan="2">Actions</th>
 
 
       </tr>
@@ -24,6 +24,8 @@
           <td><%= member.first_name %></td>
           <td><%= member.is_supervisor %></td>
           <td><%= member.is_admin %></td>
+          <td>---</td>
+          <td>---</td>
         </tr>
       <% end %>
 
@@ -33,8 +35,8 @@
           <td><%= member.first_name %></td>
           <td><%= member.is_supervisor %></td>
           <td><%= member.is_admin %></td>
-          <td><%= button_to 'supervisor change', update_supervisor_member_path(member.id)%></td>
-          <td><%= button_to 'admin change', update_admin_member_path(member.id)%></td>
+          <td class="b-cell"><%= button_to 'Toggle Supervisor', update_supervisor_member_path(member.id), class: "green table button fill"%></td>
+          <td class="b-cell"><%= button_to 'Toggle Admin', update_admin_member_path(member.id), class: "blue table button fill" %></td>
         </tr>
       <% end %>
     </tbody>
