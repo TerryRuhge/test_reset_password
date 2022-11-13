@@ -285,12 +285,12 @@ a:visited:not(.link) {color: #565656;}
 
     .member-options {
       a {
-        width: 10vh;
+        width: 7vw;
         height: 2vh;
       }
 
       input {
-        width: 12vh;
+        width: 7vw;
         height: 2.5vh;
 
         padding-left: 0;
@@ -523,7 +523,9 @@ a:visited:not(.link) {color: #565656;}
     }
   }
 
-  td {background-color: #dddddd;}
+  td {
+    background-color: #dddddd;
+  }
 
   tr:nth-child(even) {
     td {background-color: white;}
