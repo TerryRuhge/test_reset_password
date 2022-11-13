@@ -4,7 +4,7 @@ require 'date'
 
 class AssignmentsController < ApplicationController
   before_action :set_assignment, only: %i[show edit update destroy]
-  before_action :set_assignment_id, only: %i[picked_up dropped_off notes]
+  before_action :set_assignment_id, only: %i[dropped_off]
 
   # GET /assignments or /assignments.json
   def index
@@ -28,19 +28,12 @@ class AssignmentsController < ApplicationController
     @requests_done = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: %w[Done Cancelled Missed]).order('updated_at DESC')
 
     # Check spot in line
-    @all_requests_waiting = Request.where(request_status: 'Unassigned').order('created_at ASC')
-    logger.debug "\nRequests Waiting: #{@requests_waiting.inspect}"
-    if !@requests_waiting.empty?
-      @spot_in_line = @all_requests_waiting.index(@requests_waiting.first) + 1
-    end
+    # logger.debug "\nRequests Waiting: #{@requests_waiting.inspect}"
+    @spot_in_line = @requests_waiting.first.queue_pos unless @requests_waiting.empty?
 
     # Get car information for request
     @current_riding_assignment = Assignment.find_by(request_id: @requests_riding.first)
-    if @current_riding_assignment
-      @current_car = Car.find_by(car_id: @current_riding_assignment.car_id)
-    else
-      @current_car = nil
-    end
+    @current_car = (Car.find_by(car_id: @current_riding_assignment.car_id) if @current_riding_assignment)
   end
 
   # GET /assignments/1 or /assignments/1.json
@@ -60,10 +53,16 @@ class AssignmentsController < ApplicationController
   def assign
     @assignment = Assignment.new
     @request = Request.find(params[:request_id])
+
+    # for the select field of cars
+    @cars = Car.order('make ASC').order('model ASC').order('color ASC')
   end
 
   # GET /assignments/1/edit
-  def edit; end
+  def edit
+    @request = Request.find_by_request_id(@assignment.request_id)
+    @cars = Car.order('make ASC').order('model ASC').order('color ASC')
+  end
 
   # POST /assignments or /assignments.json
   def create
@@ -80,9 +79,15 @@ class AssignmentsController < ApplicationController
         @request.update_attribute(:queue_pos, 0)
         @request.update_attribute(:request_status, 'Assigned Driver')
 
+        # recording which member made the assignment
+        @assignment.update_attribute(:member_id, current_member.member_id)
+
         format.html { redirect_to assignments_riding_url, notice: 'Assignment was successfully created.' }
         format.json { head :no_content }
       else
+        # this line was necessary to prevent website from erroring out upon rerouting
+        @cars = Car.order('make ASC').order('model ASC').order('color ASC')
+
         format.html { render :assign, status: :unprocessable_entity }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
       end
@@ -96,19 +101,13 @@ class AssignmentsController < ApplicationController
         format.html { redirect_to assignments_riding_url, notice: 'Assignment was successfully updated.' }
         format.json { head :no_content }
       else
+        # this line was necessary to prevent website from erroring out upon rerouting
+        @request = Request.find_by_request_id(@assignment.request_id)
+        @cars = Car.order('make ASC').order('model ASC').order('color ASC')
+
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @assignment.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # POST /assignments/1/picked_up
-  def picked_up
-    @assignment.update_attribute(:pick_up_time, DateTime.now.strftime('%d/%m/%Y %H:%M'))
-
-    respond_to do |format|
-      format.html { redirect_to assignment_url(@assignment), notice: 'Assignment was successfully updated.' }
-      format.json { head :no_content }
     end
   end
 
@@ -121,9 +120,6 @@ class AssignmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  # GET /assignments/1/notes
-  def notes; end
 
   # DELETE /assignments/1 or /assignments/1.json
   def destroy

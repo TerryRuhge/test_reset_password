@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CreateRequests < ActiveRecord::Migration[6.1]
-  
+
   def change
     create_table :requests, id: false do |t|
       t.primary_key :request_id
@@ -13,6 +13,7 @@ class CreateRequests < ActiveRecord::Migration[6.1]
       t.integer :num_passengers
       t.string :additional_info
       t.integer :queue_pos
+      t.datetime :time_cancelled
 
       t.timestamps
     end

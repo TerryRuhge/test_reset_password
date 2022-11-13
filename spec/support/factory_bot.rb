@@ -26,7 +26,7 @@ FactoryBot.define do
 
     trait :google_oauth2_fail do
       provider { 'twitter' }
-      uid { "test" }
+      uid { 'test' }
       email { 'dadfasd@twitter' }
     end
   end
@@ -36,11 +36,11 @@ FactoryBot.define do
     password { '123456' }
     # confirmed_at {Time.now}
     password_confirmation { '123456' }
-    phone { '845723945' }
+    phone { '2109347654' }
     first_name { 'firstName' }
     last_name { 'lastName' }
     emergency_full_name { 'TestingName' }
-    emergency_phone_number { '592487590284375' }
+    emergency_phone_number { '2109340228' }
     address { 'adafdsf342' }
   end
 
@@ -49,11 +49,11 @@ FactoryBot.define do
     password { '123456' }
     # confirmed_at {Time.now}
     password_confirmation { '123456' }
-    phone { '845723945' }
+    phone { '2109347654' }
     first_name { 'firstName' }
     last_name { 'lastName2' }
     emergency_full_name { 'TestingName' }
-    emergency_phone_number { '592487590284375' }
+    emergency_phone_number { '2109340228' }
     address { 'adafdsf342' }
   end
 end
