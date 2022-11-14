@@ -12,6 +12,12 @@ class RequestsController < ApplicationController
     @requests = Request.all.order('request_id ASC')
   end
 
+  def list
+    ndr_id = params[:ndr_id]
+    @ndr = Ndr.find_by(:ndr_id => ndr_id)
+    @requests = Request.all.where(ndr_id: ndr_id).order('created_at ASC')
+  end
+
   # GET /requests/waiting
   def waiting
     @requests = Request.where(request_status: 'Unassigned').order('created_at ASC')
