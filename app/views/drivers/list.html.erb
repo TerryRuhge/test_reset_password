@@ -17,7 +17,7 @@
         <th>Assigned Car</th>
         <th>Check-in Status</th>
         <th>Duration Since</th>
-        <% if !current_member.is_supervisor%>
+        <% if current_member.is_supervisor%>
           <th>Actions</th>
         <% end %>
       </tr>
@@ -41,7 +41,7 @@
         <% else %>
           <td> </td>
         <% end %>
-        <% if !current_member.is_supervisor %>
+        <% if current_member.is_supervisor %>
           <td class="b-cell"><%= link_to 'Edit', edit_driver_path(driver), :class => "dark-grey table button" %>
         <% end %>
       <% end %>
