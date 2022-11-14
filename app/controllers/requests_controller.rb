@@ -12,6 +12,7 @@ class RequestsController < ApplicationController
     @requests = Request.all.order('request_id ASC')
   end
 
+  # GET /request_list
   def list
     ndr_id = params[:ndr_id]
     @ndr = Ndr.find_by(:ndr_id => ndr_id)
