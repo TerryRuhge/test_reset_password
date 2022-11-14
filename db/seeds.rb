@@ -13,12 +13,14 @@
 #   {request_id: 1, rider_id: 0, request_status: "Late", date_time: "2022-10-14 02:06:00", pick_up_loc: "Zachry", is_address_BCS: nil, drop_off_loc: "123 Anywhere Street", num_passengers: 2, additional_info: "Wearing a green hoodie"}
 # ])
 Whitelist.create!([
-    {whitelist_id: 1, email: 'maja9756@tamu.edu'}
-    {whitelist_id: 2, email: 'externalaffairs.carpool@gmail.com	'}
-    {whitelist_id: 3, email: 'john001@tamu.edu	'}
-    {whitelist_id: 4, email: 'joseph.shumway@tamu.edu'}
-    {whitelist_id: 5, email: 'terry.rughe@gmail.com'}
-    {whitelist_id: 6, email: 'u.miguel.j@gmail.com'}
+    { email: 'maja9756@tamu.edu'},
+    { email: 'externalaffairs.carpool@gmail.com	'},
+    { email: 'john001@tamu.edu	'},
+    { email: 'joseph.shumway@tamu.edu'},
+    { email: 'terry.rughe@gmail.com'},
+    { email: 'u.miguel.j@gmail.com'},
+
+    { email: 'testuser@gmail.com'}
 
     
 
