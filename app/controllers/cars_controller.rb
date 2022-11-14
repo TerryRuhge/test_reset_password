@@ -8,6 +8,21 @@ class CarsController < ApplicationController
     @cars = Car.all
   end
 
+  # GET /cars/
+  def list
+    ndr_id = params[:ndr_id]
+    @ndr = Ndr.find_by(:ndr_id => ndr_id)
+    @drivers = Driver.all.where(:ndr_id => ndr_id)
+    p @drivers
+    @drivers.each do |driver|
+      if @cars.nil?
+        @cars = Car.all.where(:car_id => driver.car_id)
+      else
+        cars = @cars + Car.all.where(:car_id => driver.car_id)
+      end
+    end
+  end
+
   # GET /cars/1 or /cars/1.json
   def show; end
 
@@ -66,6 +81,6 @@ class CarsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def car_params
-    params.require(:car).permit(:make, :model, :color, :plate_number, :registration_expiry)
+    params.require(:car).permit(:make, :model, :color, :plate_number, :registration_expiry, :ndr)
   end
 end

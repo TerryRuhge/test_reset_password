@@ -4,16 +4,23 @@
     <p id="notice"><%= notice %></p>
     <div class="centered card-item">
         <br><br>
-        <h2 class="">Need a Ride? Click the button below.</h2>
-        <%= link_to 'Request a Ride', new_request_path, :class => "green button large large-text" %>
+        <% if !Ndr.find_by(is_active: true).nil? %>
+            <p class="">Need a Ride? Click the button below.</p>
+            <%= link_to 'Request a Ride', new_request_path, :class => "green button large large-text" %>
+        <% else %>
+            <p class="">Sorry! We are currently not operational. We usually operate every Friday and Saturday from 10:00pm to 3:00am. Please check again later. </p>
+            <p class="">Give us a call at 979-693-9905 if you have any questions. </p>
+            <%= link_to 'Sorry!', {}, :class => "grey button large large-text" %>
+        <% end %>
         <br><br>
     </div>
 
     <hr>
-
-    <div class="card-item">
-        <%= render 'assignments/form_rider', request: @request %>
-    </div>
+    <% if !Ndr.find_by(is_active: true).nil? %>
+        <div class="card-item">
+            <%= render 'assignments/form_rider', request: @request %>
+        </div>
+    <% end %>
 </div>
 
 <% if current_member %>
