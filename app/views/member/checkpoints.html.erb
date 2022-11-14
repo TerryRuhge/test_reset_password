@@ -1,13 +1,13 @@
 <h1 class="title">Your Points</h1>
 
-<% if @temp_member.leaderboard_points.nil? %>
+<% if @current_member.leaderboard_points.nil? %>
     <h3> You have: 0 points from previous rides </h3>
 <% else %>
-    <h3> You have: <%= @temp_member.leaderboard_points %> points from previous rides </h1>
+    <h3> You have: <%= @current_member.leaderboard_points %> points from previous rides </h1>
 <% end %>
 
-<% if @temp_member.leaderboard_points.nil? %>
+<% if @current_member.leaderboard_points.nil? %>
     <h3> You have completed 0 rides </h3>
 <% else %>
-    <h3> You have completed <%= @temp_member.leaderboard_points %> rides </h1>
+    <h3> You have completed <%= @current_member.leaderboard_points %> rides </h1>
 <% end %>

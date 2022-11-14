@@ -7,7 +7,7 @@ class MemberController < ApplicationController
 
   # GET /member/checkpoints
   def checkpoints
-    @temp_member = Member.find_by(member_id: current_member.member_id)
+    @current_member = Member.find_by(member_id: current_member.member_id)
   end
 
   def no_ride_assigned; end
