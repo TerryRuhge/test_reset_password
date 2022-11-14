@@ -8,6 +8,13 @@ class DriversController < ApplicationController
     @drivers = Driver.all
   end
 
+  # GET /driver_lsit
+  def list
+    ndr_id = params[:ndr_id]
+    @ndr = Ndr.find_by(:ndr_id => ndr_id)
+    @drivers = Driver.all.where(ndr_id: ndr_id)
+  end
+
   # GET /driver/1 or /driver/1.json
   def show; end
 

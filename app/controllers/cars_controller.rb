@@ -12,7 +12,7 @@ class CarsController < ApplicationController
   def list
     ndr_id = params[:ndr_id]
     @ndr = Ndr.find_by(:ndr_id => ndr_id)
-    @cars = Car.all
+    @cars = Car.all.where(ndr_id: ndr_id)
   end
 
   # GET /cars/1 or /cars/1.json

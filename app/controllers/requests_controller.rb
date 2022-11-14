@@ -5,6 +5,7 @@ require 'date'
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
   before_action :set_request_id, only: %i[status done cancel]
+  before_action :insure_active_ndr, only: %i[new]
 
   # GET /requests or /requests.json
   def index
@@ -150,6 +151,14 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  #Insures there is an active NDR
+  def insure_active_ndr
+    if !check_for_active_ndr
+      flash[:notice] = "Currently the service is not active."
+      redirect_to root_path
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_request

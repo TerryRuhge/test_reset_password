@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/queue', to: 'assignments#queue', as: 'search'
 
   get '/car_list', to: 'cars#list', as: 'cars_list'
+  get '/driver_list', to: 'drivers#list', as: 'drivers_list'
 
   get '/checkin', to: 'drivers#checkin', as: 'drivers_checkin'
   post '/checkin', to: 'drivers#checkin_update', as: 'drivers_checkin_update'

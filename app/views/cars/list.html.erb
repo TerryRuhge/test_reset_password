@@ -1,9 +1,10 @@
-<h1 class="title">Cars on <%= @ndr&.start_time&.strftime('%d/%m/%Y %H:%M') %> </h1>
+<h1 class="title">Cars on <%= @ndr&.start_time&.strftime('%d/%m/%Y') + " - " + @ndr&.end_time&.strftime('%d/%m/%Y') %> </h1>
 
 <p id="notice"><%= notice %></p>
 
 <div class="horiz-container hide-on-mobile-only">
-
+  <%= link_to "Cars", cars_list_path(:ndr_id => @ndr.ndr_id), :class => "green button small-margins" %>
+  <%= link_to "Drivers", drivers_list_path(:ndr_id => @ndr.ndr_id), :class => "grey button small-margins" %>
 </div>
 
 <div class="view-table hide-on-mobile-only">

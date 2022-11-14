@@ -1,0 +1,34 @@
+<h1 class="title">Drivers on <%= @ndr&.start_time&.strftime('%d/%m/%Y') + " - " + @ndr&.end_time&.strftime('%d/%m/%Y') %> </h1>
+
+<p id="notice"><%= notice %></p>
+
+<div class="horiz-container hide-on-mobile-only">
+  <%= link_to "Cars", cars_list_path(:ndr_id => @ndr.ndr_id), :class => "grey button small-margins" %>
+  <%= link_to "Drivers", drivers_list_path(:ndr_id => @ndr.ndr_id), :class => "green button small-margins" %>
+</div>
+
+<div class="view-table hide-on-mobile-only">
+  <table>
+    <thead>
+      <tr>
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @drivers.each do |driver| %>
+
+
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="show-on-mobile-only">
+  <div class="horiz card">
+    <p>
+      This page is designed to work on desktop devices only. <br>
+      Please try again on a non-mobile device.
+    </p>
+  </div>
+</div>
