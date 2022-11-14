@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/checkin', to: 'drivers#checkin', as: 'drivers_checkin'
   post '/checkin', to: 'drivers#checkin_update', as: 'drivers_checkin_update'
 
+
   devise_for :members, controllers: {
     registrations: 'members/registrations',
     sessions: 'members/sessions',
