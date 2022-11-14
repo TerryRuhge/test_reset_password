@@ -12,14 +12,30 @@
   <table>
     <thead>
       <tr>
-        
+        <th>Name</th>
+        <th>Number</th>
+        <th>Assigned Car</th>
+        <th>Check-in Status</th>
+        <th>Duration Since</th>
+        <% if !current_member.is_supervisor%>
+          <th colspan="2">Actions</th>
+        <% end %>
       </tr>
     </thead>
 
     <tbody>
       <% @drivers&.each do |driver| %>
-
-
+        <% member = Driver.find_by(member_id: driver.member_id) %>
+        <% car = Car.find_by(driver_id: driver.driver_id, ndr_id: @ndr.ndr_id) %>
+        <td><%= member.first_name + " " + member.last_name%></td>
+        <td><%= member.phone %></td>
+        <td><% "#" + car.car_id + " " + car.color + " " + car.make + " " + car.model%></td>
+        <td><%= driver.driver_status %></td>
+        <td><%= (DateTime.now.time - driver.check_in_time.time).strftime("m") %></td>
+        <% if !current_member.is_supervisor %>
+          <td class="b-cell"><%= link_to 'Edit', edit_driver_path(driver), :class => "dark-grey table button" %>
+          <td class="b-cell"><%= link_to 'Assign', assign_driver_path(driver), :class => "dark-grey table button" %>
+        <% end %>
       <% end %>
     </tbody>
   </table>

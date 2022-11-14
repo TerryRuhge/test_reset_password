@@ -122,6 +122,10 @@ end
   private
 
   # Use callbacks to share common setup or constraints between actions.
+  def get_name
+    return Member.find_by(member_id: @driver.member_id)
+  end
+
   def set_driver
     @driver = Driver.find(params[:id])
   end
