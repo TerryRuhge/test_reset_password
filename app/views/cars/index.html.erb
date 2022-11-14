@@ -9,6 +9,7 @@
     <thead>
       <tr>
         <th colspan="2">Actions</th>
+        <th>ID</th>
         <th>Color</th>
         <th>Make</th>
         <th>Model</th>
@@ -23,6 +24,7 @@
         <tr>
           <td class="b-cell"><%= link_to 'Edit', edit_car_path(car), class: "orange table button" %></td>
           <td class="b-cell"><%= link_to 'Delete', car, method: :delete, data: { confirm: 'Are you sure?' }, class: "dark-red table button" %></td>
+          <td><%= car.car_id %>
           <td><%= car.color %></td>
           <td><%= car.make %></td>
           <td><%= car.model %></td>

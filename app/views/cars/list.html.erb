@@ -12,7 +12,6 @@
   <table>
     <thead>
       <tr>
-        <th colspan="4">Actions</th>
         <th>Car</th>
         <th>Color</th>
         <th>Make</th>
@@ -25,8 +24,6 @@
 
     <tbody>
       <% @cars&.each do |car| %>
-        <% driver1 = Driver.find_by(ndr_id: @ndr.ndr_id, car_id: car.car_id) %>
-        <% driver2 = Driver.find_by(ndr_id: @ndr.ndr_id, car_id: car.car_id) %>
         <tr>
           <td> <%= car.car_id %> </td>
           <td> <%= car.color %> </td>
@@ -34,12 +31,17 @@
           <td> <%= car.model %> </td>
           <td> <%= car.plate_number %> </td>
           <td> <%= car.registration_expiry %> </td>
-          <td> <%= car.registration_expiry %> </td>
+          <td> <% @drivers&.each do |driver|%> 
+                <% member = Member.find_by(member_id: driver.member_id) %>
+                <%= member.first_name + " " + member.last_name %>
+               <% end %> </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+
+<%= link_to "Add Car", new_car_path, :class => "blue button small-margins" %>
 
 <div class="show-on-mobile-only">
   <div class="horiz card">
