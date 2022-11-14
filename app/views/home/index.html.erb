@@ -1,6 +1,7 @@
 <h1 class="title">Home</h1>
 
 <div class="card">
+    <p id="notice"><%= notice %></p>
     <div class="centered card-item">
         <br><br>
         <% if !Ndr.find_by(is_active: true).nil? %>
@@ -23,10 +24,6 @@
 </div>
 
 <% if current_member %>
-    <div class="horiz-container">
-        <%= link_to "Drivers", drivers_path, :class => "grey button small-margins" %>
-        <%= link_to "Cars", cars_path, :class => "grey button small-margins" %>
-    </div>
 <% else %>
     <div class="centered">
         <br><br>

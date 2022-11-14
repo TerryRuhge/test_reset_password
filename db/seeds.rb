@@ -12,3 +12,11 @@
 #   {request_id: 2, rider_id: 0, request_status: "In Progress", date_time: "2022-10-14 02:07:00", pick_up_loc: "Kyle Field", is_address_BCS: nil, drop_off_loc: "456 Somewhere Lane", num_passengers: 1, additional_info: ""},
 #   {request_id: 1, rider_id: 0, request_status: "Late", date_time: "2022-10-14 02:06:00", pick_up_loc: "Zachry", is_address_BCS: nil, drop_off_loc: "123 Anywhere Street", num_passengers: 2, additional_info: "Wearing a green hoodie"}
 # ])
+Whitelist.create!([
+    {is_supervisor: true, is_admin: true, email: 'maja9756@tamu.edu'},
+    {is_supervisor: true, is_admin: true, email: 'externalaffairs.carpool@gmail.com	'},
+    {is_supervisor: true, is_admin: true, email: 'john001@tamu.edu	'},
+    {is_supervisor: true, is_admin: true, email: 'joseph.shumway@tamu.edu'},
+    {is_supervisor: true, is_admin: true, email: 'terry.rughe@gmail.com'},
+    {is_supervisor: true, is_admin: true, email: 'u.miguel.j@gmail.com'},
+])

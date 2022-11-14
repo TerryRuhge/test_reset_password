@@ -13,7 +13,6 @@
   <table>
     <thead>
       <tr>
-        <th colspan="4">Actions</th>
         <th>Car</th>
         <th>Name</th>
         <th>Phone Number</th>
@@ -23,6 +22,7 @@
         <th>Additional Info</th>
         <th>Time Waited</th>
         <th>Assigned By</th>
+        <th colspan="4">Actions</th>
       </tr>
     </thead>
 
@@ -32,11 +32,8 @@
         <% car = Car.find_by_car_id(assignment.car_id) %>
         <% member = Member.find_by_member_id(assignment.member_id) %>
         <tr>
-          <td class="b-cell"><%= button_to 'Done', request_done_path(request), :class => "grey table button" %></td>
-          <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
-		      <td class="b-cell"><%= link_to 'Edit Car', edit_assignment_path(assignment), :class => "grey table button" %></td>
-          <td class="b-cell"><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
-          <td><%= car.color %> <%= car.make %> <%= car.model %></td>
+          
+          <td><b><%= car.id %>:</b> <%= car.color %> <%= car.make %> <%= car.model %></td>
           <td><%= request.name %></td>
           <td><%= request.phone_number %></td>
           <td><%= request.pick_up_loc %></td>
@@ -45,6 +42,10 @@
           <td><%= request.additional_info %></td>
           <td><%= time_waiting(assignment) %></td>
           <td><%= member.last_name %>, <%= member.first_name %></td>
+          <td class="b-cell"><%= button_to 'Done', request_done_path(request), :class => "green table button" %></td>
+          <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "orange table button" %></td>
+		      <td class="b-cell"><%= link_to 'Edit Car', edit_assignment_path(assignment), :class => "blue table button" %></td>
+          <td class="b-cell"><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
         </tr>
       <% end %>
     </tbody>

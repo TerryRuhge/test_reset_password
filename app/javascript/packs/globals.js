@@ -5,6 +5,7 @@ $(() => {
         console.log('clicked');
         $('.right-side').toggleClass('active');
         $(".arrow").toggleClass('active');
+        $(".mobile-menu").toggleClass('active');
     })
 })
 

@@ -1,11 +1,15 @@
 <h1 class="title">NDR</h1>
-
 <p id="notice"><%= notice %></p>
+<br><br>
 
-<div class="horiz-container">
+<div class="horiz-container hide-on-mobile-only">
   <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
   <%= link_to 'View/Edit Cars', cars_path, :class => "blue button small-margins" %>
+  <%= link_to 'Back', :back, class: "grey button" %>
 </div>
+
+<div class="hide-on-mobile-only">
+
 
 <div class="view-table">
   <table>
@@ -60,7 +64,7 @@
                 }}, class: "green table button"
               %>
 
-            <%# Stop the NDR, setting end_time to the current time %>
+              <%# Stop the NDR, setting end_time to the current time %>
             <% elsif ndr.is_active %>
               <td class="b-cell"> <%= button_to 'Stop', ndr, method: :put,
                 params: {:ndr => {
@@ -74,20 +78,19 @@
                   :num_members_signed_up => ndr.num_members_signed_up,
                   :dues_restrict => ndr.dues_restrict,
                   :training_restrict => ndr.training_restrict
-                }}, class: "orange table button"
+                }}, class: "dark-grey table button"
               %>
             <% else %>
               <td></td>
             <% end %>
-          <% end %>
 
-          <%# Join the NDR and create a driver for the NDR %>
-          <% if get_join_status(ndr, current_member) %>
-            <td class="b-cell"><%= link_to 'Join', ndr_drivers_join_path(ndr), :class => "blue table button fill" %>
-          <% else %>
-            <% driver = Driver.find_by(ndr_id: ndr.ndr_id, member_id: current_member.member_id) %>
-            <td class="b-cell"><%= button_to 'Leave', driver_leave_path(driver), data: { confirm: 'Are you sure?' }, :class => "blue table button fill" %>
-          <% end %>
+            <%# Join the NDR and create a driver for the NDR %>
+            <% if get_join_status(ndr, current_member) %>
+              <td class="b-cell"><%= link_to 'Join', ndr_drivers_join_path(ndr), :class => "blue table button fill" %>
+            <% else %>
+              <% driver = Driver.find_by(ndr_id: ndr.ndr_id, member_id: current_member.member_id) %>
+              <td class="b-cell"><%= button_to 'Leave', driver_leave_path(driver), data: { confirm: 'Are you sure?' }, :class => "blue table button fill" %>
+            <% end %>
 
           <% if !current_member.is_supervisor%>
             <td class="b-cell"><%= link_to 'Show', cars_list_path(:ndr_id => ndr.ndr_id), :class => "dark-grey table button" %> 
@@ -97,4 +100,18 @@
       <% end %>
     </tbody>
   </table>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="show-on-mobile-only">
+  <div class="horiz card">
+    <p>
+      If you are trying to check in, make sure 
+       you have joined an NDR first
+    </p>
+  </div>
 </div>

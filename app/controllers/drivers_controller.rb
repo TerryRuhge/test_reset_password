@@ -22,7 +22,7 @@ class DriversController < ApplicationController
   def new
     @driver = Driver.new
   end
-
+  
   # GET /driver/1/edit
   def edit; end
 
