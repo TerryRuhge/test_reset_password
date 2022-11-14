@@ -1,4 +1,4 @@
-<h1 class="title">Whitelists</h1>
+<h1 class="title">Whitelist</h1>
 
 <br><br>
 
@@ -22,7 +22,7 @@
         <tr>
           <td><%= whitelist.email %></td>
           <td class="b-cell"><%= link_to 'Edit', edit_whitelist_path(whitelist), class: "orange table button" %></td>
-          <td class="b-cell"><%= link_to 'Remove', whitelist, method: :delete, data: { confirm: 'Are you sure?' }, class: "dark-red table button" %></td>
+          <td class="b-cell"><%= button_to 'Remove', whitelist, method: :delete, data: { confirm: 'Are you sure?' }, class: "dark-red table button" %></td>
         </tr>
       <% end %>
     </tbody>
