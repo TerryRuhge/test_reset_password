@@ -56,7 +56,7 @@ module Members
 
     # If you have extra params to permit, append them to the sanitizer.
     def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name address phone emergency_full_name emergency_phone_number])
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name address phone emergency_1_full_name emergency_1_phone_number])
     end
 
     # If you have extra params to permit, append them to the sanitizer.

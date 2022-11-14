@@ -1,11 +1,14 @@
-<h1>Editing Request</h1>
+<h1 class="title">Editing Request</h1>
+
+<% if current_member %>
+  <div class="horiz-container">
+    <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
+    <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
+    <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "grey button small-margins" %>
+    <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "grey wide button small-margins" %>
+  </div>
+<% end %>
 
 <%= render 'form', request: @request %>
 
-<%= link_to 'Show', @request %>
-<% if not current_member %>
-	<%= link_to 'Go To Queue', root_path %>
-<% else %>
-	<%= link_to 'Back To Requests', requests_path %>
-<% end %>
-
+<%= link_to 'Back', :back, class: "grey button" %>

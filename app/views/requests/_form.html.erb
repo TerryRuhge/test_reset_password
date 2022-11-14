@@ -12,38 +12,38 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, 'Name:' %>
     <%= form.text_field :name %>
   </div>
   
   <div class="field">
-    <%= form.label :phone_number %>
+    <%= form.label :phone_number, 'Phone Number:' %>
     <%= form.text_field :phone_number %>
   </div>
 
   <div class="field">
-    <%= form.label :pick_up_loc %>
+    <%= form.label :pick_up_loc, 'Pick Up Location:' %>
     <%= form.text_field :pick_up_loc %>
   </div>
   
   <div class="field">
-    <%= form.label :drop_off_loc %>
+    <%= form.label :drop_off_loc, 'Drop Off Location:' %>
     <%= form.text_field :drop_off_loc %>
   </div>
 
   <div class="field">
-    <%= form.label :num_passengers %>
+    <%= form.label :num_passengers, 'Number of Passengers:' %>
     <%= form.text_field :num_passengers %>
   </div>
 
   <div class="field">
-    <%= form.label :additional_info %>
+    <%= form.label :additional_info, 'Additional Info:' %>
     <%= form.text_field :additional_info %>
   </div>
 
   <br>
 
   <div class="actions">
-      <%= form.submit class: "green button small-margins" %>
+      <%= form.submit class: "green button" %>
   </div>
 <% end %>

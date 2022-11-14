@@ -1,0 +1,28 @@
+<%= form_for assignment, url: request_create_assignment_path(@request) do |form| %>
+  <% if assignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
+
+      <ul>
+        <% assignment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field centered">
+    <h2><%= form.label :request_id, 'Requester Name:' %></h2>
+    <h3><%= @request.name %></h3>
+    <%= form.hidden_field :request_id, value: @request.request_id %>
+  </div>
+
+  <div class="field">
+    <h3><%= form.label :car_id, 'Car:' %></h3>
+    <%= form.select :car_id, @cars.map { |car| [(car.car_id.to_s + ': ' + car.make + ' ' + car.model + ' ' + car.color), car.car_id] }, include_blank: true, id:"car_select_box" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "green button small-margins" %>
+  </div>
+<% end %>

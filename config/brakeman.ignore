@@ -1,0 +1,75 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "012c983f3a652c5f844a7bd59678851cf2527ddb91c82fdc7c1ea63b9ba24e31",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/requests_controller.rb",
+      "line": 79,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(\"/queue/?search_name=#{Request.find(params[:id]).name}&search_phone_number=#{Request.find(params[:id]).phone_number}\", :notice => \"Request was successfully updated.\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "RequestsController",
+        "method": "update"
+      },
+      "user_input": "Request.find(params[:id]).name",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "e317db3aa01850165f8fbf6bd21cecb337d9f968f4b2830e13ea7e37bad1dcdd",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/requests_controller.rb",
+      "line": 132,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(\"/queue/?search_name=#{Request.find(params[:request_id]).name}&search_phone_number=#{Request.find(params[:request_id]).phone_number}\", :notice => \"Request was successfully cancelled.\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "RequestsController",
+        "method": "cancel"
+      },
+      "user_input": "Request.find(params[:request_id]).name",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "fb4cdbdca5421d9fae6e99d1bb7fb8599b97f17a4822ae3a0d5e6a1f8c9c4002",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/requests_controller.rb",
+      "line": 52,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(\"/queue/?search_name=#{Request.new(request_params).name}&search_phone_number=#{Request.new(request_params).phone_number}\", :notice => \"Request was successfully created.\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "RequestsController",
+        "method": "create"
+      },
+      "user_input": "Request.new(request_params).name",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    }
+  ],
+  "updated": "2022-11-11 02:07:25 +0000",
+  "brakeman_version": "5.3.1"
+}

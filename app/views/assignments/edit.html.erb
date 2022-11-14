@@ -1,4 +1,13 @@
-<h1>Editing Assignment</h1>
+<h1 class="title">Editing Assignment</h1>
+
+<div class="horiz-container">
+  <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
+  <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
+  <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "green button small-margins" %>
+  <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "grey wide button small-margins" %>
+</div>
+
+
 
 <%= form_with(model: @assignment) do |form| %>
   <% if @assignment.errors.any? %>
@@ -12,17 +21,21 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="field">
+    Passenger Name:
+	<br>
+	<%= @request.name %>
+  </div>
 
   <div class="field">
-    <%= form.label :driver_id %>
-    <%= form.text_field :driver_id %>
+    <%= form.label :car_id, 'Car: ' %>
+    <%= form.select :car_id, @cars.map { |car| [(car.make + ' ' + car.model + ' ' + car.color), car.car_id] }, include_blank: false, id:"car_select_box" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "green button small-margins" %>
   </div>
 <% end %>
 
-
-<%= link_to 'Show', @assignment %> |
-<%= link_to 'Back', assignments_path %>
+<%= link_to 'Back', :back, class: "grey button" %>

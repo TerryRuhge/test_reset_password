@@ -1,18 +1,29 @@
-<div class="card" id="home-card">
-    <h1>CARPOOL HOME</h1>
-    <br><br>
-    <p>
-        Click the link below to submit a new ride request
-    </p>
-    <%= link_to 'Request a Ride', new_request_path, :class => "green button large" %>
+<h1 class="title">Home</h1>
+
+<div class="card">
+    <p id="notice"><%= notice %></p>
+    <div class="centered card-item">
+        <br><br>
+        <% if !Ndr.find_by(is_active: true).nil? %>
+            <p class="">Need a Ride? Click the button below.</p>
+            <%= link_to 'Request a Ride', new_request_path, :class => "green button large large-text" %>
+        <% else %>
+            <p class="">Sorry! We are currently not operational. We usually operate every Friday and Saturday from 10:00pm to 3:00am. Please check again later. </p>
+            <p class="">Give us a call at 979-693-9905 if you have any questions. </p>
+            <%= link_to 'Sorry!', {}, :class => "grey button large large-text" %>
+        <% end %>
+        <br><br>
+    </div>
+
+    <hr>
+    <% if !Ndr.find_by(is_active: true).nil? %>
+        <div class="card-item">
+            <%= render 'assignments/form_rider', request: @request %>
+        </div>
+    <% end %>
 </div>
 
 <% if current_member %>
-    <div class="horiz-container">
-        <%# <%= link_to "Riders", riders_path, :class => "grey button small-margins" %>
-        <%= link_to "Requests", requests_path, :class => "grey button small-margins" %>
-		<%= link_to "Assignments", assignments_path, :class => "grey button small-margins" %>
-    </div>
 <% else %>
     <div class="centered">
         <br><br>
@@ -20,8 +31,8 @@
         <%= link_to "LOGIN", new_member_session_path, :class => "grey button" %>
         
         <div>
-            <p class=""> Don't have an account yet? <%= link_to "Sign Up", new_member_registration_path, class: "link" %> </p>
+            <p> Don't have an account yet? <%= link_to "Sign Up", new_member_registration_path, class: "link" %> </p>
         </div>
-
     </div>
 <% end %>
+

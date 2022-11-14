@@ -1,4 +1,4 @@
-<h1>Editing Assignment Request Status</h1>
+<h1 class="title">Editing Assignment Request Status</h1>
 
 <%= form_with(model: @request) do |form| %>
   <% if @request.errors.any? %>
@@ -15,7 +15,7 @@
 
   <div class="field">
     <%= form.label :request_status %>
-    <%= form.select :request_status, ['In Progress', 'Finished', 'Late'] %>
+    <%= form.select :request_status, ['Assigned Driver', 'Done', 'Missed'] %>
   </div>
 
   <div class="actions">
@@ -24,5 +24,5 @@
 <% end %>
 
 
-<%= link_to 'Show', @assignment %> |
-<%= link_to 'Back', assignments_path %>
+<%= link_to 'Show', @assignment %>
+<%= link_to 'Back', assignments_path, class: "grey button"  %>

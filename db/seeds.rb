@@ -12,3 +12,21 @@
 #   {request_id: 2, rider_id: 0, request_status: "In Progress", date_time: "2022-10-14 02:07:00", pick_up_loc: "Kyle Field", is_address_BCS: nil, drop_off_loc: "456 Somewhere Lane", num_passengers: 1, additional_info: ""},
 #   {request_id: 1, rider_id: 0, request_status: "Late", date_time: "2022-10-14 02:06:00", pick_up_loc: "Zachry", is_address_BCS: nil, drop_off_loc: "123 Anywhere Street", num_passengers: 2, additional_info: "Wearing a green hoodie"}
 # ])
+Whitelist.create!([
+    {email: 'maja9756@tamu.edu'},
+    {email: 'externalaffairs.carpool@gmail.com	'},
+    {email: 'john001@tamu.edu	'},
+    {email: 'joseph.shumway@tamu.edu'},
+    {email: 'terry.rughe@gmail.com'},
+    {email: 'u.miguel.j@gmail.com'},
+])
+
+Whitelist.
+
+# Member.insert_all([
+#     {member_id: 1, is_admin: true, is_supervisor: true, email: "terry_ruhge@gmail.com"}
+# ])
+
+# Member.create![(
+#     {member_id: 1, is_admin: true, is_supervisor: true, leaderboard_points: nil, first_name: "Terry", last_name: "Ruhge", email: "terry.ruhge@gmail.com", password: '123456', address: ' ', phone: '8324616853', emergency_1_phone_number: '8324616853', emergency_1_full_name: 'TerryrRR', emergency_cencrypted_password: "453453453", full_name: "Terry Ruhge", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil}
+# )]

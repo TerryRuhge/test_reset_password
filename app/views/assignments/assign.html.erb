@@ -1,0 +1,18 @@
+<h1 class="title">Assign Request to Driver</h1>
+
+<p id="notice"><%= notice %></p>
+
+<div class="horiz-container">
+  <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
+  <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
+  <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "grey button small-margins" %>
+  <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "grey wide button small-margins" %>
+</div>
+
+<%= render 'form_assign', assignment: @assignment %>
+
+<%= link_to 'View/Edit Cars', cars_path, class: "blue button" %>
+
+<br><br>
+
+<%= link_to 'Back', requests_waiting_path, class: "grey button" %>

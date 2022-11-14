@@ -1,3 +1,5 @@
+<h1 class="title">Requests</h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -13,11 +15,6 @@
 <p>
   <strong>Request Status:</strong>
   <%= @request.request_status %>
-</p>
-
-<p>
-  <strong>Date and Time:</strong>
-  <%= @request.created_at %>
 </p>
 
 <p>
@@ -40,6 +37,10 @@
   <%= @request.additional_info %>
 </p>
 
+<p>
+  <strong>Queue Position:</strong>
+  <%= @request.queue_pos %>
+</p>
 
 <%= link_to 'Edit', edit_request_path(@request) %>
 <% if not current_member %>

@@ -8,6 +8,8 @@ inherit_from: .rubocop_todo.yml
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+inherit_from: .rubocop_todo.yml
+
 # Offense count: 3
 # Configuration parameters: AllowSafeAssignment.
 Lint/AssignmentInCondition:
@@ -20,6 +22,9 @@ Lint/AssignmentInCondition:
 # Configuration parameters: IgnoredMethods, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 27
+  Exclude:
+    - 'app/controllers/assignments_controller.rb'
+    - 'app/controllers/requests_controller.rb'
 
 # Offense count: 3
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
@@ -28,6 +33,11 @@ Metrics/BlockLength:
   Max: 48
   Exclude: 
     - 'db/schema.rb'
+    
+# Offense count: 1
+# Configuration parameters: ? (Miguel Urbina set this here).
+Metrics/ClassLength:
+  Max: 115
 
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.
@@ -37,7 +47,7 @@ Metrics/CyclomaticComplexity:
 # Offense count: 7
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, IgnoredMethods.
 Metrics/MethodLength:
-  Max: 20
+  Max: 25
   Exclude: 
     - 'db/schema.rb'
 

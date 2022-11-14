@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.partial! 'drivers/driver', driver: @driver
+json.partial! 'driver/driver', driver: @driver
