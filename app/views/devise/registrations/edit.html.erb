@@ -56,9 +56,11 @@
     </div>
   </div>
 
+  <br><br><hr>
+
+  <h3> Parent Information </h3>
   
   <div class = "Parent Information">
-    <h3> Parent Information </h3>
     <div class="field">
       <%= f.label :parent_number %> 
       <%= f.telephone_field :parent_number %>
@@ -81,8 +83,12 @@
     </div>
   </div>
 
+  <br><br><hr>
+  
+  <h3> Driver's License Information </h3>
+
   <div class = "Driver's License">
-    <h3> Driver's License Information </h3>
+    
     <div class="field">
       <%= f.label :drivers_license_number %> 
       <%= f.text_field :drivers_license_number %>
@@ -101,8 +107,12 @@
     </div>
   </div>
 
+  <br><br><hr>
+
+  <h3> Miscellaneous </h3>
+
   <div class = "Miscellaneous">
-    <h3> Miscellaneous </h3>
+    
     <div class="field">
       <%= f.label :tshirt_size %>
       <%= f.select :tshirt_size, ["Small", "Medium", "Large", "X-Large", "2X-Large", "3X-Large"] %>
