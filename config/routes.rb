@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/member/rider_info', to: 'member#rider_info'
   get 'no_ride_assigned', to: 'member#no_ride_assigned'
   get '/member/all_statuses', to: 'member#all_statuses'
+  get '/checkpoints', to: 'member#checkpoints', as: 'members_check_points'
 
   get '/incoming', to: 'requests#incoming', as: 'requests_incoming'
   get '/waiting', to: 'requests#waiting', as: 'requests_waiting'
