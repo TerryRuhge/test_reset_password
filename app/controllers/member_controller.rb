@@ -5,6 +5,11 @@ class MemberController < ApplicationController
 
   def index; end
 
+  # GET /member/checkpoints
+  def checkpoints
+    @temp_member = Member.find_by(member_id: current_member.member_id)
+  end
+
   def no_ride_assigned; end
   
   def rider_info
