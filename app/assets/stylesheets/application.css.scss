@@ -43,6 +43,7 @@ body {
   flex-direction: column;
   overflow-x: hidden !important;
   background-color: rgb(252, 252, 252);
+  padding-bottom: 10vh;
   
   p {
     margin-block-start: 5px;
@@ -59,6 +60,8 @@ form {
   align-items: center;
   justify-content: center;
 }
+
+option {-webkit-tap-highlight-color: #629b0d !important;}
 
 h2.header, .title {
   width: 100vw;
@@ -110,6 +113,8 @@ div.field, div.field_with_errors {
     appearance: checkbox;
   }
 
+  h1 {font-weight: normal;}
+
   // fix text labels
   label {
     display: flex;
@@ -121,6 +126,7 @@ div.field, div.field_with_errors {
   select {
     height: 2.5vmin;
     border-radius: 0px;
+
     option {
       display: flex;
       text-align: center;
@@ -167,7 +173,7 @@ a:visited:not(.link) {color: #565656;}
   position: relative;
   top: 0px;
   width: 100vw;
-  height: 7vh;
+  height: 10vh;
   background-color: #323232;
   display: flex;
   align-items: center;
@@ -213,7 +219,7 @@ a:visited:not(.link) {color: #565656;}
 
     h2 {
       margin-top: 1vh;
-      margin-bottom: 0;
+      margin-bottom: 1vh;
     }
   }
 
@@ -380,6 +386,7 @@ a:visited:not(.link) {color: #565656;}
 
 .hide-on-mobile-only {
   display: flex;
+  justify-content: center;
 }
 
 .show-on-mobile-only {
@@ -492,7 +499,7 @@ a:visited:not(.link) {color: #565656;}
   }
 
   &.horiz {
-    width: 60vw;
+    width: 70vw;
     flex-direction: row;
     border-radius: .5vh;
 
@@ -521,6 +528,7 @@ a:visited:not(.link) {color: #565656;}
 
 .view-table {
   background-color: white;
+  max-width: 85vw;
 
   thead {
     background-color: #565656;
@@ -560,6 +568,7 @@ a:visited:not(.link) {color: #565656;}
 
 .b-cell {
   form, a {height: 100%;}
+
 }
 
 /* -------------------------------------------------------------------------- */
@@ -665,7 +674,7 @@ a:visited:not(.link) {color: #565656;}
 }
 
 .fill {
-  width: 11vh !important;
+  width: 100% !important;
 }
 
 .google {
@@ -743,7 +752,7 @@ a:visited:not(.link) {color: #565656;}
 /* -------------------------------------------------------------------------- */
 
 // smartphones
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 1080px) and (orientation: portrait) {
   body {padding-bottom: 10vh;}
   
   .show-on-mobile-only {
@@ -764,7 +773,7 @@ a:visited:not(.link) {color: #565656;}
       margin-left: 2vh;
       margin-right: 2vh;
       text-align: center;
-      font-size: 4vmin;
+      font-size: 2vh;
     }
 
     &.small {
@@ -795,6 +804,11 @@ a:visited:not(.link) {color: #565656;}
   .header-bar {
     flex-direction: column;
     height: fit-content;
+
+    a, input {
+      font-size: 1.5vh;
+      font-weight: normal;
+    }
 
     .middle {
       width: 100vw;
@@ -880,8 +894,6 @@ a:visited:not(.link) {color: #565656;}
           text-align: center;
 
           width: 33vw;
-
-          font-size: 3.5vmin;
         }
       }
 
@@ -913,7 +925,7 @@ a:visited:not(.link) {color: #565656;}
 
   .force {flex-direction: row;}
 
-  
+  label {font-size: 2vh !important;}
 
   .button {
     width: 40vw;
@@ -931,10 +943,10 @@ a:visited:not(.link) {color: #565656;}
     justify-content: center;
     align-items: center;
     text-align: left;
-    width: 80vw;
+    width: 60vw;
 
     input:not(input[type="checkbox"]) {
-      width: 70vw;
+      width: 60vw;
       height: 4vh;
       margin-bottom: 3vh;
 
@@ -947,10 +959,11 @@ a:visited:not(.link) {color: #565656;}
       font-weight: normal;
       margin-bottom: 1vh;
     }
+
     // normalize select boxes
     select {
       height: 4vh;
-      width: 80vw;
+      width: 70vw;
       border-radius: 0px;
       option {
         display: flex;
