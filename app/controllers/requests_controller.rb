@@ -17,10 +17,55 @@ class RequestsController < ApplicationController
     ndr_id = params[:ndr_id]
     @ndr = Ndr.find_by(:ndr_id => ndr_id)
     Car.all.where(:ndr_id => ndr_id).each do |car|
-      @requests = @requests + Request.all.where(:car_id => car_id)
+      if @requests.nil?
+        @requests = Request.all.where(:car_id => car_id, :created_at => (@ndr.start_time).., :created_at => ..(@ndr.end_time))
+      else
+        @requests = @requests + Request.all.where(:car_id => car_id, :created_at => (@ndr.start_time).., :created_at => ..(@ndr.end_time))
+      end
     end
     if !@requests.nil?
       @requests = @request.order('created_at ASC')
+    end
+
+    @requests&.each do |request|
+      assignment = Assignment.find_by_request_id(request&.request_id)
+      if @wait_avg.nil?
+        @wait_avg = time_waiting(assignment)
+      else
+        @wait_avg = @wait_avg + time_waiting(assignment)
+      end
+
+      if @trip_avg.nil?
+        @trip_avg = time_rode(assignment)
+      else
+        @trip_avg = @trip_avg + time_rode(assignment)
+      end
+    end
+
+    if !@wait_avg.nil?
+      @wait_avg = @wait_avg / @requests.count
+    else
+      @wait_avg = 0
+    end
+
+    if !@trip_avg.nil?
+      @trip_avg = @trip_avg / @requests.count
+    else
+      @trip_avg = 0
+    end
+
+    if @requests.nil? 
+      @cnt = 0
+      @done = 0
+      @cancelled = 0
+      @missed = 0
+      @people = 0
+    else
+      @cnt = @requests&.count
+      @done = @requests&.where(:request_status => "Done")&.count
+      @cancelled = @requests&.where(:request_status => "Cancelled")&.count
+      @missed = @requests&.where(:request_status => "Missed")&.count
+      @people = @requests&.sum(:num_passengers)
     end
   end
 

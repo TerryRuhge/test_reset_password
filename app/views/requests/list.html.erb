@@ -12,15 +12,24 @@
   <table>
     <thead>
       <tr>
-        
+        <th> Total Requests </th>
+        <th> Done </th>
+        <th> Canceled </th>
+        <th> Missed </th>
+        <th> Avg. Wait </th>
+        <th> Avg. Trip</th>
+        <th> Total People </th>
       </tr>
     </thead>
 
     <tbody>
-      <% @requests&.each do |request| %>
-
-
-      <% end %>
+      <td> <%= @cnt  %></td>
+      <td> <%= @done %></td>
+      <td> <%= @cancelled %></td>
+      <td> <%= @missed%></td>
+      <td> <%= @wait_avg %> </td>
+      <td> <%= @trip_avg %> </td>
+      <td> <%= @people %>
     </tbody>
   </table>
 </div>

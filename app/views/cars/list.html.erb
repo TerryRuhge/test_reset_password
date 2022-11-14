@@ -25,15 +25,15 @@
     <tbody>
       <% @cars&.each do |car| %>
         <tr>
-          <td> <%= car.car_id %> </td>
-          <td> <%= car.color %> </td>
-          <td> <%= car.make %> </td>
-          <td> <%= car.model %> </td>
-          <td> <%= car.plate_number %> </td>
-          <td> <%= car.registration_expiry %> </td>
+          <td> <%= car&.car_id %> </td>
+          <td> <%= car&.color %> </td>
+          <td> <%= car&.make %> </td>
+          <td> <%= car&.model %> </td>
+          <td> <%= car&.plate_number %> </td>
+          <td> <%= car&.registration_expiry %> </td>
           <td> <% @drivers&.each do |driver|%> 
                 <% member = Member.find_by(member_id: driver.member_id) %>
-                <%= member.first_name + " " + member.last_name %>
+                <%= member&.first_name + " " + member&.last_name %>
                <% end %> </td>
         </tr>
       <% end %>
