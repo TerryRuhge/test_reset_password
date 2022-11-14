@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2022_11_04_220351) do
     t.string "color"
     t.string "plate_number"
     t.date "registration_expiry"
-    t.integer "ndr_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
