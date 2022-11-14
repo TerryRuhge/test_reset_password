@@ -16,7 +16,12 @@ class RequestsController < ApplicationController
   def list
     ndr_id = params[:ndr_id]
     @ndr = Ndr.find_by(:ndr_id => ndr_id)
-    @requests = Request.all.where(ndr_id: ndr_id).order('created_at ASC')
+    Car.all.where(:ndr_id => ndr_id).each do |car|
+      @requests = @requests + Request.all.where(:car_id => car_id)
+    end
+    if !@requests.nil?
+      @requests = @request.order('created_at ASC')
+    end
   end
 
   # GET /requests/waiting

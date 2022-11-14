@@ -24,7 +24,7 @@
     </thead>
 
     <tbody>
-      <% @cars.each do |car| %>
+      <% @cars&.each do |car| %>
         <% driver1 = Driver.find_by(ndr_id: @ndr.ndr_id, car_id: car.car_id) %>
         <% driver2 = Driver.find_by(ndr_id: @ndr.ndr_id, car_id: car.car_id) %>
         <tr>
