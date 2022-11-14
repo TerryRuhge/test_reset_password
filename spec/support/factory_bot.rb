@@ -39,8 +39,8 @@ FactoryBot.define do
     phone { '2109347654' }
     first_name { 'firstName' }
     last_name { 'lastName' }
-    emergency_full_name { 'TestingName' }
-    emergency_phone_number { '2109340228' }
+    emergency_1_full_name { 'TestingName' }
+    emergency_1_phone_number { '2109340228' }
     address { 'adafdsf342' }
   end
 
@@ -52,8 +52,8 @@ FactoryBot.define do
     phone { '2109347654' }
     first_name { 'firstName' }
     last_name { 'lastName2' }
-    emergency_full_name { 'TestingName' }
-    emergency_phone_number { '2109340228' }
+    emergency_1_full_name { 'TestingName' }
+    emergency_1_phone_number { '2109340228' }
     address { 'adafdsf342' }
   end
 end
