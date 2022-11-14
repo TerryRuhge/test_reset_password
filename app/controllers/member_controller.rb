@@ -17,10 +17,7 @@ class MemberController < ApplicationController
     @assigned_rides.each do |ride|
       @ride_info = Request.where(request_id:ride.request_id)
     end
-
-  end
-
-  
+  end  
 
   def all_statuses; end
 

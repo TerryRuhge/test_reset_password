@@ -2,14 +2,14 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="horiz-container">
+<div class="horiz-container hide-on-mobile-only">
   <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
   <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
   <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "green button small-margins" %>
   <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "grey wide button small-margins" %>
 </div>
 
-<div class="view-table">
+<div class="view-table hide-on-mobile-only">
   <table>
     <thead>
       <tr>
@@ -49,4 +49,13 @@
       <% end %>
     </tbody>
   </table>
+</div>
+
+<div class="show-on-mobile-only">
+  <div class="horiz card">
+    <p>
+      This page is designed to work on desktop devices only. <br>
+      Please try again on a non-mobile device.
+    </p>
+  </div>
 </div>

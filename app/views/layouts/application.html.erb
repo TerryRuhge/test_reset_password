@@ -16,20 +16,18 @@
     
       <div class="header-bar" id="header-bar">
 
-
         <div class="left-side">
           <div class="current-member left-side">
             <div class="admin-options">
-              <% if current_member and !current_member.is_supervisor%> 
-                <%= link_to "Driver Statuses", member_all_statuses_path %>
+              <% if current_member and !current_member.is_supervisor %> 
                 <%= link_to "Phone Room", requests_incoming_path %>
                 <%= link_to "Assigned Rider", member_rider_info_path %>
+                <%= link_to "NDR", ndrs_path %>
+                <%= link_to "Driver Statuses", drivers_path %>
               <% end %>
               <% if current_member and !current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
                 <%= link_to "Member Overview", member_overview_path%>
-				<!---TODO: Ask teammates about point of this button-->
-                <%= link_to "Queue and Requests", root_path %>
               <% end %>
             </div>
           </div>
@@ -43,26 +41,28 @@
           <% end %>
         </div>
         
-        
-        <!--Login and Logout -->
+
         
         <div class="current-member right-side">
           <% if current_member %>
             <h2><%= current_member.email %></h2>
+
             <div class="member-options">
               <%= link_to "Edit Account", edit_member_registration_path %>
+              <%= link_to 'Check In', drivers_checkin_path %>
               <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
             </div>
+
             <div class="mobile-admin-options">
               <% if current_member and !current_member.is_supervisor%> 
-                <%= link_to "Driver Statuses", member_all_statuses_path %>
-                <%= link_to "Phone Room", new_request_path %>
+                <%= link_to "Phone Room", requests_incoming_path %>
                 <%= link_to "Assigned Rider", member_rider_info_path %>
+                <%= link_to "NDR", ndrs_path %>
+                <%= link_to "Driver Statuses", drivers_path %>
               <% end %>
+
               <% if current_member and !current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
-				<!---TODO: Ask teammates about point of this button-->
-                <%= link_to "Queue and Requests", root_path %>
               <% end %>
             </div>  
           <% end %>
