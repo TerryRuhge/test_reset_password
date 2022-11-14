@@ -17,7 +17,9 @@ class DriversController < ApplicationController
   end
 
   # GET /driver/checkpoints
-  def checkpoints; end
+  def checkpoints
+    @temp_member = Member.find_by(member_id: current_member.member_id)
+  end
   
   # GET /driver/1/edit
   def edit; end

@@ -1,8 +1,13 @@
 <h1 class="title">Your Points</h1>
 
-<% temp_member = Member.find_by(member_id: current_member.member_id) %>
-<% if temp_member.leaderboard_points.nil? %>
+<% if @temp_member.leaderboard_points.nil? %>
     <h3> You have: 0 points from previous rides </h3>
 <% else %>
-    <h3> You have: <%= temp_member.leaderboard_points %> points from previous rides </h1>
+    <h3> You have: <%= @temp_member.leaderboard_points %> points from previous rides </h1>
+<% end %>
+
+<% if @temp_member.leaderboard_points.nil? %>
+    <h3> You have completed 0 rides </h3>
+<% else %>
+    <h3> You have completed <%= @temp_member.leaderboard_points %> rides </h1>
 <% end %>
