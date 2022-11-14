@@ -1,9 +1,10 @@
 <h1 class="title">Home</h1>
 
 <div class="card">
+    <p id="notice"><%= notice %></p>
     <div class="centered card-item">
         <br><br>
-        <p class="">Need a Ride? Click the button below.</p>
+        <h2 class="">Need a Ride? Click the button below.</h2>
         <%= link_to 'Request a Ride', new_request_path, :class => "green button large large-text" %>
         <br><br>
     </div>
@@ -16,10 +17,6 @@
 </div>
 
 <% if current_member %>
-    <div class="horiz-container">
-        <%= link_to "Drivers", drivers_path, :class => "grey button small-margins" %>
-        <%= link_to "Cars", cars_path, :class => "grey button small-margins" %>
-    </div>
 <% else %>
     <div class="centered">
         <br><br>

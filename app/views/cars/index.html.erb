@@ -8,12 +8,12 @@
   <table>
     <thead>
       <tr>
-        <th colspan="2">Actions</th>
         <th>Color</th>
         <th>Make</th>
         <th>Model</th>
         <th>Plate Number</th>
         <th>Registration Expiry</th>
+        <th colspan="2">Actions</th>
       </tr>
     </thead>
 
@@ -21,13 +21,13 @@
     <tbody>
       <% @cars.each do |car| %>
         <tr>
-          <td class="b-cell"><%= link_to 'Edit', edit_car_path(car), class: "orange table button" %></td>
-          <td class="b-cell"><%= link_to 'Delete', car, method: :delete, data: { confirm: 'Are you sure?' }, class: "dark-red table button" %></td>
           <td><%= car.color %></td>
           <td><%= car.make %></td>
           <td><%= car.model %></td>
           <td><%= car.plate_number %></td>
           <td><%= car.registration_expiry %></td>
+          <td class="b-cell"><%= link_to 'Edit', edit_car_path(car), class: "orange table button" %></td>
+          <td class="b-cell"><%= link_to 'Delete', car, method: :delete, data: { confirm: 'Are you sure?' }, class: "dark-red table button" %></td>
         </tr>
       <% end %>
     </tbody>
