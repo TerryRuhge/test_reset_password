@@ -1,15 +1,16 @@
 <h1 class="title">NDR</h1>
-
+<p id="notice"><%= notice %></p>
 <br><br>
 
 <div class="horiz-container hide-on-mobile-only">
   <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
   <%= link_to 'View/Edit Cars', cars_path, :class => "blue button small-margins" %>
+  <%= link_to 'Back', :back, class: "grey button" %>
 </div>
 
 <div class="hide-on-mobile-only">
 
-  <p id="notice"><%= notice %></p>
+  
 
   <div class="view-table">
     <table>
@@ -106,7 +107,3 @@
     </p>
   </div>
 </div>
-
-<br><br>
-
-<%= link_to 'Back', :back, class: "grey button" %>

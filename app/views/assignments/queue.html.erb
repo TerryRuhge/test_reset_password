@@ -1,9 +1,9 @@
 <h1 class="title"> Ride Status</h1>
-
+<p id="notice"><%= notice %></p>
 <%# If there are requests already shown, hide the form %>
 <% if  @requests_waiting.empty? and @requests_riding.empty? and @requests_done.empty? %>
   <div class="card small">
-    <p id="notice"><%= notice %></p>
+    
     
     <br>
     <!-- The div below is used to get rid of the spacing between the text -->

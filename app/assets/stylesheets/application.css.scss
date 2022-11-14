@@ -382,7 +382,7 @@ a:visited:not(.link) {color: #565656;}
     border-color: #797979;
     border-radius: .25vh;
 
-    background-color: #416906;
+    background-color: #629b0d;
     color: white;
 
     margin-right: 2vh;
@@ -393,7 +393,7 @@ a:visited:not(.link) {color: #565656;}
     cursor: pointer;
 
     &:hover {
-      background-color: #2e4014;
+      background-color: #4f7517;
     }
   }
   
@@ -695,9 +695,9 @@ a:visited:not(.link) {color: #565656;}
 }
 
 .grey {
-  background-color: rgb(191, 191, 191);
-  input {background-color: rgb(191, 191, 191);}
-  &:hover{background-color: rgb(133, 133, 133);}
+  background-color: #686868;
+  input {background-color: #686868;}
+  &:hover{background-color: #323232;}
 }
 
 .dark-grey {
