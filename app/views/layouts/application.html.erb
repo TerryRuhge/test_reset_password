@@ -19,10 +19,12 @@
         <div class="left-side">
           <div class="current-member left-side">
             <div class="admin-options">
+              <% if current_member %>
+                <%= link_to "NDR", ndrs_path %>
+              <% end %>
               <% if current_member and current_member.is_supervisor %> 
                 <%= link_to "Phone Room", requests_incoming_path %>
-                <%= link_to "NDR", ndrs_path %>
-                <%= link_to "Driver Statuses", drivers_path %>
+                
               <% end %>
               <% if current_member and current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
@@ -81,22 +83,23 @@
         <% end %>
       </div>
   </head>
-  
-  <% if current_member %>
-    <div class="divider hide-on-mobile-only">
-      <h4><%= current_member.email %></h4>
-      <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
-    </div>
-  <% end %>
 
-  <body>
+  <div class="pseudo-body">  
+    <% if current_member %>
+      <div class="divider hide-on-mobile-only">
+        <h4><%= current_member.email %></h4>
+        <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
+      </div>
+    <% end %>
+
+
     <%= yield %>
-  </body>
+  </div>
 
   <footer>
-    <div class = "horiz-container">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfFQbgFNL3UFEO6JHnEKblD1kNm8sNUOT-xXPAsWtZJzxPAbg/viewform?usp=sf_link", target="_blank">Have a bug?</a> &nbsp &nbsp &nbsp &nbsp
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKm1sTCg7KChda6nJa7Y45Uk_3nft1zAPmIWswDYxPT4FowQ/viewform?usp=sf_link", target="_blank">Have a suggestion?</a>
+    <div class = "horiz-container footer">
+      <a class="first link", href="https://docs.google.com/forms/d/e/1FAIpQLSfFQbgFNL3UFEO6JHnEKblD1kNm8sNUOT-xXPAsWtZJzxPAbg/viewform?usp=sf_link", target="_blank">Experiencing a bug?</a>
+      <a class="link", href="https://docs.google.com/forms/d/e/1FAIpQLSfKm1sTCg7KChda6nJa7Y45Uk_3nft1zAPmIWswDYxPT4FowQ/viewform?usp=sf_link", target="_blank">Have a suggestion?</a>
     </div>
   </footer>
 
