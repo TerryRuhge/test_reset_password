@@ -1,33 +1,12 @@
 <h1 class="title">Rider Information</h1>
 
-<br><br>
-
-
-<div class="view-table hide-on-mobile-only">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Phone Number</th>
-        <th>Pick Up Location</th>
-        <th>Drop Off Location</th>
-        <th>Num of Passengers</th>
-        <th>Additional Info</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @ride_info.each do |ride| %>
-        <tr>
-          <td><%= ride.name %></td> 
-          <td><%= ride.phone_number %></td> 
-          <td><%= ride.pick_up_loc %></td> 
-          <td><%= ride.drop_off_loc %></td> 
-          <td><%= ride.num_passengers %></td> 
-          <td><%= ride.additional_info %></td>
-        </tr>
-      <% end %>
-    <tbody>
-  </table>
-</div>
-      
+<% @ride_info.each do |ride| %>
+  <tr>
+    <td><%= ride.name %></td> 
+    <td><%= ride.phone_number %></td> 
+    <td><%= ride.pick_up_loc %></td> 
+    <td><%= ride.drop_off_loc %></td> 
+    <td><%= ride.num_passengers %></td> 
+    <td><%= ride.additional_info %></td> 
+  </tr>
+<% end %>
