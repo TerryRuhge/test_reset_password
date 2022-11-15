@@ -26,11 +26,13 @@ end
 RSpec.describe 'Signing in with Form', type: :system do
   before do
     @member1 = create :member
-    member1.email = testuser@gmail.com
     visit new_member_registration_path
   end
 
   scenario 'valid with correct credentials' do
+    visit new_whitelist_path
+	fill_in 'Email', with: @member1.email
+    click_on 'Create Whitelist'
     visit new_member_session_path
     fill_in 'member_email', with: @member1.email
     fill_in 'member_password', with: @member1.password
