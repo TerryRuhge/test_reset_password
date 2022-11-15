@@ -3,9 +3,10 @@
 <br><br>
 
 <div class="horiz-container hide-on-mobile-only">
-  <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
-  <%= link_to 'View/Edit Cars', cars_path, :class => "blue button small-margins" %>
-  <%= link_to 'Back', :back, class: "grey button" %>
+  <% if current_member.is_supervisor %>
+    <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
+    <%= link_to 'View/Edit Cars', cars_path, :class => "blue button small-margins" %>
+  <% end %>
 </div>
 
 <div class="hide-on-mobile-only">
