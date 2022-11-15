@@ -8,6 +8,13 @@ class DriversController < ApplicationController
     @drivers = Driver.all
   end
 
+  # GET /driver_lsit
+  def list
+    ndr_id = params[:ndr_id]
+    @ndr = Ndr.find_by(:ndr_id => ndr_id)
+    @drivers = Driver.all.where(ndr_id: ndr_id)
+  end
+
   # GET /driver/1 or /driver/1.json
   def show; end
 
@@ -15,7 +22,7 @@ class DriversController < ApplicationController
   def new
     @driver = Driver.new
   end
-
+  
   # GET /driver/1/edit
   def edit; end
 
@@ -115,6 +122,10 @@ end
   private
 
   # Use callbacks to share common setup or constraints between actions.
+  def get_name
+    return Member.find_by(member_id: @driver.member_id)
+  end
+
   def set_driver
     @driver = Driver.find(params[:id])
   end

@@ -13,7 +13,6 @@
   <table>
     <thead>
       <tr>
-        <th colspan="2">Actions</th>
         <th>Status</th>
         <th>Car</th>
         <th>Name</th>
@@ -24,6 +23,7 @@
         <th>Assigned By</th>
         <th>Time Rode</th>
         <th>Home At</th>
+        <th colspan="2">Actions</th>
       </tr>
     </thead>
 
@@ -34,10 +34,8 @@
           <% car = Car.find_by_car_id(assignment.car_id) %>
           <% member = Member.find_by_member_id(assignment.member_id) %>
           <tr>
-            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
-            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
             <td><%= request.request_status %></td>
-            <td><%= car.color %> <%= car.make %> <%= car.model %></td>
+            <td><b><%= car.id %>:</b> <%= car.color %> <%= car.make %> <%= car.model %></td>
             <td><%= request.name %></td>
             <td><%= request.phone_number %></td>
             <td><%= request.pick_up_loc %></td>
@@ -46,21 +44,23 @@
             <td><%= member.last_name %>, <%= member.first_name %></td>
             <td><%= time_rode(assignment) %></td>
             <td><%= time_home(assignment) %></td>
+            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "orange table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "blue table button" %></td>
           </tr>
         <% else %>
            <tr>
-            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
-            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
             <td><%= request.request_status %></td>
             <td></td>
             <td><%= request.name %></td>
             <td><%= request.phone_number %></td>
             <td><%= request.pick_up_loc %></td>
             <td><%= request.drop_off_loc %></td>
-            <td><%= time_cancelled(request) %></td>
+            <td><%= time_cancelled(request).strftime("%I:%M %p") %></td>
             <td></td>
             <td></td>
             <td></td>
+            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "orange table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "blue table button" %></td>
           </tr>
 		<% end %>
       <% end %>
