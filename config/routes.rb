@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/member/all_statuses', to: 'member#all_statuses'
   get '/member/overview', to: 'member#overview'
   get '/checkpoints', to: 'member#checkpoints', as: 'members_check_points'
-  
+
   get '/incoming', to: 'requests#incoming', as: 'requests_incoming'
   get '/waiting', to: 'requests#waiting', as: 'requests_waiting'
 
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get '/done', to: 'assignments#done', as: 'assignments_done'
   get '/queue', to: 'assignments#queue', as: 'search'
 
-  #Get Requests for NDR
+  # Get Requests for NDR
   get '/car_list', to: 'cars#list', as: 'cars_list'
   get '/driver_list', to: 'drivers#list', as: 'drivers_list'
   get '/request_list', to: 'requests#list', as: 'requests_list'
@@ -48,10 +48,9 @@ Rails.application.routes.draw do
   resources :member do
     post :update_supervisor, on: :member
     post :update_admin, on: :member
-
   end
 
-  resources :ndrs do 
+  resources :ndrs do
     get 'join', to: 'drivers#join', as: 'join'
     post 'join', to: 'drivers#join_confirm', as: 'join_confirm_path'
   end
