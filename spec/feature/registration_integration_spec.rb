@@ -9,28 +9,28 @@ RSpec.describe 'Signing up with Form', type: :system do
   before do
     visit new_member_registration_path
   end
-#  scenario 'valid inputs' do
-#    visit new_whitelist_path
-#	fill_in 'Email', with: 'email'
-#    click_on 'Create Whitelist'
-#	visit new_member_registration_path
-#    fill_in 'member_first_name', with: 'Test'
-#    fill_in 'member_last_name', with: 'Phol'
-#    fill_in 'member_email', with: 'email'
-#    fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
-#    fill_in 'member_phone', with: '3343987387'
-#    fill_in 'member_emergency_1_full_name', with: 'John Phol'
-#    fill_in 'member_emergency_1_phone_number', with: '5656354563'
-#    fill_in 'member_password', with: password
-#    fill_in 'member_password_confirmation', with: password
-#    click_on 'Sign up'
-#    expect(page).to have_content('email')
-#  end
+  #  scenario 'valid inputs' do
+  #    visit new_whitelist_path
+  #	fill_in 'Email', with: 'email'
+  #    click_on 'Create Whitelist'
+  #	visit new_member_registration_path
+  #    fill_in 'member_first_name', with: 'Test'
+  #    fill_in 'member_last_name', with: 'Phol'
+  #    fill_in 'member_email', with: 'email'
+  #    fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
+  #    fill_in 'member_phone', with: '3343987387'
+  #    fill_in 'member_emergency_1_full_name', with: 'John Phol'
+  #    fill_in 'member_emergency_1_phone_number', with: '5656354563'
+  #    fill_in 'member_password', with: password
+  #    fill_in 'member_password_confirmation', with: password
+  #    click_on 'Sign up'
+  #    expect(page).to have_content('email')
+  #  end
   scenario 'invalid password confirmation' do
     visit new_whitelist_path
-	fill_in 'Email', with: 'giphane67764@imudutex.com'
+    fill_in 'Email', with: 'giphane67764@imudutex.com'
     click_on 'Create Whitelist'
-	visit new_member_registration_path
+    visit new_member_registration_path
     fill_in 'member_first_name', with: 'Jilly'
     fill_in 'member_last_name', with: 'Phol'
     fill_in 'member_email', with: 'giphane67764@imudutex.com'
@@ -45,9 +45,9 @@ RSpec.describe 'Signing up with Form', type: :system do
   end
   scenario 'Missing Field' do
     visit new_whitelist_path
-	fill_in 'Email', with: 'gipafsfg67764@imdutex.com'
+    fill_in 'Email', with: 'gipafsfg67764@imdutex.com'
     click_on 'Create Whitelist'
-	visit new_member_registration_path
+    visit new_member_registration_path
     fill_in 'member_email', with: 'gipafsfg67764@imdutex.com'
     fill_in 'member_password', with: '123456'
     fill_in 'member_password_confirmation', with: '12345'
@@ -56,9 +56,9 @@ RSpec.describe 'Signing up with Form', type: :system do
   end
   scenario 'Email already taken' do
     visit new_whitelist_path
-	fill_in 'Email', with: 'jane.doe@hey.com'
+    fill_in 'Email', with: 'jane.doe@hey.com'
     click_on 'Create Whitelist'
-	visit new_member_registration_path
+    visit new_member_registration_path
     @member1 = create :member
     fill_in 'member_first_name', with: 'Jilly'
     fill_in 'member_last_name', with: 'Phol'
@@ -70,7 +70,7 @@ RSpec.describe 'Signing up with Form', type: :system do
   end
 end
 
-#RSpec.describe 'Update Registration', type: :system do
+# RSpec.describe 'Update Registration', type: :system do
 #  scenario 'valid inputs' do
 #	visit new_member_registration_path
 #    @member2 = create :member
@@ -85,4 +85,4 @@ end
 #    @member2.reload
 #    expect(@member2.first_name).to eq('Terri')
 #  end
-#end 
+# end

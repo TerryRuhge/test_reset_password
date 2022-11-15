@@ -11,7 +11,7 @@ class DriversController < ApplicationController
   # GET /driver_lsit
   def list
     ndr_id = params[:ndr_id]
-    @ndr = Ndr.find_by(:ndr_id => ndr_id)
+    @ndr = Ndr.find_by(ndr_id: ndr_id)
     @drivers = Driver.all.where(ndr_id: ndr_id)
   end
 
@@ -22,7 +22,7 @@ class DriversController < ApplicationController
   def new
     @driver = Driver.new
   end
-  
+
   # GET /driver/1/edit
   def edit; end
 
@@ -66,10 +66,9 @@ class DriversController < ApplicationController
 
   # POST /driver/checkin_update
   def checkin_update
-    
     @driver = Driver.find_by(member_id: current_member.member_id, ndr_id: Ndr.find_by(is_active: true))
     @driver.update(driver_update_params)
-    #@driver.update_attribute(:driver_status, :driver_status)
+    # @driver.update_attribute(:driver_status, :driver_status)
     @driver.update_attribute(:check_in_time, DateTime.now)
     p @driver
     redirect_to root_path
@@ -82,7 +81,7 @@ class DriversController < ApplicationController
     @member = Member.find_by(member_id: current_member.member_id)
   end
 
-  #POST /driver/join
+  # POST /driver/join
   def join_confirm
     @driver = Driver.new(driver_params)
     @ndr = Ndr.find(params[:ndr_id])
@@ -90,7 +89,7 @@ class DriversController < ApplicationController
 
     respond_to do |format|
       if @driver.save
-        @ndr = Ndr.find_by(:ndr_id => @driver.ndr_id)
+        @ndr = Ndr.find_by(ndr_id: @driver.ndr_id)
         @ndr.update_attribute(:num_members_signed_up, @ndr.num_members_signed_up + 1)
 
         format.html { redirect_to ndrs_path, notice: 'Driver was successfully created.' }
@@ -103,27 +102,26 @@ class DriversController < ApplicationController
     end
   end
 
-# POST /drivers/1/leave
-def leave()
-  @driver = Driver.find(params[:driver_id])
-  @driver.destroy
-  @ndr = Ndr.find_by(ndr_id: @driver.ndr_id)
-  @ndr.update_attribute(:num_members_signed_up, @ndr.num_members_signed_up - 1)
+  # POST /drivers/1/leave
+  def leave
+    @driver = Driver.find(params[:driver_id])
+    @driver.destroy
+    @ndr = Ndr.find_by(ndr_id: @driver.ndr_id)
+    @ndr.update_attribute(:num_members_signed_up, @ndr.num_members_signed_up - 1)
 
-  respond_to do |format|
-    if current_member
-      format.html { redirect_back fallback_location: ndrs_path, notice: 'Driver was successfully Deleted.' }
-      format.json { head :no_content }
+    respond_to do |format|
+      if current_member
+        format.html { redirect_back fallback_location: ndrs_path, notice: 'Driver was successfully Deleted.' }
+        format.json { head :no_content }
+      end
     end
   end
-end
-
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def get_name
-    return Member.find_by(member_id: @driver.member_id)
+    Member.find_by(member_id: @driver.member_id)
   end
 
   def set_driver
@@ -143,10 +141,10 @@ end
     params.permit(:driver_status)
   end
 
-  #Makes sure an NDR is active and the current member is signed up as a driver
+  # Makes sure an NDR is active and the current member is signed up as a driver
   def authenticate_driver!
     p Driver.where(member_id: current_member.member_id, ndr_id: Ndr.where(is_active: true)).empty?
     p Driver.where(member_id: current_member.member_id, ndr_id: Ndr.where(is_active: true))
-    redirect_to ndrs_path, notice: "Please join a NDR to view your check-in" if Driver.where(member_id: current_member.member_id, ndr_id: Ndr.where(is_active: true)).empty?
+    redirect_to ndrs_path, notice: 'Please join a NDR to view your check-in' if Driver.where(member_id: current_member.member_id, ndr_id: Ndr.where(is_active: true)).empty?
   end
 end

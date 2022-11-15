@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-#require 'rails_helper'
+# require 'rails_helper'
 
-#RSpec.describe Members::OmniauthCallbacksController, type: :controller do
+# RSpec.describe Members::OmniauthCallbacksController, type: :controller do
 #  before(:each) do
 #    @controller = omniauth_callbacks_controller.new
 #    request.env['devise.mapping'] = Devise.mappings[:member]
@@ -39,4 +39,4 @@
 #      end
 #    end
 #  end
-#end
+# end

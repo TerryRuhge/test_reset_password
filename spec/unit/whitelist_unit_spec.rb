@@ -5,7 +5,7 @@ require 'rails_helper'
 
 RSpec.describe Whitelist, type: :model do
   subject do
-    described_class.create(email: 'adjdhflkajhsd@gjalsdm.com') 
+    described_class.create(email: 'adjdhflkajhsd@gjalsdm.com')
   end
 
   it 'is valid with valid attributes' do

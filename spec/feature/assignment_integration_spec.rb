@@ -7,7 +7,7 @@ RSpec.describe 'Creating an assignment', type: :feature do
   scenario 'valid inputs' do
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
-	click_on 'Create Whitelist'
+    click_on 'Create Whitelist'
     visit root_path
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
@@ -56,7 +56,7 @@ RSpec.describe 'Updating an assignment', type: :feature do
   scenario 'update inputs' do
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
-	click_on 'Create Whitelist'
+    click_on 'Create Whitelist'
     visit root_path
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
@@ -114,7 +114,7 @@ RSpec.describe 'Marking an assignment as Done', type: :feature do
   scenario 'change status' do
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
-	click_on 'Create Whitelist'
+    click_on 'Create Whitelist'
     visit root_path
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
@@ -165,7 +165,7 @@ RSpec.describe 'Deleting an assignment', type: :feature do
   scenario 'delete inputs' do
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
-	click_on 'Create Whitelist'
+    click_on 'Create Whitelist'
     visit root_path
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'

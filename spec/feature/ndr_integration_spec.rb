@@ -7,7 +7,7 @@ RSpec.describe 'Creating an ndr', type: :feature do
   scenario 'valid inputs' do
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
-	click_on 'Create Whitelist'
+    click_on 'Create Whitelist'
     visit root_path
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
@@ -34,7 +34,7 @@ RSpec.describe 'Editing an ndr', type: :feature do
   scenario 'valid inputs' do
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
-	click_on 'Create Whitelist'
+    click_on 'Create Whitelist'
     visit root_path
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'

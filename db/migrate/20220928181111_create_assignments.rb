@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 class CreateAssignments < ActiveRecord::Migration[6.1]

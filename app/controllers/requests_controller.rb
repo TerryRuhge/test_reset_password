@@ -15,37 +15,37 @@ class RequestsController < ApplicationController
   # GET /request_list
   def list
     ndr_id = params[:ndr_id]
-    @ndr = Ndr.find_by(:ndr_id => ndr_id)
-    @requests = Request.all.where(:created_at => (@ndr.start_time)..).where(:created_at => ..(@ndr.end_time))
+    @ndr = Ndr.find_by(ndr_id: ndr_id)
+    @requests = Request.all.where(created_at: (@ndr.start_time)..).where(created_at: ..(@ndr.end_time))
 
     @requests&.each do |request|
       assignment = Assignment.find_by_request_id(request&.request_id)
-      if @wait_avg.nil?
-        @wait_avg = time_waiting(assignment)
-      else
-        @wait_avg = @wait_avg + time_waiting(assignment)
-      end
+      @wait_avg = if @wait_avg.nil?
+                    time_waiting(assignment)
+                  else
+                    @wait_avg + time_waiting(assignment)
+                  end
 
-      if @trip_avg.nil?
-        @trip_avg = time_rode(assignment)
-      else
-        @trip_avg = @trip_avg + time_rode(assignment)
-      end
+      @trip_avg = if @trip_avg.nil?
+                    time_rode(assignment)
+                  else
+                    @trip_avg + time_rode(assignment)
+                  end
     end
 
-    if !@wait_avg.nil?
-      @wait_avg = @wait_avg / @requests.count
-    else
-      @wait_avg = 0
-    end
+    @wait_avg = if !@wait_avg.nil?
+                  @wait_avg / @requests.count
+                else
+                  0
+                end
 
-    if !@trip_avg.nil?
-      @trip_avg = @trip_avg / @requests.count
-    else
-      @trip_avg = 0
-    end
+    @trip_avg = if !@trip_avg.nil?
+                  @trip_avg / @requests.count
+                else
+                  0
+                end
 
-    if @requests.nil? 
+    if @requests.nil?
       @cnt = 0
       @done = 0
       @cancelled = 0
@@ -53,9 +53,9 @@ class RequestsController < ApplicationController
       @people = 0
     else
       @cnt = @requests&.count
-      @done = @requests&.where(:request_status => "Done")&.count
-      @cancelled = @requests&.where(:request_status => "Cancelled")&.count
-      @missed = @requests&.where(:request_status => "Missed")&.count
+      @done = @requests&.where(request_status: 'Done')&.count
+      @cancelled = @requests&.where(request_status: 'Cancelled')&.count
+      @missed = @requests&.where(request_status: 'Missed')&.count
       @people = @requests&.sum(:num_passengers)
     end
   end
@@ -200,10 +200,10 @@ class RequestsController < ApplicationController
 
   private
 
-  #Insures there is an active NDR
+  # Insures there is an active NDR
   def insure_active_ndr
-    if !check_for_active_ndr
-      flash[:notice] = "Currently the service is not active."
+    unless check_for_active_ndr
+      flash[:notice] = 'Currently the service is not active.'
       redirect_to root_path
     end
   end

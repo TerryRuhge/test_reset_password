@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CreateRequests < ActiveRecord::Migration[6.1]
-
   def change
     create_table :requests, id: false do |t|
       t.primary_key :request_id

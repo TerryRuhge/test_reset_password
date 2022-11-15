@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # location: spec/feature/session_integration_spec.rb
-#require 'rails_helper'
+# require 'rails_helper'
 
-#RSpec.describe 'Signing up with Form', type: :system do
+# RSpec.describe 'Signing up with Form', type: :system do
 #  before do
 #    member = FactoryBot.create(:member)
 #    # member.confirmed_at = Time.now
@@ -21,9 +21,9 @@
 #    #Should redirect to login page
 #    expect(page).to have_current_path(new_member_session_path)
 #  end
-#end
+# end
 
-#RSpec.describe 'Signing in with Form', type: :system do
+# RSpec.describe 'Signing in with Form', type: :system do
 #  before do
 #    @member1 = create :member
 #    visit new_member_registration_path
@@ -40,4 +40,4 @@
 #    visit root_path
 #    expect(page).to have_text @member1.email
 #  end
-#end
+# end

@@ -1,1 +1,3 @@
-json.partial! "ndrs/ndr", ndr: @ndr
+# frozen_string_literal: true
+
+json.partial! 'ndrs/ndr', ndr: @ndr

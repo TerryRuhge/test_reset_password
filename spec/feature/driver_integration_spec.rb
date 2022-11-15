@@ -7,7 +7,7 @@ RSpec.describe 'Joining ndr as driver', type: :feature do
   scenario 'valid join' do
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
-	click_on 'Create Whitelist'
+    click_on 'Create Whitelist'
     visit root_path
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
@@ -26,11 +26,11 @@ RSpec.describe 'Joining ndr as driver', type: :feature do
     check 'Start Now?'
     click_on 'Create Ndr'
     visit ndrs_path
-	expect(page).to have_content('Active')
-    #click_on 'Join'
-	#click_on 'Confirm Sign-Up'
-	#visit ndrs_path
-    #expect(page).to have_content('Leave')
+    expect(page).to have_content('Active')
+    # click_on 'Join'
+    # click_on 'Confirm Sign-Up'
+    # visit ndrs_path
+    # expect(page).to have_content('Leave')
   end
 end
 
@@ -38,7 +38,7 @@ RSpec.describe 'Leaving ndr as driver', type: :feature do
   scenario 'valid leave' do
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
-	click_on 'Create Whitelist'
+    click_on 'Create Whitelist'
     visit root_path
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
@@ -57,10 +57,10 @@ RSpec.describe 'Leaving ndr as driver', type: :feature do
     check 'Start Now?'
     click_on 'Create Ndr'
     visit ndrs_path
-	expect(page).to have_content('Active')
-    #click_on 'Join'
-	#click_on 'Confirm Sign-Up'
-	#visit ndrs_path
-    #expect(page).to have_content('Leave')
+    expect(page).to have_content('Active')
+    # click_on 'Join'
+    # click_on 'Confirm Sign-Up'
+    # visit ndrs_path
+    # expect(page).to have_content('Leave')
   end
 end

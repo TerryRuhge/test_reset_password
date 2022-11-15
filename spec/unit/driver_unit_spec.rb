@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # location: spec/unit/driver_unit_spec.rb
-#require 'rails_helper'
+# require 'rails_helper'
 
-#RSpec.describe Driver, type: :model do
+# RSpec.describe Driver, type: :model do
 #  subject do
 #    described_class.create(member_id: 1, ndr_id: 1)
 #  end
@@ -21,4 +21,4 @@
 #    subject.ndr_id = nil
 #    expect(subject).not_to be_valid
 #  end
-#end
+# end
