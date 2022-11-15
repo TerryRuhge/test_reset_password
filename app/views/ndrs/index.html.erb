@@ -3,9 +3,10 @@
 <br><br>
 
 <div class="horiz-container hide-on-mobile-only">
-  <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
+  <% if current_member.is_supervisor %>
+    <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
+  <% end %>
   <%= link_to 'View/Edit Cars', cars_path, :class => "blue button small-margins" %>
-  <%= link_to 'Back', :back, class: "grey button" %>
 </div>
 
 <div class="hide-on-mobile-only">
@@ -36,7 +37,7 @@
           <td><%= ndr.ndr_id %></td>
           <td><%= ndr.start_time&.strftime("%D - %I:%M%p") %></td>
           <td><%= ndr.end_time&.strftime("%D - %I:%M%p") %></td>
-          <td><%= ndr.num_members_signed_up.to_s + " / " + ndr.num_members_desired.to_s%>
+          <td><%= ndr.num_members_signed_up.to_s + " / " + ndr.num_members_desired.to_s%> </td>
           <% if ndr.is_active %>
             <td>Active</td>
           <% elsif DateTime.now >= ndr.end_time && ndr.is_active = false %>
@@ -45,8 +46,8 @@
             <td>Done</td>
           <% end %>
           <% if current_member.is_supervisor %>
-          <td class="b-cell"><%= link_to 'Edit', edit_ndr_path(ndr), :class => "dark-grey table button" %>
-          <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit', edit_ndr_path(ndr), :class => "dark-grey table button" %> </td>
+            <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
             <%# Start the NDR, setting start_time to the current time %>
             <% if !ndr.is_active && DateTime.now < ndr.end_time %>
               <td class="b-cell"> <%= button_to 'Start', ndr, method: :put, 
@@ -62,7 +63,7 @@
                   :dues_restrict => ndr.dues_restrict,
                   :training_restrict => ndr.training_restrict
                 }}, class: "green table button"
-              %>
+              %> </td>
 
               <%# Stop the NDR, setting end_time to the current time %>
             <% elsif ndr.is_active %>
@@ -79,32 +80,28 @@
                   :dues_restrict => ndr.dues_restrict,
                   :training_restrict => ndr.training_restrict
                 }}, class: "dark-grey table button"
-              %>
+              %> </td>
             <% else %>
               <td></td>
             <% end %>
-
+          <% end %>
             <%# Join the NDR and create a driver for the NDR %>
             <% if get_join_status(ndr, current_member) %>
-              <td class="b-cell"><%= link_to 'Join', ndr_drivers_join_path(ndr), :class => "blue table button fill" %>
+              <td class="b-cell"><%= link_to 'Join', ndr_drivers_join_path(ndr), :class => "blue table button fill" %> </td>
             <% else %>
               <% driver = Driver.find_by(ndr_id: ndr.ndr_id, member_id: current_member.member_id) %>
-              <td class="b-cell"><%= button_to 'Leave', driver_leave_path(driver), data: { confirm: 'Are you sure?' }, :class => "blue table button fill" %>
+              <td class="b-cell"><%= button_to 'Leave', driver_leave_path(driver), data: { confirm: 'Are you sure?' }, :class => "blue table button fill" %> </td>
             <% end %>
 
-          <% if current_member.is_supervisor%>
-            <td class="b-cell"><%= link_to 'Show', cars_list_path(:ndr_id => ndr.ndr_id), :class => "dark-grey table button" %> 
+          <% if current_member.is_supervisor %>
+            <td class="b-cell"><%= link_to 'Show', cars_list_path(:ndr_id => ndr.ndr_id), :class => "dark-grey table button" %> </td>
           <% end %>
 
         </tr>
       <% end %>
     </tbody>
   </table>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+</div>
 </div>
 
 <div class="show-on-mobile-only">

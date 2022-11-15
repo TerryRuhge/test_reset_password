@@ -16,13 +16,7 @@ class RequestsController < ApplicationController
   def list
     ndr_id = params[:ndr_id]
     @ndr = Ndr.find_by(:ndr_id => ndr_id)
-    Car.all.where(:ndr_id => ndr_id).each do |car|
-      if @requests.nil?
-        @requests = Request.all.where(:car_id => car_id, :created_at => (@ndr.start_time).., :created_at => ..(@ndr.end_time))
-      else
-        @requests = @requests + Request.all.where(:car_id => car_id, :created_at => (@ndr.start_time).., :created_at => ..(@ndr.end_time))
-      end
-    end
+    @requests = Request.all.where(:created_at => (@ndr.start_time)..).where(:created_at => ..(@ndr.end_time))
     if !@requests.nil?
       @requests = @request.order('created_at ASC')
     end
