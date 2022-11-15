@@ -4,7 +4,7 @@
 require 'rails_helper'
 
 RSpec.describe Member, type: :model do
-  let(:member) { Member.create!(first_name: 'TestName', last_name: 'TestName', phone: '8324616853', address: '987239yr8', emergency_phone_number: '8578575843', emergency_full_name: 'TestName', email: 'adjdhflkajhsd@gjalsdm.com', password: '123456', password_confirmation: '123456') }
+  let(:member) { Member.create!(first_name: 'TestName', last_name: 'TestName', phone: '8324616853', address: '987239yr8', emergency_1_phone_number: '8578575843', emergency_full_name: 'TestName', email: 'adjdhflkajhsd@gjalsdm.com', password: '123456', password_confirmation: '123456') }
   # before :each do
   #     sign_in member
   # end
@@ -43,7 +43,7 @@ RSpec.describe Member, type: :model do
   end
 
   it 'is not valid without a driver' do
-    subject.emergency_phone_number = nil
+    subject.emergency_1_phone_number = nil
     expect(subject).not_to be_valid
   end
 

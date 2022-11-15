@@ -5,10 +5,68 @@ require 'date'
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
   before_action :set_request_id, only: %i[status done cancel]
+  before_action :insure_active_ndr, only: %i[new]
 
   # GET /requests or /requests.json
   def index
     @requests = Request.all.order('request_id ASC')
+  end
+
+  # GET /request_list
+  def list
+    ndr_id = params[:ndr_id]
+    @ndr = Ndr.find_by(:ndr_id => ndr_id)
+    Car.all.where(:ndr_id => ndr_id).each do |car|
+      if @requests.nil?
+        @requests = Request.all.where(:car_id => car_id, :created_at => (@ndr.start_time).., :created_at => ..(@ndr.end_time))
+      else
+        @requests = @requests + Request.all.where(:car_id => car_id, :created_at => (@ndr.start_time).., :created_at => ..(@ndr.end_time))
+      end
+    end
+    if !@requests.nil?
+      @requests = @request.order('created_at ASC')
+    end
+
+    @requests&.each do |request|
+      assignment = Assignment.find_by_request_id(request&.request_id)
+      if @wait_avg.nil?
+        @wait_avg = time_waiting(assignment)
+      else
+        @wait_avg = @wait_avg + time_waiting(assignment)
+      end
+
+      if @trip_avg.nil?
+        @trip_avg = time_rode(assignment)
+      else
+        @trip_avg = @trip_avg + time_rode(assignment)
+      end
+    end
+
+    if !@wait_avg.nil?
+      @wait_avg = @wait_avg / @requests.count
+    else
+      @wait_avg = 0
+    end
+
+    if !@trip_avg.nil?
+      @trip_avg = @trip_avg / @requests.count
+    else
+      @trip_avg = 0
+    end
+
+    if @requests.nil? 
+      @cnt = 0
+      @done = 0
+      @cancelled = 0
+      @missed = 0
+      @people = 0
+    else
+      @cnt = @requests&.count
+      @done = @requests&.where(:request_status => "Done")&.count
+      @cancelled = @requests&.where(:request_status => "Cancelled")&.count
+      @missed = @requests&.where(:request_status => "Missed")&.count
+      @people = @requests&.sum(:num_passengers)
+    end
   end
 
   # GET /requests/waiting
@@ -150,6 +208,14 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  #Insures there is an active NDR
+  def insure_active_ndr
+    if !check_for_active_ndr
+      flash[:notice] = "Currently the service is not active."
+      redirect_to root_path
+    end
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_request

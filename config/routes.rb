@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'no_ride_assigned', to: 'member#no_ride_assigned'
   get '/member/all_statuses', to: 'member#all_statuses'
   get '/member/overview', to: 'member#overview'
+  get '/checkpoints', to: 'member#checkpoints', as: 'members_check_points'
+  
   get '/incoming', to: 'requests#incoming', as: 'requests_incoming'
   get '/waiting', to: 'requests#waiting', as: 'requests_waiting'
 
@@ -22,8 +24,14 @@ Rails.application.routes.draw do
   get '/done', to: 'assignments#done', as: 'assignments_done'
   get '/queue', to: 'assignments#queue', as: 'search'
 
+  #Get Requests for NDR
+  get '/car_list', to: 'cars#list', as: 'cars_list'
+  get '/driver_list', to: 'drivers#list', as: 'drivers_list'
+  get '/request_list', to: 'requests#list', as: 'requests_list'
+
   get '/checkin', to: 'drivers#checkin', as: 'drivers_checkin'
   post '/checkin', to: 'drivers#checkin_update', as: 'drivers_checkin_update'
+
 
   devise_for :members, controllers: {
     registrations: 'members/registrations',
