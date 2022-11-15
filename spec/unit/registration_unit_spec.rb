@@ -23,23 +23,8 @@ RSpec.describe Member, type: :model do
     expect(subject).not_to be_valid
   end
 
-  it 'is not valid without a phone number' do
-    subject.phone = nil
-    expect(subject).not_to be_valid
-  end
-
   it 'is not valid without an address' do
     subject.address = nil
-    expect(subject).not_to be_valid
-  end
-
-  it 'is not valid without an emergency full name' do
-    subject.emergency_1_full_name = nil
-    expect(subject).not_to be_valid
-  end
-
-  it 'is not valid without an emergency phone number' do
-    subject.emergency_1_phone_number = nil
     expect(subject).not_to be_valid
   end
 end
