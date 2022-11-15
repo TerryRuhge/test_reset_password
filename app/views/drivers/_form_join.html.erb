@@ -10,21 +10,31 @@
       </ul>
     </div>
   <% end %>
+
+  <br><br>
   
-  <div class="field">
-    <%= form.label :ndr_id, 'NDR Date:' %>
-    <%= form.hidden_field :ndr_id, value: @ndr.ndr_id %>
-	<%= @ndr.start_time.strftime("%D - %I:%M%p") %>
-    <br>
-    <%= @ndr.end_time.strftime("%D - %I:%M%p") %>
+  <div class="horiz-container">
+    <div class="field centered">
+      <h3 class="green-text"><%= form.label :member_id, 'Member Name:' %></h3>
+      <%= form.hidden_field :member_id, value: current_member.member_id %>
+      <h2><%= @member.first_name %> <%= @member.last_name %></h2>
+    </div>
+    
+    <div class="field centered">
+      <h3 class="green-text"><%= form.label :ndr_id, 'NDR Start:' %></h3>
+      <%= form.hidden_field :ndr_id, value: @ndr.ndr_id %>
+      <h2><%= @ndr.start_time.strftime("%D - %I:%M%p") %></h2>
+    </div>
+
+    <div class="field centered">
+      <h3 class="green-text"><%= form.label :ndr_id, 'NDR End:' %></h3>
+      <h2><%= @ndr.end_time.strftime("%D - %I:%M%p") %></h2>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :member_id, 'Member Name:' %>
-    <%= form.hidden_field :member_id, value: current_member.member_id %>
-	<%= @member.first_name %>
-    <%= @member.last_name %>
-  </div>
+  <br><br>
+
+  
 
   <div class="actions">
     <%= form.submit "Confirm Sign-Up", class: "green button small-margins" %>
