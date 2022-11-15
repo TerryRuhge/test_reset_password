@@ -24,7 +24,6 @@
               <% end %>
               <% if current_member and current_member.is_supervisor %> 
                 <%= link_to "Phone Room", requests_incoming_path %>
-                
               <% end %>
               <% if current_member and current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
@@ -100,6 +99,7 @@
     <div class = "horiz-container footer">
       <a class="first link", href="https://docs.google.com/forms/d/e/1FAIpQLSfFQbgFNL3UFEO6JHnEKblD1kNm8sNUOT-xXPAsWtZJzxPAbg/viewform?usp=sf_link", target="_blank">Experiencing a bug?</a>
       <a class="link", href="https://docs.google.com/forms/d/e/1FAIpQLSfKm1sTCg7KChda6nJa7Y45Uk_3nft1zAPmIWswDYxPT4FowQ/viewform?usp=sf_link", target="_blank">Have a suggestion?</a>
+      <a class="link", href="<%= home_doc_path %>">Documentation</a>
     </div>
   </footer>
 

@@ -3,9 +3,10 @@
 <br><br>
 
 <div class="horiz-container hide-on-mobile-only">
-  <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
+  <% if current_member.is_supervisor %>
+    <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
+  <% end %>
   <%= link_to 'View/Edit Cars', cars_path, :class => "blue button small-margins" %>
-  <%= link_to 'Back', :back, class: "grey button" %>
 </div>
 
 <div class="hide-on-mobile-only">
@@ -84,7 +85,7 @@
                 <td>----</td>
               <% end %>
             <% end %>
-
+          <% end %>
             <%# Join the NDR and create a driver for the NDR %>
             <% if get_join_status(ndr, current_member) %>
               <% if DateTime.now < ndr.end_time %>
