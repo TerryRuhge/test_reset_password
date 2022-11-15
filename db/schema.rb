@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2022_11_04_220351) do
     t.string "emergency_1_phone_number"
     t.string "emergency_2_full_name"
     t.string "emergency_2_phone_number"
+    t.string "emergency_full_name"
+    t.string "emergency_phone_number"
     t.string "drivers_license_number"
     t.string "state_issue_lciense"
     t.boolean "current_license", default: false

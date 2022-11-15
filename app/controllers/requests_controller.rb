@@ -17,9 +17,6 @@ class RequestsController < ApplicationController
     ndr_id = params[:ndr_id]
     @ndr = Ndr.find_by(:ndr_id => ndr_id)
     @requests = Request.all.where(:created_at => (@ndr.start_time)..).where(:created_at => ..(@ndr.end_time))
-    if !@requests.nil?
-      @requests = @request.order('created_at ASC')
-    end
 
     @requests&.each do |request|
       assignment = Assignment.find_by_request_id(request&.request_id)
