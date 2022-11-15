@@ -18,9 +18,9 @@ class RequestsController < ApplicationController
     @ndr = Ndr.find_by(:ndr_id => ndr_id)
     Car.all.where(:ndr_id => ndr_id).each do |car|
       if @requests.nil?
-        @requests = Request.all.where(:car_id => car_id, :created_at => (@ndr.start_time).., :created_at => ..(@ndr.end_time))
+        @requests = Request.all.where(:car_id => car_id, :created_at => @ndr.start_time..@ndr.end_time)
       else
-        @requests = @requests + Request.all.where(:car_id => car_id, :created_at => (@ndr.start_time).., :created_at => ..(@ndr.end_time))
+        @requests = @requests + Request.all.where(:car_id => car_id, :created_at => @ndr.start_time..@ndr.end_time)
       end
     end
     if !@requests.nil?

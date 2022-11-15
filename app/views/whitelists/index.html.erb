@@ -15,7 +15,7 @@
       <tr>
         <td><%= whitelist.email %></td>
         <td><%= link_to 'Edit', edit_whitelist_path(whitelist) %></td>
-        <td><%= link_to 'Remove', whitelist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Remove', whitelist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
