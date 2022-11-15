@@ -9,7 +9,7 @@ class CreateCars < ActiveRecord::Migration[6.1]
       t.string :color
       t.string :plate_number
       t.date :registration_expiry
-      
+
       t.timestamps
     end
   end

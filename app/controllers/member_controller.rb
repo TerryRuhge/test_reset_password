@@ -11,39 +11,35 @@ class MemberController < ApplicationController
   end
 
   def no_ride_assigned; end
-  
+
   def rider_info
     @assigned_rides = Assignment.where(member_id: current_member.member_id, drop_off_time: nil)
 
-    if @assigned_rides.empty?
-      redirect_to no_ride_assigned_path
-    end
-    
+    redirect_to no_ride_assigned_path if @assigned_rides.empty?
+
     @assigned_rides.each do |ride|
-      @ride_info = Request.where(request_id:ride.request_id)
+      @ride_info = Request.where(request_id: ride.request_id)
     end
-  end  
+  end
 
   def all_statuses; end
 
   def overview
     @members = Member.where.not(member_id: current_member.member_id).order('last_name ASC')
     @yourself = Member.where(member_id: current_member.member_id)
-  end 
+  end
 
-  #from member overview page
-   #POST /member/update
-   def update_supervisor 
+  # from member overview page
+  # POST /member/update
+  def update_supervisor
     @member = Member.find(params[:id])
     @member.update(is_supervisor: !@member.is_supervisor)
     redirect_to member_overview_path
-   end
+  end
 
-   def update_admin 
+  def update_admin
     @member = Member.find(params[:id])
     @member.update(is_admin: !@member.is_admin)
     redirect_to member_overview_path
-   end
-  
- 
+  end
 end

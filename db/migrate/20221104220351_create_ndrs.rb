@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CreateNdrs < ActiveRecord::Migration[6.1]
   def change
-    create_table :ndrs, id:false do |t|
+    create_table :ndrs, id: false do |t|
       t.primary_key :ndr_id
       t.boolean :is_active
       t.integer :member_id
