@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   get '/member/rider_info', to: 'member#rider_info'
   get 'no_ride_assigned', to: 'member#no_ride_assigned'
   get '/member/all_statuses', to: 'member#all_statuses'
+  get '/member/overview', to: 'member#overview'
   get '/checkpoints', to: 'member#checkpoints', as: 'members_check_points'
-
+  
   get '/incoming', to: 'requests#incoming', as: 'requests_incoming'
   get '/waiting', to: 'requests#waiting', as: 'requests_waiting'
 
@@ -38,8 +39,16 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'members/omniauth_callbacks'
   }
 
-  resources :whitelists
-  resources :drivers
+  resources :whitelists do
+    post :remove_supervisor, on: :member
+    get 'supervisor', to: 'whitelists#supervisor'
+  end
+
+  resources :member do
+    post :update_supervisor, on: :member
+    post :update_admin, on: :member
+
+  end
 
   resources :ndrs do 
     get 'join', to: 'drivers#join', as: 'join'
