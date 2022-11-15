@@ -1,0 +1,64 @@
+<h1 class="title"> Ride Status</h1>
+<%# If there are requests already shown, hide the form %>
+<% if  @requests_waiting.empty? and @requests_riding.empty? and @requests_done.empty? %>
+  <div class="card small">
+    <p id="notice"><%= notice %></p>
+    
+    <br>
+    <!-- The div below is used to get rid of the spacing between the text -->
+    <div>
+      <%= render 'assignments/form_rider', request: @request %>
+    </div>
+  </div>
+
+<% else %>
+  <div class="card">
+
+    <div>
+    
+      <%# If rider is waiting for a car, show its on the way %>
+      <% if @current_car %>
+        
+        <h2 class="green-text centered">Your ride is on its way!</h2>
+        <p class="centered">
+          Look for a 
+          <%= @current_car.color %>
+          <%= @current_car.make %> 
+          <%= @current_car.model %>
+        </p>
+  
+      <%# If rider is waiting for their ride to be assigned to a driver, show that it's being processed %>
+      <%# as well as the rider's spot in the queue %>
+      <% elsif !@requests_waiting.empty? %>
+
+        <h2 class="green-text centered">Your ride will be assigned soon</h2>
+        <h2 class="centered">Your spot in line:</h2>
+        <h1><%= @spot_in_line %></h1>
+        <br>
+        <p class="grey-text centered"> 
+          Refresh this page in a few minutes to<br>
+          see any new updates on your ride.
+        </p>
+        <br><br>
+        <%= button_to 'Cancel', request_cancel_path(@requests_waiting.first), data: { confirm: 'Are you sure?' }, :class => "dark-red button" %>
+      
+      <%# If the ride is finished, show that the ride is done %>
+      <% else %>
+        <% if @requests_done.first.request_status == 'Done'  %>
+          <h2 class="green-text centered">Your ride is completed.</h2>
+        <% else %>
+          <h2 class="green-text centered">Your ride has been cancelled.</h2>
+        <% end %>
+        <p class="centered"> 
+          Thanks for using CARPOOL!
+        </p>
+      <% end %>
+    </div>
+
+  </div>
+
+  <p id="notice"><%= notice %></p>
+
+  <br><br><br>
+  <%= link_to 'Home', root_path, class: "green button" %>
+<% end %>

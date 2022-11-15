@@ -1,83 +1,173 @@
-<h2>Edit Profile</h2>
+<h2 class="title">Edit Profile</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= flash[:alert] if flash[:alert] %>
 
-  <h3> Personal Information </h3>
+  <h3> Personal Info </h3>
 
   <div class="field">
-    <%= f.label :first_name %> <br />
+    <%= f.label :first_name %>
     <%= f.text_field :first_name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :last_name %> <br />
+    <%= f.label :last_name %>
     <%= f.text_field :last_name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :phone %> <br />
+    <%= f.label :phone %>
     <%= f.text_field :phone %>
   </div>
 
-  <h3> Address </h3>
-
   <div class="Address Field">
     <div class="field">
-      <%= f.label :address %> <br />
+      <%= f.label :address %>
       <%= f.text_field :address %>
     </div>
   </div>
 
-  <h3> Emergency Contact </h3>
+  <br><br><hr>
+
+  <h3> Emergency Contact Info </h3>
 
   <div class="Emergency Contact Field">
     <div class="field">
-      <%= f.label :emergency_full_name %> <br />
-      <%= f.text_field :emergency_full_name %>
+      <%= f.label :emergency_1_full_name %> 
+      <%= f.text_field :emergency_1_full_name %>
     </div>
     <div class="field">
-      <%= f.label :emergency_phone_number %> <br />
-      <%= f.text_field :emergency_phone_number %>
+      <%= f.label :emergency_1_phone_number %> 
+      <%= f.telephone_field :emergency_1_phone_number %>
+    </div>
+    <div class="field">
+      <%= f.label :emergency_2_full_name %> 
+      <%= f.text_field :emergency_2_full_name %>
+    </div>
+    <div class="field">
+      <%= f.label :emergency_2_phone_number %> 
+      <%= f.text_field :emergency_2_phone_number %>
     </div>
   </div>
+
+  <br><br><hr>
+
+  <h3> Parent Information </h3>
   
+  <div class = "Parent Information">
+    <div class="field">
+      <%= f.label :parent_number %> 
+      <%= f.telephone_field :parent_number %>
+    </div>
+    <div class="field">
+      <%= f.label :parent_street_address %> 
+      <%= f.text_field :parent_street_address %>
+    </div>
+    <div class="field">
+      <%= f.label :parent_city %> 
+      <%= f.text_field :parent_city %>
+    </div>
+    <div class="field">
+      <%= f.label :parent_state %> 
+      <%= f.text_field :parent_state %>
+    </div>
+    <div class="field">
+      <%= f.label :parent_zip %> 
+      <%= f.text_field :parent_zip %>
+    </div>
+  </div>
+
+  <br><br><hr>
+  
+  <h3> Driver's License Information </h3>
+
+  <div class = "Driver's License">
+    
+    <div class="field">
+      <%= f.label :drivers_license_number %> 
+      <%= f.text_field :drivers_license_number %>
+    </div>
+    <div class="field">
+      <%= f.label :state_issue_lciense %> 
+      <%= f.text_field :state_issue_lciense %>
+    </div>
+    <div class="field">
+      <%= f.label :current_license %> 
+      <%= f.check_box :current_license %>
+    </div>
+    <div class="field">
+      <%= f.label :date_of_birth %> 
+      <%= f.date_field :date_of_birth %>
+    </div>
+  </div>
+
+  <br><br><hr>
+
+  <h3> Miscellaneous </h3>
+
+  <div class = "Miscellaneous">
+    
+    <div class="field">
+      <%= f.label :tshirt_size %>
+      <%= f.select :tshirt_size, ["Small", "Medium", "Large", "X-Large", "2X-Large", "3X-Large"] %>
+    </div>
+    <div class="field">
+      <%= f.label :has_insurance %>
+      <%= f.check_box :has_insurance %>
+    </div>
+    <div class="field">
+      <%= f.label :allergies %>
+      <%= f.text_field :allergies %>
+    </div>
+    <div class="field">
+      <%= f.label :special_dietary_needs %> 
+      <%= f.text_field :special_dietary_needs %>
+    </div>
+    <div class="field">
+      <%= f.label :semesters_as_member %> 
+      <%= f.select :semesters_as_member, options_for_select(0..30) %>
+    </div>
+    <div class="field">
+      <%= f.label :college_major %>
+      <%= f.text_field :college_major %>
+    </div>
+  </div>
+
+
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+  <br><br><hr>
+
   <% if @current_member.created_password %>
-    <h3> Update Password </h3>
+    <h3> Update Password (optional) </h3>
   <% else %>
     <h3> Create Password </h3>
   <% end %>
   
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+    <%= f.label :password, "New Password" %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters minimum" %>
+    
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters minimum" %>
   </div>
-
-  <h3> Save Changes </h3>
 
   <!-- Check if member has already created a password -->
   <% if @current_member.created_password %>
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :current_password, "Old Password" %>
       <%= f.password_field :current_password, autocomplete: "current-password" %>
     </div>
     <% end %>
@@ -91,6 +181,6 @@
 
 <br><br>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "red button" %></p>
+<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "red button" %>
 
 

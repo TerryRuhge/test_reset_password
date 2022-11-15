@@ -1,0 +1,26 @@
+<%= form_with(model: whitelist) do |form| %>
+  <% if whitelist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(whitelist.errors.count, "error") %> prohibited this whitelist from being saved:</h2>
+
+      <ul>
+        <% whitelist.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br><br>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <br><br>
+
+  <div class="actions">
+    <%= form.submit class: "green button" %>
+  </div>
+<% end %>

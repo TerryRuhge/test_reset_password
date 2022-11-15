@@ -1,0 +1,30 @@
+<h1 class="title">Whitelist</h1>
+
+<br><br>
+
+<%= link_to 'Add Email', new_whitelist_path, class: "green button" %>
+
+<p id="notice"><%= notice %></p>
+
+<br>
+
+<div class="view-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @whitelists.each do |whitelist| %>
+        <tr>
+          <td><%= whitelist.email %></td>
+          <td class="b-cell"><%= link_to 'Edit', edit_whitelist_path(whitelist), class: "orange table button" %></td>
+          <td class="b-cell"><%= button_to 'Remove', whitelist, method: :delete, data: { confirm: 'Are you sure?' }, class: "dark-red table button" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

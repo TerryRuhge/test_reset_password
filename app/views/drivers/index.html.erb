@@ -1,0 +1,60 @@
+<h1 class="title">Driver Statuses</h1>
+
+<br><br><br>
+
+<p id="notice"><%= notice %></p>
+
+<div class="hide-on-mobile-only">
+  <div class="view-table">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">Name</th>
+          <th>Phone</th>
+          <th>Car ID</th>
+          <th>Last Check In Time</th>
+          <th>Last Check In Date</th>
+          <th>Status</th>
+          <th colspan="2">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @drivers.each do |driver| %>
+          <% temp_member = Member.find_by(member_id: driver.member_id) %>
+          <tr>
+            <td><%= temp_member.first_name %></td>
+            <td><%= temp_member.last_name %></td>
+            <td><%= temp_member.phone %></td>
+            <td><%= driver.car_id %></td>
+            <td><%= driver.check_in_time.strftime("%I:%M %p") %></td>
+            <td><%= driver.check_in_time.strftime("%D") %></td>
+            <td><%= driver.driver_status %>
+            <td class="b-cell"><%= link_to 'Edit', edit_driver_path(driver), class: "orange table button" %></td>
+            <td class="b-cell"><%= link_to 'Remove', driver, method: :delete, data: { confirm: 'Are you sure?' }, class: "red table button" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br><br>
+
+<div class="hide-on-mobile-only">
+  <%# <%= link_to 'New Driver', new_driver_path, class: "green button" %>
+</div>
+
+<div class="show-on-mobile-only">
+  <div class="horiz card">
+    <p>
+      This page is designed to work on desktop devices only. <br>
+      Please try again on a non-mobile device.
+    </p>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'Back', :back, class: "grey button" %>
+

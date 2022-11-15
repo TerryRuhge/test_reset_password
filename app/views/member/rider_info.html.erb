@@ -1,3 +1,12 @@
-<h1>Rider Information</h1>
+<h1 class="title">Rider Information</h1>
 
-<%=rider_info %>
+<% @ride_info.each do |ride| %>
+  <tr>
+    <td><%= ride.name %></td> 
+    <td><%= ride.phone_number %></td> 
+    <td><%= ride.pick_up_loc %></td> 
+    <td><%= ride.drop_off_loc %></td> 
+    <td><%= ride.num_passengers %></td> 
+    <td><%= ride.additional_info %></td> 
+  </tr>
+<% end %>

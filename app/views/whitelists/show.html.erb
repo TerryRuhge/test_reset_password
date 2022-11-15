@@ -1,0 +1,16 @@
+<h1 class="title">Whitelist</h1>
+
+<p id="notice"><%= notice %></p>
+
+<br>
+
+<h2>
+  <strong>Email:</strong>
+  <%= @whitelist.email %>
+</h2>
+
+<br><br>
+
+<%= link_to 'Edit', edit_whitelist_path(@whitelist), class: "green button" %>
+<br>
+<%= link_to 'Back', whitelists_path, class: "grey button" %>
