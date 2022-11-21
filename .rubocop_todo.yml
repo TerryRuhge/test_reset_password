@@ -18,18 +18,3 @@ Layout/EndOfLine:
 # IgnoredMethods: refine
 Metrics/BlockLength:
   Max: 54
-
-# Offense count: 1
-Lint/UselessAssignment:
-  Exclude:
-    - 'app/controllers/cars_controller.rb'
-
-# Offense count: 1    
-Naming/AccessorMethodName:
-  Exclude:
-    - 'app/controllers/drivers_controller.rb'
-
-# Offense count: 1
-Style/GuardClause:
-  Exclude:
-    - 'app/controllers/requests_controller.rb'

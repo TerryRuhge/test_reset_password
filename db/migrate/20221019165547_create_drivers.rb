@@ -8,7 +8,6 @@ class CreateDrivers < ActiveRecord::Migration[6.1]
       t.integer :car_id
       t.datetime :check_in_time
       t.string :driver_status
-      t.integer :ndr_id
 
       t.timestamps
     end

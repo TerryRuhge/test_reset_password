@@ -2,17 +2,18 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="horiz-container hide-on-mobile-only">
+<div class="horiz-container">
   <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
   <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
   <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "green button small-margins" %>
   <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "grey wide button small-margins" %>
 </div>
 
-<div class="view-table hide-on-mobile-only">
+<div class="view-table">
   <table>
     <thead>
       <tr>
+        <th colspan="4">Actions</th>
         <th>Car</th>
         <th>Name</th>
         <th>Phone Number</th>
@@ -22,7 +23,6 @@
         <th>Additional Info</th>
         <th>Time Waited</th>
         <th>Assigned By</th>
-        <th colspan="4">Actions</th>
       </tr>
     </thead>
 
@@ -32,8 +32,11 @@
         <% car = Car.find_by_car_id(assignment.car_id) %>
         <% member = Member.find_by_member_id(assignment.member_id) %>
         <tr>
-          
-          <td><b><%= car.id %>:</b> <%= car.color %> <%= car.make %> <%= car.model %></td>
+          <td class="b-cell"><%= button_to 'Done', request_done_path(request), :class => "grey table button" %></td>
+          <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
+		      <td class="b-cell"><%= link_to 'Edit Car', edit_assignment_path(assignment), :class => "grey table button" %></td>
+          <td class="b-cell"><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
+          <td><%= car.color %> <%= car.make %> <%= car.model %></td>
           <td><%= request.name %></td>
           <td><%= request.phone_number %></td>
           <td><%= request.pick_up_loc %></td>
@@ -42,21 +45,8 @@
           <td><%= request.additional_info %></td>
           <td><%= time_waiting(assignment) %></td>
           <td><%= member.last_name %>, <%= member.first_name %></td>
-          <td class="b-cell"><%= button_to 'Done', request_done_path(request), :class => "green table button" %></td>
-          <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "orange table button" %></td>
-		      <td class="b-cell"><%= link_to 'Edit Car', edit_assignment_path(assignment), :class => "blue table button" %></td>
-          <td class="b-cell"><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-</div>
-
-<div class="show-on-mobile-only">
-  <div class="horiz card">
-    <p>
-      This page is designed to work on desktop devices only. <br>
-      Please try again on a non-mobile device.
-    </p>
-  </div>
 </div>

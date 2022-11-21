@@ -5,59 +5,10 @@ require 'date'
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
   before_action :set_request_id, only: %i[status done cancel]
-  before_action :insure_active_ndr, only: %i[new]
 
   # GET /requests or /requests.json
   def index
     @requests = Request.all.order('request_id ASC')
-  end
-
-  # GET /request_list
-  def list
-    ndr_id = params[:ndr_id]
-    @ndr = Ndr.find_by(ndr_id: ndr_id)
-    @requests = Request.all.where(created_at: (@ndr.start_time)..).where(created_at: ..(@ndr.end_time))
-
-    @requests&.each do |request|
-      assignment = Assignment.find_by_request_id(request&.request_id)
-      @wait_avg = if @wait_avg.nil?
-                    time_waiting(assignment)
-                  else
-                    @wait_avg + time_waiting(assignment)
-                  end
-
-      @trip_avg = if @trip_avg.nil?
-                    time_rode(assignment)
-                  else
-                    @trip_avg + time_rode(assignment)
-                  end
-    end
-
-    @wait_avg = if !@wait_avg.nil?
-                  @wait_avg / @requests.count
-                else
-                  0
-                end
-
-    @trip_avg = if !@trip_avg.nil?
-                  @trip_avg / @requests.count
-                else
-                  0
-                end
-
-    if @requests.nil?
-      @cnt = 0
-      @done = 0
-      @cancelled = 0
-      @missed = 0
-      @people = 0
-    else
-      @cnt = @requests&.count
-      @done = @requests&.where(request_status: 'Done')&.count
-      @cancelled = @requests&.where(request_status: 'Cancelled')&.count
-      @missed = @requests&.where(request_status: 'Missed')&.count
-      @people = @requests&.sum(:num_passengers)
-    end
   end
 
   # GET /requests/waiting
@@ -199,14 +150,6 @@ class RequestsController < ApplicationController
   end
 
   private
-
-  # Insures there is an active NDR
-  def insure_active_ndr
-    unless check_for_active_ndr
-      flash[:notice] = 'Currently the service is not active.'
-      redirect_to root_path
-    end
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_request

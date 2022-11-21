@@ -11,15 +11,15 @@
     </div>
   <% end %>
   
-  <div class="field centered">
-    <h2><%= form.label :request_id, 'Requester Name:' %></h2>
-    <h3><%= @request.name %></h3>
+  <div class="field">
+    <%= form.label :request_id, 'Requester Name:' %>
     <%= form.hidden_field :request_id, value: @request.request_id %>
+	<%= @request.name %>
   </div>
 
   <div class="field">
-    <h3><%= form.label :car_id, 'Car:' %></h3>
-    <%= form.select :car_id, @cars.map { |car| [(car.car_id.to_s + ': ' + car.make + ' ' + car.model + ' ' + car.color), car.car_id] }, include_blank: true, id:"car_select_box" %>
+    <%= form.label :car_id, 'Car:' %>
+    <%= form.select :car_id, @cars.map { |car| [(car.make + ' ' + car.model + ' ' + car.color), car.car_id] }, include_blank: true, id:"car_select_box" %>
   </div>
 
   <div class="actions">
