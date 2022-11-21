@@ -1,0 +1,18 @@
+<%= form_with(model: driver) do |form| %>
+  
+  <div class="field centered">
+    <%= form.label :driver_status, "What is your status?" %>
+    <%= form.select :driver_status, ['On-Route to Pick-up Location', 'On-Route to Drop-off Location', 'Picked up rider', 'Dropped Off Rider', 'Other'] %>
+
+    <br><br>
+
+    <%= form.label :driver_status, 'If you selected "Other," give a brief description below.' %>
+    <%= form.text_field :driver_status %>
+  </div>
+  
+  <br><br>
+
+  <div class="actions">
+    <%= form.submit class: "green button" %>
+  </div>
+<% end %>

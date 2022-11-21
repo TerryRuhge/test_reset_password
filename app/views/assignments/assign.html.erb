@@ -1,4 +1,4 @@
-<h1 class="title">Assign Request with Driver</h1>
+<h1 class="title">Assign Request to Driver</h1>
 
 <p id="notice"><%= notice %></p>
 
@@ -10,5 +10,9 @@
 </div>
 
 <%= render 'form_assign', assignment: @assignment %>
+
+<%= link_to 'View/Edit Cars', cars_path, class: "blue button" %>
+
+<br><br>
 
 <%= link_to 'Back', requests_waiting_path, class: "grey button" %>

@@ -5,6 +5,26 @@ require 'rails_helper'
 
 RSpec.describe 'Creating an assignment', type: :feature do
   scenario 'valid inputs' do
+    visit new_whitelist_path
+    fill_in 'Email', with: 'reb_pendra@gmail.com'
+    click_on 'Create Whitelist'
+    visit root_path
+    click_on 'Sign Up'
+    fill_in 'First name', with: 'Rebecca'
+    fill_in 'Last name', with: 'Pendragon'
+    fill_in 'Email', with: 'reb_pendra@gmail.com'
+    fill_in 'Phone', with: '7109290011'
+    fill_in 'Emergency 1 full name', with: 'Lucy Pendragon'
+    fill_in 'Emergency 1 phone number', with: '7109295223'
+    fill_in 'Address', with: '<address>'
+    fill_in 'Password', with: 'neone99'
+    fill_in 'Password confirmation', with: 'neone99'
+    click_on 'Sign up'
+    visit new_ndr_path
+    select('12 AM', from: 'ndr_start_time_4i')
+    select('11 PM', from: 'ndr_end_time_4i')
+    check 'Start Now?'
+    click_on 'Create Ndr'
     visit new_car_path
     fill_in 'Make', with: 'Toyota'
     fill_in 'Model', with: 'Camry'
@@ -18,18 +38,6 @@ RSpec.describe 'Creating an assignment', type: :feature do
     fill_in 'Drop Off Location:', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
-    visit root_path
-    click_on 'Sign Up'
-    fill_in 'First name', with: 'Rebecca'
-    fill_in 'Last name', with: 'Pendragon'
-    fill_in 'Email', with: 'reb_pendra@test.com'
-    fill_in 'Phone', with: '7109290011'
-    fill_in 'Emergency full name', with: 'Lucy Pendragon'
-    fill_in 'Emergency phone number', with: '7109295223'
-    fill_in 'Address', with: '<address>'
-    fill_in 'Password', with: 'neone99'
-    fill_in 'Password confirmation', with: 'neone99'
-    click_on 'Sign up'
     visit requests_waiting_path
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')
@@ -46,6 +54,26 @@ end
 
 RSpec.describe 'Updating an assignment', type: :feature do
   scenario 'update inputs' do
+    visit new_whitelist_path
+    fill_in 'Email', with: 'reb_pendra@gmail.com'
+    click_on 'Create Whitelist'
+    visit root_path
+    click_on 'Sign Up'
+    fill_in 'First name', with: 'Rebecca'
+    fill_in 'Last name', with: 'Pendragon'
+    fill_in 'Email', with: 'reb_pendra@gmail.com'
+    fill_in 'Phone', with: '7109290011'
+    fill_in 'Emergency 1 full name', with: 'Lucy Pendragon'
+    fill_in 'Emergency 1 phone number', with: '7109295223'
+    fill_in 'Address', with: '<address>'
+    fill_in 'Password', with: 'neone99'
+    fill_in 'Password confirmation', with: 'neone99'
+    click_on 'Sign up'
+    visit new_ndr_path
+    select('12 AM', from: 'ndr_start_time_4i')
+    select('11 PM', from: 'ndr_end_time_4i')
+    check 'Start Now?'
+    click_on 'Create Ndr'
     visit new_car_path
     fill_in 'Make', with: 'Toyota'
     fill_in 'Model', with: 'Camry'
@@ -65,18 +93,6 @@ RSpec.describe 'Updating an assignment', type: :feature do
     fill_in 'Drop Off Location:', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
-    visit root_path
-    click_on 'Sign Up'
-    fill_in 'First name', with: 'Rebecca'
-    fill_in 'Last name', with: 'Pendragon'
-    fill_in 'Email', with: 'reb_pendra@test.com'
-    fill_in 'Phone', with: '7109290011'
-    fill_in 'Emergency full name', with: 'Lucy Pendragon'
-    fill_in 'Emergency phone number', with: '7109295223'
-    fill_in 'Address', with: '<address>'
-    fill_in 'Password', with: 'neone99'
-    fill_in 'Password confirmation', with: 'neone99'
-    click_on 'Sign up'
     visit requests_waiting_path
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')
@@ -96,6 +112,26 @@ end
 
 RSpec.describe 'Marking an assignment as Done', type: :feature do
   scenario 'change status' do
+    visit new_whitelist_path
+    fill_in 'Email', with: 'reb_pendra@gmail.com'
+    click_on 'Create Whitelist'
+    visit root_path
+    click_on 'Sign Up'
+    fill_in 'First name', with: 'Rebecca'
+    fill_in 'Last name', with: 'Pendragon'
+    fill_in 'Email', with: 'reb_pendra@gmail.com'
+    fill_in 'Phone', with: '7109290011'
+    fill_in 'Emergency 1 full name', with: 'Lucy Pendragon'
+    fill_in 'Emergency 1 phone number', with: '7109295223'
+    fill_in 'Address', with: '<address>'
+    fill_in 'Password', with: 'neone99'
+    fill_in 'Password confirmation', with: 'neone99'
+    click_on 'Sign up'
+    visit new_ndr_path
+    select('12 AM', from: 'ndr_start_time_4i')
+    select('11 PM', from: 'ndr_end_time_4i')
+    check 'Start Now?'
+    click_on 'Create Ndr'
     visit new_car_path
     fill_in 'Make', with: 'Toyota'
     fill_in 'Model', with: 'Camry'
@@ -109,18 +145,6 @@ RSpec.describe 'Marking an assignment as Done', type: :feature do
     fill_in 'Drop Off Location:', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
-    visit root_path
-    click_on 'Sign Up'
-    fill_in 'First name', with: 'Rebecca'
-    fill_in 'Last name', with: 'Pendragon'
-    fill_in 'Email', with: 'reb_pendra@test.com'
-    fill_in 'Phone', with: '7109290011'
-    fill_in 'Emergency full name', with: 'Lucy Pendragon'
-    fill_in 'Emergency phone number', with: '7109295223'
-    fill_in 'Address', with: '<address>'
-    fill_in 'Password', with: 'neone99'
-    fill_in 'Password confirmation', with: 'neone99'
-    click_on 'Sign up'
     visit requests_waiting_path
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')
@@ -139,6 +163,26 @@ end
 
 RSpec.describe 'Deleting an assignment', type: :feature do
   scenario 'delete inputs' do
+    visit new_whitelist_path
+    fill_in 'Email', with: 'reb_pendra@gmail.com'
+    click_on 'Create Whitelist'
+    visit root_path
+    click_on 'Sign Up'
+    fill_in 'First name', with: 'Rebecca'
+    fill_in 'Last name', with: 'Pendragon'
+    fill_in 'Email', with: 'reb_pendra@gmail.com'
+    fill_in 'Phone', with: '7109290011'
+    fill_in 'Emergency 1 full name', with: 'Lucy Pendragon'
+    fill_in 'Emergency 1 phone number', with: '7109295223'
+    fill_in 'Address', with: '<address>'
+    fill_in 'Password', with: 'neone99'
+    fill_in 'Password confirmation', with: 'neone99'
+    click_on 'Sign up'
+    visit new_ndr_path
+    select('12 AM', from: 'ndr_start_time_4i')
+    select('11 PM', from: 'ndr_end_time_4i')
+    check 'Start Now?'
+    click_on 'Create Ndr'
     visit new_car_path
     fill_in 'Make', with: 'Toyota'
     fill_in 'Model', with: 'Camry'
@@ -152,18 +196,6 @@ RSpec.describe 'Deleting an assignment', type: :feature do
     fill_in 'Drop Off Location:', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
-    visit root_path
-    click_on 'Sign Up'
-    fill_in 'First name', with: 'Rebecca'
-    fill_in 'Last name', with: 'Pendragon'
-    fill_in 'Email', with: 'reb_pendra@test.com'
-    fill_in 'Phone', with: '7109290011'
-    fill_in 'Emergency full name', with: 'Lucy Pendragon'
-    fill_in 'Emergency phone number', with: '7109295223'
-    fill_in 'Address', with: '<address>'
-    fill_in 'Password', with: 'neone99'
-    fill_in 'Password confirmation', with: 'neone99'
-    click_on 'Sign up'
     visit requests_waiting_path
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')

@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_221_102_001_807) do
+ActiveRecord::Schema.define(version: 20_221_104_220_351) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20_221_102_001_807) do
     t.integer 'car_id'
     t.datetime 'check_in_time'
     t.string 'driver_status'
+    t.integer 'ndr_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end
@@ -51,10 +52,29 @@ ActiveRecord::Schema.define(version: 20_221_102_001_807) do
     t.string 'address'
     t.boolean 'is_admin', default: false
     t.boolean 'is_supervisor', default: false
-    t.decimal 'leaderboard_points'
+    t.decimal 'leaderboard_points', default: '0.0'
     t.boolean 'created_password', default: true
+    t.string 'emergency_1_full_name'
+    t.string 'emergency_1_phone_number'
+    t.string 'emergency_2_full_name'
+    t.string 'emergency_2_phone_number'
     t.string 'emergency_full_name'
     t.string 'emergency_phone_number'
+    t.string 'drivers_license_number'
+    t.string 'state_issue_lciense'
+    t.boolean 'current_license', default: false
+    t.date 'date_of_birth'
+    t.string 'parent_number'
+    t.string 'parent_street_address'
+    t.string 'parent_city'
+    t.string 'parent_state'
+    t.string 'parent_zip'
+    t.string 'tshirt_size', default: 'Medium'
+    t.boolean 'has_insurance', default: false
+    t.string 'allergies'
+    t.string 'special_dietary_needs'
+    t.decimal 'semesters_as_member', default: '0.0'
+    t.string 'college_major'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'email', default: '', null: false
@@ -68,6 +88,20 @@ ActiveRecord::Schema.define(version: 20_221_102_001_807) do
     t.datetime 'remember_created_at'
     t.index ['email'], name: 'index_members_on_email', unique: true
     t.index ['reset_password_token'], name: 'index_members_on_reset_password_token', unique: true
+  end
+
+  create_table 'ndrs', primary_key: 'ndr_id', force: :cascade do |t|
+    t.boolean 'is_active'
+    t.integer 'member_id'
+    t.datetime 'start_time'
+    t.datetime 'end_time'
+    t.boolean 'members_needed', default: true
+    t.integer 'num_members_desired', default: 5
+    t.integer 'num_members_signed_up', default: 0
+    t.boolean 'dues_restrict', default: true
+    t.boolean 'training_restrict', default: true
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
   create_table 'requests', primary_key: 'request_id', force: :cascade do |t|

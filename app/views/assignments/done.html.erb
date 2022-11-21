@@ -2,18 +2,17 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="horiz-container">
+<div class="horiz-container hide-on-mobile-only">
   <%= link_to "Incoming", requests_incoming_path, :class => "grey button small-margins" %>
   <%= link_to "Waiting (#{Request.waiting})", requests_waiting_path, :class => "grey button small-margins" %>
   <%= link_to "Riding (#{Request.riding})", assignments_riding_path, :class => "grey button small-margins" %>
   <%= link_to "Done (#{Request.done}Dn #{Request.missed}Msd #{Request.cancelled}Cncld)", assignments_done_path, :class => "green wide button small-margins" %>
 </div>
 
-<div class="view-table">
+<div class="view-table hide-on-mobile-only">
   <table>
     <thead>
       <tr>
-        <th colspan="2">Actions</th>
         <th>Status</th>
         <th>Car</th>
         <th>Name</th>
@@ -24,6 +23,7 @@
         <th>Assigned By</th>
         <th>Time Rode</th>
         <th>Home At</th>
+        <th colspan="2">Actions</th>
       </tr>
     </thead>
 
@@ -34,10 +34,8 @@
           <% car = Car.find_by_car_id(assignment.car_id) %>
           <% member = Member.find_by_member_id(assignment.member_id) %>
           <tr>
-            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
-            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
             <td><%= request.request_status %></td>
-            <td><%= car.color %> <%= car.make %> <%= car.model %></td>
+            <td><b><%= car.id %>:</b> <%= car.color %> <%= car.make %> <%= car.model %></td>
             <td><%= request.name %></td>
             <td><%= request.phone_number %></td>
             <td><%= request.pick_up_loc %></td>
@@ -46,11 +44,11 @@
             <td><%= member.last_name %>, <%= member.first_name %></td>
             <td><%= time_rode(assignment) %></td>
             <td><%= time_home(assignment) %></td>
+            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "orange table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "blue table button" %></td>
           </tr>
         <% else %>
            <tr>
-            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "grey table button" %></td>
-            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "grey table button" %></td>
             <td><%= request.request_status %></td>
             <td></td>
             <td><%= request.name %></td>
@@ -61,9 +59,20 @@
             <td></td>
             <td></td>
             <td></td>
+            <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "orange table button" %></td>
+            <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "blue table button" %></td>
           </tr>
 		<% end %>
       <% end %>
     </tbody>
   </table>
+</div>
+
+<div class="show-on-mobile-only">
+  <div class="horiz card">
+    <p>
+      This page is designed to work on desktop devices only. <br>
+      Please try again on a non-mobile device.
+    </p>
+  </div>
 </div>
