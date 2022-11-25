@@ -1,0 +1,20 @@
+<h1 class="title">NDR</h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date time:</strong>
+  <%= @ndr.start_time %>
+</p>
+
+<p>
+  <strong>End date time:</strong>
+  <%= @ndr.end_time %>
+</p>
+
+<p>
+  <strong>NDR ID:</strong>
+  <%= @ndr.ndr_id %>
+</p>
+
+<%= link_to 'Back', ndrs_path, class: "grey button"  %>

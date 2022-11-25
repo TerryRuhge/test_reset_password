@@ -1,5 +1,4 @@
 <h1 class="title"> Ride Status</h1>
-
 <%# If there are requests already shown, hide the form %>
 <% if  @requests_waiting.empty? and @requests_riding.empty? and @requests_done.empty? %>
   <div class="card small">
@@ -38,10 +37,9 @@
         <br>
         <p class="grey-text centered"> 
           Refresh this page in a few minutes to<br>
-          see any new updates on your ride. <br>
-
-          Or cancel your ride below.
+          see any new updates on your ride.
         </p>
+        <br><br>
         <%= button_to 'Cancel', request_cancel_path(@requests_waiting.first), data: { confirm: 'Are you sure?' }, :class => "dark-red button" %>
       
       <%# If the ride is finished, show that the ride is done %>
@@ -58,6 +56,8 @@
     </div>
 
   </div>
+
+  <p id="notice"><%= notice %></p>
 
   <br><br><br>
   <%= link_to 'Home', root_path, class: "green button" %>
