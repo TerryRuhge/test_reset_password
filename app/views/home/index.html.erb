@@ -4,7 +4,8 @@
     <p id="notice"><%= notice %></p>
     <div class="centered card-item">
         <br><br>
-        <% if !Ndr.find_by(is_active: true).nil? %>
+        <% current_ndr = Ndr.find_by(is_active: true)%>
+        <% if !current_ndr.nil? && !current_ndr&.button_override%>
             <p class="">Need a Ride? Click the button below.</p>
             <%= link_to 'Request a Ride', new_request_path, :class => "green button large large-text" %>
         <% else %>
@@ -26,11 +27,11 @@
         <br><br>
     </div>
 
-    <% if !Ndr.find_by(is_active: true).nil? %>
+    <% if !current_ndr.nil? %>
         <hr>
     <% end %>
-
-    <% if !Ndr.find_by(is_active: true).nil? %>
+ 
+    <% if !current_ndr.nil? && !current_ndr&.button_override%>
         <div class="card-item">
             <%= render 'assignments/form_rider', request: @request %>
         </div>

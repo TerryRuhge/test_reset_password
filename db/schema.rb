@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2022_11_04_220351) do
 
   create_table "ndrs", primary_key: "ndr_id", force: :cascade do |t|
     t.boolean "is_active"
+    t.boolean "button_override"
     t.integer "member_id"
     t.datetime "start_time"
     t.datetime "end_time"
