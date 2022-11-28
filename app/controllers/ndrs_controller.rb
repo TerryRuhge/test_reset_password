@@ -5,11 +5,11 @@ class NdrsController < ApplicationController
   helper_method :get_join_status
   # GET /ndrs or /ndrs.json
   def index
-    if current_member.is_admin || current_member.is_supervisor
-      @ndrs = Ndr.all
-    else
-      @ndrs = Ndr.where(is_active: true) + Ndr.where(is_active: false).where(end_time: DateTime.now..)
-    end
+    @ndrs = if current_member.is_admin || current_member.is_supervisor
+              Ndr.all
+            else
+              Ndr.where(is_active: true) + Ndr.where(is_active: false).where(end_time: DateTime.now..)
+            end
   end
 
   # GET /ndrs/1 or /ndrs/1.json
@@ -66,17 +66,13 @@ class NdrsController < ApplicationController
     Driver.find_by(ndr_id: test_ndr.ndr_id, member_id: test_member.member_id).nil?
   end
 
-  #GET button_control
+  # GET button_control
   def button_control
     if current_member.is_admin
-      @curr_ndr = Ndr.find_by(:is_active => true)
-      if(!@curr_ndr.nil?)
+      @curr_ndr = Ndr.find_by(is_active: true)
+      if !@curr_ndr.nil?
         @ndr_active = true
-        if @curr_ndr.button_override == true
-          @active = false
-        else
-          @active = true
-        end
+        @active = @curr_ndr.button_override != true
       else
         @ndr_active = false
       end
@@ -85,23 +81,22 @@ class NdrsController < ApplicationController
     end
   end
 
-  #POST button_control
+  # POST button_control
   def disable_button
-    @dis_NDR = Ndr.find_by(is_active: true)
-    if !@dis_NDR.nil?
-      @dis_NDR.update_attribute(:button_override, true)
+    @dis_ndr = Ndr.find_by(is_active: true)
+    unless @dis_ndr.nil?
+      @dis_ndr.update_attribute(:button_override, true)
       @active = false
     end
     redirect_to :button_control
   end
 
-  #POST button_control
+  # POST button_control
   def enable_button
-    @dis_NDR = Ndr.find_by(is_active: true)
-    if !@dis_NDR.nil?
-      @dis_NDR.update_attribute(:button_override, false)
+    @dis_ndr = Ndr.find_by(is_active: true)
+    unless @dis_ndr.nil?
+      @dis_ndr.update_attribute(:button_override, false)
       @active = true
-      p @dis_NDR
     end
     redirect_to :button_control
   end

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get 'ndrs', to: 'ndrs#index'
 
-  #Manual Control of request button
+  # Manual Control of request button
   get '/button_control', to: 'ndrs#button_control'
   post '/disable_button', to: 'ndrs#disable_button'
   post '/enable_button', to: 'ndrs#enable_button'
