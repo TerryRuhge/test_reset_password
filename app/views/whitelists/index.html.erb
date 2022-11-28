@@ -3,7 +3,7 @@
 <br><br>
 
 <div class="horiz-container">
-    <% if current_member.is_supervisor %>
+  <% if current_member&.is_supervisor %>
     <%= link_to 'Button Control', button_control_path, :class => "grey button small-margins" %>
   <% end %>
   <%= link_to 'Whitelisting', whitelists_path, :class => "green button small-margins" %>

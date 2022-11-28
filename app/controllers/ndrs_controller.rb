@@ -8,8 +8,7 @@ class NdrsController < ApplicationController
     if current_member.is_admin || current_member.is_supervisor
       @ndrs = Ndr.all
     else
-      p "Correct Spot"
-      @ndrs = Ndr.where(is_active: false).where(end_time: DateTime.now..)
+      @ndrs = Ndr.where(is_active: true) + Ndr.where(is_active: false).where(end_time: DateTime.now..)
     end
   end
 
