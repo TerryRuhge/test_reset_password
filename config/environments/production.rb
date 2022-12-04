@@ -74,12 +74,12 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,
-    address: 'smtp.gmail.com',
+    address: 'smtp.sendgrind.net',
     port: 587,
-    domain: ENV['GMAIL_DOMAIN'],
+    domain: 'test-reset-password.herokuapp.com',
     authentication: 'plain',
-    user_name: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD']
+    user_name: 'apikey',
+    password: ENV['SENDGRID_API_KEY']
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
